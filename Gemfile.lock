@@ -1,5 +1,6 @@
-PATH
-  remote: ../../rastyagaev/mgmt
+GIT
+  remote: git://github.com/f-s-v/mgmt.git
+  revision: de09487c3bbd2f82b172b22b81dc54500dbf5cd4
   specs:
     mgmt (0.0.1)
       bootstrap-sass (~> 3.1.1.0)
