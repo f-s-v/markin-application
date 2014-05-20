@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  get 'dummy/index'
+  devise_for :users
+  root to: 'dummy#index'
+  namespace :mgmt do
+    root to: 'users#index'
+    resources :users
+  end
 end
