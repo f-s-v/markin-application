@@ -25,4 +25,5 @@ gem 'spring',        group: :development
 gem 'foreman', '~> 0.66.0'
 gem 'unicorn'
 gem 'mgmt', github: 'f-s-v/mgmt'
+gem 'dotenv-deployment'
 gem 'devise'
