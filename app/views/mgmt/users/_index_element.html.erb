@@ -1,19 +1,7 @@
-<% columns_count = 3 %>
-
-<% if index % columns_count == 0 %>
-  <div class="row">
-<% end %>
-
-<div class="col-md-<%= 12 / columns_count %>">
-  <div class="media">
-    <div class="media-body">
-      <h4 class="media-heading">
-        <%= link_to element.email, [:edit, :mgmt, element] %>
-      </h4>
-    </div>
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to element.email, [:edit, :mgmt, element] %>
+    </h4>
   </div>
 </div>
-
-<% if index % columns_count == columns_count - 1 %>
-  </div>
-<% end %>

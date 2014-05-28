@@ -1,0 +1,26 @@
+<%= form.input :name %>
+
+<fieldset>
+
+  <legend>
+    <%= t('.items_legend') %>
+  </legend>
+
+  <%= form.simple_fields_for :options do |options_form| %>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= options_form.link_to_remove raw("&times;"), class: 'close' %>
+            <%= options_form.input :name %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form.link_to_add :options, class: 'btn btn-primary btn-xs' do %>
+    <span class="glyphicon glyphicon-plus"></span> Add item
+  <% end %>
+
+</fieldset>

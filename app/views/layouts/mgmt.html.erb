@@ -1,0 +1,10 @@
+<% content_for :mgmt_application_head do %>
+  <script>
+    UPLOADCARE_AUTOSTORE = true
+    UPLOADCARE_PUBLIC_KEY = '<%= ENV['MARKIN_UPLOADCARE_PUBLIC_KEY'] %>'
+    UPLOADCARE_LOCALE = '<%= I18n.locale %>'
+  </script>
+  <%= javascript_include_tag 'mgmt' %>
+<% end %>
+
+<%= render template: 'layouts/mgmt/application' %>

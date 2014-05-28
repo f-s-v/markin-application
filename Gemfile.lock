@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/f-s-v/mgmt.git
   revision: de09487c3bbd2f82b172b22b81dc54500dbf5cd4
+  branch: master
   specs:
     mgmt (0.0.1)
       bootstrap-sass (~> 3.1.1.0)
@@ -8,7 +9,14 @@ GIT
       nested_form (~> 0.3.2)
       rails (>= 4.0.0)
       sass-rails (>= 3.2)
-      simple_form (~> 3.0.1)
+      simple_form (~> 3.1.0.rc1)
+
+GIT
+  remote: git://github.com/f-s-v/uploadcare_helpers.git
+  revision: 2a50d987ac4c5757472e37250c09c69638b37b78
+  specs:
+    uploadcare_helpers (0.0.1)
+      rails (~> 4.1.0.rc2)
 
 GEM
   remote: https://rubygems.org/
@@ -26,6 +34,17 @@ GEM
       activesupport (= 4.1.1)
       builder (~> 3.1)
       erubis (~> 2.7.0)
+    active_utils (2.2.1)
+      activesupport (>= 2.3.11)
+      i18n
+    activemerchant (1.43.2)
+      active_utils (~> 2.1)
+      activesupport (>= 2.3.14, < 5.0.0)
+      builder (>= 2.1.2, < 4.0.0)
+      i18n (~> 0.5)
+      json (~> 1.7)
+      money (< 7.0.0)
+      nokogiri (~> 1.4)
     activemodel (4.1.1)
       activesupport (= 4.1.1)
       builder (~> 3.1)
@@ -44,6 +63,14 @@ GEM
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     builder (3.2.2)
+    capybara (2.2.1)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    cliver (0.3.2)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -51,6 +78,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    default_value_for (3.0.0)
+      activerecord (>= 3.2.0, < 5.0)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -84,13 +113,30 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (5.3.4)
-    multi_json (1.10.0)
+    money (6.1.1)
+      i18n (~> 0.6.4)
+    multi_json (1.10.1)
     nested_form (0.3.2)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
     pg (0.17.1)
+    poltergeist (1.5.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     polyglot (0.3.4)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -104,6 +150,9 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.1)
       sprockets-rails (~> 2.0)
+    rails-i18n (4.0.2)
+      i18n (~> 0.6)
+      rails (>= 4.0)
     railties (4.1.1)
       actionpack (= 4.1.1)
       activesupport (= 4.1.1)
@@ -119,9 +168,10 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    simple_form (3.0.2)
+    simple_form (3.1.0.rc1)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    slop (3.5.0)
     spring (1.1.3)
     sprockets (2.11.0)
       hike (~> 1.2)
@@ -151,22 +201,33 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
+    websocket-driver (0.3.3)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemerchant
+  capybara
   coffee-rails (~> 4.0.0)
+  default_value_for (~> 3.0.0)
   devise
   dotenv-rails
   foreman (~> 0.66.0)
+  inherited_resources
   jbuilder (~> 2.0)
   jquery-rails
   mgmt!
   pg
+  poltergeist
+  pry-rails
   rails (~> 4.1.1)
+  rails-i18n
   sass-rails (~> 4.0.2)
   spring
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
+  uploadcare_helpers!

@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+empty: {}
+empty_authorized:
+  user: customer
+
+# two:
+#   user_id: 

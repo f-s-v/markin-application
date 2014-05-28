@@ -1,0 +1,18 @@
+<ul class="store-cart-items">
+  <% cart.items.each do |item| %>
+    <li>
+      <div>Product: <%= link_to item.product.name, [:store, item.product] %></div>
+      <div>
+        Count:
+        <span data-label='cart-item-amount'><%= item.amount %></span>
+        <%= link_to '+', increase_store_cart_item_path(item), method: 'post', 'data-label' => 'cart-item-increase' %>
+        <%= link_to '–', decrease_store_cart_item_path(item), method: 'post', 'data-label' => 'cart-item-decrease' %>
+      </div>
+      <div>
+        <%= link_to "Delete from cart", store_cart_item_path(item), method: 'delete' %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Checkout', checkout_store_cart_path %>

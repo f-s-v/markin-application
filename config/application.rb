@@ -18,10 +18,12 @@ module Markin
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :ru
+    config.i18n.default_locale = :ru
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.paths << "#{Rails.root}/vendor/bower_components"
+
+    config.assets.precompile += %w( mgmt.js )
 
     config.generators do |g|
       g.assets false

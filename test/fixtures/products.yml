@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Product 1
+  batch: one
+  price: 9.99
+  poster: none
+
+two:
+  name: Product 2
+  batch: one
+  price: 9.99
+  poster: none

@@ -24,6 +24,17 @@ gem 'spring',        group: :development
 
 gem 'foreman', '~> 0.66.0'
 gem 'unicorn'
-gem 'mgmt', github: 'f-s-v/mgmt'
 gem 'devise'
-gem 'dotenv-rails'
+gem 'dotenv-rails'#, require: 'dotenv-rails'
+gem 'mgmt', github: 'f-s-v/mgmt', branch: 'master'
+gem 'uploadcare_helpers', github: 'f-s-v/uploadcare_helpers'
+gem 'pry-rails'
+gem 'rails-i18n'
+gem 'activemerchant'
+gem 'inherited_resources'
+gem "default_value_for", "~> 3.0.0"
+
+group :test do
+  gem 'capybara'
+  gem 'poltergeist'
+end

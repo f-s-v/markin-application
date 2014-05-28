@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520192204) do
+ActiveRecord::Schema.define(version: 20140522132441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,64 @@ ActiveRecord::Schema.define(version: 20140520192204) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "order_items", force: true do |t|
+    t.integer  "amount"
+    t.integer  "order_id"
+    t.decimal  "price"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "product_batches", force: true do |t|
+    t.string   "name"
+    t.string   "poster"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_characteristic_options", force: true do |t|
+    t.integer  "characteristic_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_characteristic_options", ["characteristic_id"], name: "index_product_characteristic_options_on_characteristic_id", using: :btree
+
+  create_table "product_characteristic_options_products", id: false, force: true do |t|
+    t.integer "product_id"
+    t.integer "option_id"
+  end
+
+  create_table "product_characteristics", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.integer  "batch_id"
+    t.decimal  "price"
+    t.string   "poster"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["batch_id"], name: "index_products_on_batch_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
