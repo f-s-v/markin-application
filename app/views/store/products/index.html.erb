@@ -1,0 +1,19 @@
+<h2>Products</h2>
+<% collection.each do |product| %>
+  <div class="media">
+    <%= link_to [:store, product], class: 'pull-left' do %>
+      <%= image_tag uploadcare_url(product.poster, scale_crop: '35x35/center') %>
+    <% end %>
+    
+    <div class="media-body">
+      <h5 class="media-heading">
+        <%= link_to [:store, product] do %>
+          <%= product.batch.name %>
+          “<%= product.name %>”
+        <% end %>
+      </h5>
+      <%= product.options_description %>
+    </div>
+  </div>
+
+<% end %>

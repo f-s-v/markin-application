@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522132441) do
+ActiveRecord::Schema.define(version: 20140601171954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "dummies", force: true do |t|
     t.string   "name"
@@ -29,17 +36,39 @@ ActiveRecord::Schema.define(version: 20140522132441) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "size"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
   add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
+  create_table "order_payments", force: true do |t|
+    t.integer  "order_id"
+    t.string   "payment_token"
+    t.string   "payer_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state"
+    t.string   "payer_ip"
+  end
+
+  add_index "order_payments", ["order_id"], name: "index_order_payments_on_order_id", using: :btree
+
   create_table "orders", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
+    t.string   "shipping_address_line1"
+    t.string   "shipping_address_line2"
+    t.string   "shipping_city"
+    t.string   "shipping_state"
+    t.string   "shipping_zip"
+    t.string   "phone_number"
+    t.string   "public_id"
   end
 
+  add_index "orders", ["country_id"], name: "index_orders_on_country_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "product_batches", force: true do |t|
@@ -76,6 +105,8 @@ ActiveRecord::Schema.define(version: 20140522132441) do
     t.string   "poster"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "public_id"
+    t.boolean  "has_sizes"
   end
 
   add_index "products", ["batch_id"], name: "index_products_on_batch_id", using: :btree
@@ -93,6 +124,7 @@ ActiveRecord::Schema.define(version: 20140522132441) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

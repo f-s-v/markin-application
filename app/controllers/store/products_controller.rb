@@ -1,6 +1,4 @@
-class Store::ProductsController < ApplicationController
+class Store::ProductsController < Store::BaseController
   inherit_resources
-  def show
-
-  end
+  defaults finder: :find_by_public_id!
 end

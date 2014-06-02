@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class Order::ItemTest < ActiveSupport::TestCase
-  test "invalid without product" do
+  test "validates product presence" do
     item = order_items(:one)
     assert item.valid?
     item.product = nil

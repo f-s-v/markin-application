@@ -1,62 +1,57 @@
 require 'test_helper'
 
 class CartFlowTest < ActionDispatch::IntegrationTest
-  test "add to cart as unauthorized" do
+  include CapybaraHelper
+
+  test "add products to cart" do
     visit store_product_path(products(:one))
-    assert_difference 'Order.last.items.count' do
-      click_on 'Add to cart'
+    assert_difference 'current_order.items.count' do
+      find('[data-label~=store-add-to-cart]').click
     end
   end
 
   test "view cart" do
-    [:one, :two].each do |name|
-      visit store_product_path(products(name))
-      click_on 'Add to cart'
-    end
-    
-    visit store_cart_path
-    within 'ul.store-cart-items' do
-      [:one, :two].each do |name|
-        item = Order.last.items.where(product: products(name)).first
-        assert page.has_link? nil, href: store_product_path(products(name))
-        assert page.has_link? nil, href: store_cart_item_path(item)
-      end
+    add_to_cart(products(:one))
+    find('[data-label~=store-open-current-order]').click
+    assert_equal page.status_code, 200
+  end
+
+  test "edit cart" do
+    add_to_cart(products(:one))
+    visit store_order_path
+    find('[data-label~=store-order-edit]').click
+    assert_equal page.status_code, 200
+  end
+
+  test "update contact info" do
+    add_to_cart(products(:one))
+    visit edit_store_order_path
+    assert current_order.ready_to_checkout?
+    assert current_order.invalid?
+    fill_order(orders(:valid))
+    find('[name=commit]').click
+    current_order!
+    assert current_order.ready_to_checkout?
+    assert current_order.valid?
+  end
+
+  test "delete order items" do
+    add_to_cart(products(:one))
+    add_to_cart(products(:two))
+    visit edit_store_order_path
+    fill_order(orders(:valid))
+    check("order_items_attributes_0__destroy")
+    assert_difference "current_order.items.count", -1 do
+      find('[name=commit]').click
     end
   end
 
-  test 'delete item from cart' do
-    visit store_product_path(products(:one))
-    click_on 'Add to cart'
-    assert_difference 'Order.last.items.count', -1 do
-      visit store_cart_path
-      # binding.pry
-      click_on "Delete from cart"
-    end
-  end
-
-  test 'change cart item amount' do
-    visit store_product_path(products(:one))
-    click_on 'Add to cart'
-    visit store_cart_path
-
-    assert_difference "find('[data-label~=cart-item-amount]').text.to_i" do
-      find('[data-label~="cart-item-increase"]').click
-    end
-
-    assert_difference "find('[data-label~=cart-item-amount]').text.to_i", -1 do
-      find('[data-label~="cart-item-decrease"]').click
-    end
-  end
-
-  test 'cart item amount validation' do
-    visit store_product_path(products(:one))
-    click_on 'Add to cart'
-    visit store_cart_path
-
-    assert_equal find('[data-label~=cart-item-amount]').text.to_i, 1
-
-    assert_no_difference "find('[data-label~=cart-item-amount]').text.to_i" do
-      find('[data-label~="cart-item-decrease"]').click
-    end
+  test "delete order" do
+    add_to_cart(products(:one))
+    visit store_order_path
+    old_order_id = current_order.public_id
+    find('[data-label~=store-order-delete]').click
+    add_to_cart(products(:one))
+    assert_not current_order!.public_id == old_order_id
   end
 end

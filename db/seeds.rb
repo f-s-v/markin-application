@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+if Country.count == 0
+  countries = Glean::Dataset.new('glean/countries')
+  countries.each do |country|
+    Country.create :name => country.name, :code => country.code
+  end
+end

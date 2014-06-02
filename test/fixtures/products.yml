@@ -5,9 +5,11 @@ one:
   batch: one
   price: 9.99
   poster: none
+  public_id: <%= Product.generate_public_id(:public_id) %>
 
 two:
   name: Product 2
   batch: one
   price: 9.99
   poster: none
+  public_id: <%= Product.generate_public_id(:public_id) %>

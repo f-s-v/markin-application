@@ -20,7 +20,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+# gem 'spring',        group: :development
 
 gem 'foreman', '~> 0.66.0'
 gem 'unicorn'
@@ -33,8 +33,12 @@ gem 'rails-i18n'
 gem 'activemerchant'
 gem 'inherited_resources'
 gem "default_value_for", "~> 3.0.0"
+gem 'glean'
+gem 'simple_form'
 
 group :test do
   gem 'capybara'
+  # gem 'capybara-webkit'
   gem 'poltergeist'
+  # gem 'launchy'
 end

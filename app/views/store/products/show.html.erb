@@ -1,1 +1,22 @@
-<%= link_to 'Add to cart', store_cart_items_path(product_id: resource), method: 'post' %>
+<div class="media">
+  <%= link_to [:store, resource], target: '_blank', class: 'pull-left' do %>
+    <%= image_tag uploadcare_url(resource.poster, scale_crop: '35x35/center') %>
+  <% end %>
+  
+  <div class="media-body">
+    <h5 class="media-heading">
+      <%= link_to [:store, resource], target: '_blank' do %>
+        <%= resource.batch.name %>
+        “<%= resource.name %>”
+      <% end %>
+    </h5>
+    <%= resource.options_description %>
+  </div>
+</div>
+
+<%= simple_form_for [:store, current_order.items.build(product: resource) ] do |form| %>
+  <%= form.input :size if resource.has_sizes %>
+  <%= form.input :amount %>
+  <%= form.input :product_public_id, as: :hidden  %>
+  <%= form.submit 'Add to cart', class: 'btn btn-default', data: {label: 'store-add-to-cart'} %>
+<% end %>

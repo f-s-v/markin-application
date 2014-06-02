@@ -9,11 +9,15 @@ require 'capybara/poltergeist'
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app,
     js_errors: false,
-    window_size: [1024, 2048],
+    window_size: [1024, 2048]
   )
 end
 
-Capybara.default_driver = :poltergeist
+Capybara.default_driver = Capybara.javascript_driver = :poltergeist
+
+# Capybara.javascript_driver = :webkit
+# Capybara.default_driver = :webkit
+Capybara.server_port = 5000
 
 # >> https://github.com/jnicklas/capybara#transactions-and-database-setup
 class ActiveRecord::Base
@@ -43,4 +47,5 @@ end
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+  include Rails.application.routes.url_helpers
 end

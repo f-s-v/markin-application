@@ -1,8 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-empty: {}
-empty_authorized:
-  user: customer
+empty: 
+  public_id: <%= Order.generate_public_id(:public_id) %>
 
-# two:
-#   user_id: 
+empty_authorized:
+  public_id: <%= Order.generate_public_id(:public_id) %>
+
+valid:
+  user: customer
+  country: us
+  shipping_address_line1: Address Line 2
+  shipping_address_line2: Address Line 1
+  shipping_city: Alameda
+  shipping_state: CA
+  shipping_zip: 94501
+  phone_number: 510-555-1234
+  public_id: <%= Order.generate_public_id(:public_id) %>

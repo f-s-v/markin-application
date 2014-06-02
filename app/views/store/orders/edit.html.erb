@@ -1,0 +1,65 @@
+<h1>Order #<%= current_order.public_id %></h1>
+<%= simple_form_for current_order, url: store_order_path  do |form| %>
+  <fieldset>
+    <legend>Items</legend>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Count</th>
+          <th>Size</th>
+          <th>Amount</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= form.simple_fields_for :items do |item_fields| %>
+          <tr>
+            <td>
+              <div class="media">
+                <%= link_to [:store, item_fields.object.product], target: '_blank', class: 'pull-left' do %>
+                  <%= image_tag uploadcare_url(item_fields.object.product.poster, scale_crop: '35x35/center') %>
+                <% end %>
+                <div class="media-body">
+                  <h5 class="media-heading">
+                    <%= link_to [:store, item_fields.object.product], target: '_blank' do %>
+                      <%= item_fields.object.product.batch.name %>
+                      “<%= item_fields.object.product.name %>”
+                    <% end %>
+                  </h5>
+                  <%= item_fields.object.product.options_description %>
+                </div>
+              </div>
+            </td>
+            <td>
+              <%= item_fields.input :amount, label: false %>
+            </td>
+            <td>
+              <%= item_fields.input :size, label: false %>
+            </td>
+            <td>
+              <%= number_to_currency item_fields.object.total %>
+            </td>
+            <td>
+              <%= item_fields.input :_destroy, as: :boolean, wrapper: :vertical_boolean %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </fieldset>
+  <fieldset>
+    <legend>Shipping Info</legend>
+    <%= form.association :country %>
+    <%= form.input :shipping_address_line1 %>
+    <%= form.input :shipping_address_line2 %>
+    <%= form.input :shipping_city %>
+    <%= form.input :shipping_state %>
+    <%= form.input :shipping_zip %>
+    <%= form.input :phone_number %>
+  </fieldset>
+
+  <p>
+    <%= form.submit class: 'btn btn-default'%>
+  </p>
+<% end %>
