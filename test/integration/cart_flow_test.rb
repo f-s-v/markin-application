@@ -1,36 +1,34 @@
 require 'test_helper'
 
 class CartFlowTest < ActionDispatch::IntegrationTest
-  include CapybaraHelper
+  setup do
+    register_current_order
+  end
 
   test "add products to cart" do
-    visit store_product_path(products(:one))
     assert_difference 'current_order.items.count' do
-      find('[data-label~=store-add-to-cart]').click
+      add_to_cart(products(:one))
     end
   end
 
   test "view cart" do
     add_to_cart(products(:one))
-    find('[data-label~=store-open-current-order]').click
-    assert_equal page.status_code, 200
+    get store_order_url
+    assert_equal status, 200
   end
 
   test "edit cart" do
     add_to_cart(products(:one))
-    visit store_order_path
-    find('[data-label~=store-order-edit]').click
-    assert_equal page.status_code, 200
+    visit edit_store_order_url
+    assert_equal status, 200
   end
 
   test "update contact info" do
     add_to_cart(products(:one))
-    visit edit_store_order_path
     assert current_order.ready_to_checkout?
     assert current_order.invalid?
-    fill_order(orders(:valid))
-    find('[name=commit]').click
-    current_order!
+
+    fill_order_with(orders(:valid))
     assert current_order.ready_to_checkout?
     assert current_order.valid?
   end
@@ -38,20 +36,20 @@ class CartFlowTest < ActionDispatch::IntegrationTest
   test "delete order items" do
     add_to_cart(products(:one))
     add_to_cart(products(:two))
-    visit edit_store_order_path
-    fill_order(orders(:valid))
-    check("order_items_attributes_0__destroy")
+    fill_order_with(orders(:valid))
     assert_difference "current_order.items.count", -1 do
-      find('[name=commit]').click
+      patch_via_redirect store_order_url, order: {
+        items_attributes: [{id: current_order.items.last.id, _destroy: '1'}]
+      }
     end
   end
 
   test "delete order" do
     add_to_cart(products(:one))
-    visit store_order_path
     old_order_id = current_order.public_id
-    find('[data-label~=store-order-delete]').click
+    delete_via_redirect store_order_url
+    
     add_to_cart(products(:one))
-    assert_not current_order!.public_id == old_order_id
+    assert_not current_order(true).public_id == old_order_id
   end
 end

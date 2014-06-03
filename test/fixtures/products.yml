@@ -13,3 +13,10 @@ two:
   price: 9.99
   poster: none
   public_id: <%= Product.generate_public_id(:public_id) %>
+
+payment_error:
+  name: Payment Error
+  batch: one
+  price: 107.55
+  poster: none
+  public_id: <%= Product.generate_public_id(:public_id) %>

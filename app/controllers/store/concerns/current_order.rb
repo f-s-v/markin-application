@@ -6,14 +6,15 @@ module Store::Concerns::CurrentOrder
   end
 
   protected def current_order
-    @current_order ||= ::Order.where(public_id: cookies[:order_id]).first
+    @current_order ||= ::Order.where(public_id: session[:order_id]).first
   end
 
   protected def setup_current_order
-    cookies[:order_id] = (current_order && current_order.public_id || Order.create.public_id)
+    order = current_order || Order.create
+    session[:order_id] = order.public_id
   end
 
   protected def clean_current_order
-    cookies[:order_id] = nil
+    session[:order_id] = nil
   end
 end

@@ -10,12 +10,17 @@ class Store::PaymentsController < Store::BaseController
 
   def pay
     resource.process
-    redirect_to root_url
+    if resource.state == 'paid'
+      clean_current_order
+      redirect_to root_url
+    else
+      redirect_to store_order_url
+    end
   end
 
   def cancel
     resource.canceled!
-    redirect_to root_url
+    redirect_to store_order_url
   end
 
   protected def resource

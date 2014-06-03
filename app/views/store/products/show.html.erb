@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<%= simple_form_for [:store, current_order.items.build(product: resource) ] do |form| %>
+<%= simple_form_for [:store, current_order.items.build(product: resource)] do |form| %>
   <%= form.input :size if resource.has_sizes %>
   <%= form.input :amount %>
   <%= form.input :product_public_id, as: :hidden  %>

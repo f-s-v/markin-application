@@ -18,13 +18,13 @@ class Store::Concerns::CurrentOrderTest < ActionController::TestCase
   end
 
   def current_order
-    Order.where(public_id: cookies["order_id"]).first
+    Order.where(public_id: session["order_id"]).first
   end
 
-  test "put order_id to cookies" do
-    assert cookies["order_id"].nil?
+  test "put order_id to session" do
+    assert session["order_id"].nil?
     get :test_action
-    assert cookies["order_id"].present?
+    assert session["order_id"].present?
   end
 
   test "creates order for first visit" do
@@ -47,9 +47,9 @@ class Store::Concerns::CurrentOrderTest < ActionController::TestCase
 
   test "clean_current_order method" do
     get :test_action
-    order_id = cookies[:order_id]
+    order_id = session[:order_id]
     @controller.send :clean_current_order
-    assert cookies[:order_id].nil?
+    assert session[:order_id].nil?
     assert Order.where(public_id: order_id).first.present?
   end
 

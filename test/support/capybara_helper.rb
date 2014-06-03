@@ -1,4 +1,10 @@
 module CapybaraHelper
+  def sign_out
+    if all('#sessionSignOut').present?
+      click_on('sessionSignOut')
+    end
+  end
+
   def sign_in(user)
     # visit new_user_session_path
     if current_path == new_user_session_path
@@ -32,14 +38,5 @@ module CapybaraHelper
     end
     visit new_store_order_payment_path
     sign_in(user)
-  end
-
-  def current_order
-    @current_order ||= current_order!
-  end
-
-  def current_order!
-    @current_order = Order.where(public_id: page.driver.browser.cookies["order_id"].value).first!
-    # @current_order = Order.where(public_id: page.driver.cookies["order_id"]).first!
   end
 end

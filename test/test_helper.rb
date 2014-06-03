@@ -4,12 +4,14 @@ require 'pry'
 require 'rails/test_help'
 require 'capybara/rails'
 require 'support/capybara_helper'
+require 'support/store_test_helper'
 require 'capybara/poltergeist'
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app,
     js_errors: false,
-    window_size: [1024, 2048]
+    window_size: [1024, 2048],
+    timeout: 300
   )
 end
 
@@ -41,7 +43,7 @@ class ActiveSupport::TestCase
   self.use_transactional_fixtures = true
 
   # Add more helper methods to be used by all tests here...
-
+  include StoreTestHelper
 end
 
 class ActionDispatch::IntegrationTest

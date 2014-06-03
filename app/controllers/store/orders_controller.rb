@@ -3,13 +3,12 @@ class Store::OrdersController < Store::BaseController
 
   def update
     current_order.update_attributes order_params
-    respond_with current_order, location: store_order_url
+    respond_with current_order, location: store_order_path
   end
 
   def destroy
     current_order.destroy
-    clean_current_order
-    redirect_to root_url
+    redirect_to root_path
   end
 
   protected def order_params
