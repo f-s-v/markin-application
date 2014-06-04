@@ -41,8 +41,8 @@ GEM
     active_utils (2.2.1)
       activesupport (>= 2.3.11)
       i18n
-    activemerchant (1.43.2)
-      active_utils (~> 2.1)
+    activemerchant (1.43.1)
+      active_utils (~> 2.0, >= 2.0.1)
       activesupport (>= 2.3.14, < 5.0.0)
       builder (>= 2.1.2, < 4.0.0)
       i18n (~> 0.5)
@@ -254,7 +254,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  activemerchant (~> 1.43.1)
+  activemerchant (= 1.43.1)
   capybara
   coffee-rails (~> 4.0.0)
   default_value_for (~> 3.0.0)

@@ -29,7 +29,7 @@ gem 'dotenv-rails'#, require: 'dotenv-rails'
 gem 'uploadcare_helpers', github: 'f-s-v/uploadcare_helpers'
 gem 'pry-rails'
 gem 'rails-i18n'
-gem 'activemerchant', '~> 1.43.1'
+gem 'activemerchant', '1.43.1'
 gem 'inherited_resources'
 gem "default_value_for", "~> 3.0.0"
 gem 'glean'
