@@ -21,12 +21,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  namespace :mgmt do
-    root to: 'users#index'
-    resources :users
-    resources :products
-    resources :batches
-    resources :characteristics
-  end
 end

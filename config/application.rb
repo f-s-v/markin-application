@@ -23,8 +23,6 @@ module Markin
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.paths << "#{Rails.root}/vendor/bower_components"
 
-    config.assets.precompile += %w( mgmt.js )
-
     config.generators do |g|
       g.assets false
       g.helper false
