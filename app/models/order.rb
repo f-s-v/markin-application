@@ -1,6 +1,8 @@
 class Order < ActiveRecord::Base
-  include ::PublicId
+  include Concerns::PublicId
   generates_public_id :public_id
+
+  include Concerns::Recent
 
   belongs_to :user
   belongs_to :country
@@ -11,7 +13,7 @@ class Order < ActiveRecord::Base
 
   validates :public_id, presence: true
 
-  validates :country_id,
+  validates :country,
     :phone_number,
     :shipping_address_line1,
     :shipping_city,
@@ -19,6 +21,9 @@ class Order < ActiveRecord::Base
     :shipping_zip,
     presence: true,
     if: :ready_to_checkout?
+
+  scope :completed, -> { joins(:payments).where('order_payments.state' => 'paid') }
+  scope :with_user, -> { where('user_id is not null') }
 
   def total
     items.sum("order_items.price * order_items.amount")

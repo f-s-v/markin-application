@@ -1,0 +1,7 @@
+<h1>Orders</h1>
+<% current_user.orders.completed.recent.each do |order| %>
+  <h3>
+    <%= link_to order.to_param, [:users, :profile, order] %>
+    <small><%= I18n.l order.created_at, format: :short %></small>
+  </h3>
+<% end %>

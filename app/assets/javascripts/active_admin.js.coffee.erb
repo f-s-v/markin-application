@@ -1,0 +1,7 @@
+# = require active_admin/base
+# = require_self
+# = require uploadcare
+
+window.UPLOADCARE_AUTOSTORE = true
+window.UPLOADCARE_PUBLIC_KEY = '<%= ENV['MARKIN_UPLOADCARE_PUBLIC_KEY'] %>'
+window.UPLOADCARE_LOCALE = '<%= I18n.locale %>'

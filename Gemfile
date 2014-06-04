@@ -26,7 +26,6 @@ gem 'foreman', '~> 0.66.0'
 gem 'unicorn'
 gem 'devise'
 gem 'dotenv-rails'#, require: 'dotenv-rails'
-gem 'mgmt', github: 'f-s-v/mgmt', branch: 'master'
 gem 'uploadcare_helpers', github: 'f-s-v/uploadcare_helpers'
 gem 'pry-rails'
 gem 'rails-i18n'
@@ -35,10 +34,9 @@ gem 'inherited_resources'
 gem "default_value_for", "~> 3.0.0"
 gem 'glean'
 gem 'simple_form'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :test do
   gem 'capybara'
-  # gem 'capybara-webkit'
   gem 'poltergeist'
-  # gem 'launchy'
 end

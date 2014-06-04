@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  include ::PublicId
+  include Concerns::PublicId
   generates_public_id :public_id
 
   belongs_to :batch

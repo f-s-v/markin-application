@@ -12,7 +12,7 @@ class Store::PaymentsController < Store::BaseController
     resource.process
     if resource.state == 'paid'
       clean_current_order
-      redirect_to root_url
+      redirect_to users_profile_order_path(resource.order.public_id)
     else
       redirect_to store_order_url
     end
