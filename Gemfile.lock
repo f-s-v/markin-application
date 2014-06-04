@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/f-s-v/uploadcare_helpers.git
-  revision: 2a50d987ac4c5757472e37250c09c69638b37b78
+  revision: 9069c79e18c745258f62b912e4b8371588492385
   specs:
     uploadcare_helpers (0.0.1)
       rails (~> 4.1.0.rc2)
