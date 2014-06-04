@@ -254,7 +254,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
-  activemerchant
+  activemerchant (~> 1.43.1)
   capybara
   coffee-rails (~> 4.0.0)
   default_value_for (~> 3.0.0)
