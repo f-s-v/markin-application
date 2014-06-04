@@ -4,7 +4,7 @@ ActiveAdmin.register Product::Characteristic::Option do
   filter :characteristic
   filter :name
 
-  permit_params :name
+  permit_params :name, :characteristic
 
   index do
     selectable_column
@@ -24,6 +24,7 @@ ActiveAdmin.register Product::Characteristic::Option do
   form do |f|
     f.inputs do
       f.input :name
+      f.input :characteristic
     end
     f.actions
   end
