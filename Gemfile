@@ -35,6 +35,7 @@ gem "default_value_for", "~> 3.0.0"
 gem 'glean'
 gem 'simple_form'
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'bootstrap-sass', '~> 3.1.1.0'
 
 group :test do
   gem 'capybara'
