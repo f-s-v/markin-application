@@ -4,6 +4,8 @@ ActiveAdmin.register Product::Characteristic::Option do
   filter :characteristic
   filter :name
 
+  permit_params :name
+
   index do
     selectable_column
     column :name do |c|
@@ -18,4 +20,12 @@ ActiveAdmin.register Product::Characteristic::Option do
       row :name
     end
   end
+
+  form do |f|
+    f.inputs do
+      f.input :name
+    end
+    f.actions
+  end
+
 end

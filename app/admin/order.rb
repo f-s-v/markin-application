@@ -92,8 +92,12 @@ ActiveAdmin.register Order do
       f.input :shipping_zip
       f.input :phone_number
     end
-    f.actions
+    f.actions :country, :shipping_address_line1,
+      :shipping_address_line2, :shipping_city,
+      :shipping_state, :shipping_zip, :phone_number
   end
+
+  permit_params
 end
 
 

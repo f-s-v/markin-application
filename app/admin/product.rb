@@ -69,6 +69,8 @@ ActiveAdmin.register Product do
     f.actions
   end
 
+  permit_params :name, :batch, :price, :poster, :has_sizes, :option_ids
+
   # index do
   # end
   # See permitted parameters documentation:

@@ -9,7 +9,8 @@ ActiveAdmin.register User do
   filter :current_sign_in_ip
   filter :last_sign_in_ip
   filter :created_at
-  
+
+  permit_params :email, :name
 
   index do
     selectable_column
