@@ -4,7 +4,7 @@ ActiveAdmin.register Product::Characteristic::Option do
   filter :characteristic
   filter :name
 
-  permit_params :name, :characteristic
+  permit_params :name, :characteristic_id
 
   index do
     selectable_column
