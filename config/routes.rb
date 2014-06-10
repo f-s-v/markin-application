@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :store, path: '' do
+  namespace :store do
+    root to: "products#index"
     resources :products
     resource :order do
       resources :items, controller: 'order/items'
@@ -21,4 +22,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :pages, path: '/', only: 'show'
 end

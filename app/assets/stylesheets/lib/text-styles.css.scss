@@ -1,0 +1,22 @@
+// = css_module lib-textStyle
+
+self.regular {
+  font-family: "Circe";
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+self.condenced {
+  font-family: "Reforma Grotesk LightC";
+  font-size: 45px;
+  line-height: 46px;
+  text-transform: uppercase;
+  letter-spacing: 0.003em;
+}
+
+self.large {
+  font-family: "FoglihtenNo06";
+  font-size: 71px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}

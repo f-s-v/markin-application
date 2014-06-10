@@ -1,0 +1,19 @@
+<menu class="app-menu lib-layout-vcenter lib-layout-noWrap">
+  <%= checked_link_to t('.store'), store_root_path,
+    class: expand_class('lib', layout: 'cell-4', buttons: 'main black') %>
+  <%= checked_link_to t('.our_story'), page_path('our-story'),
+    class: expand_class('lib', layout: 'cell-4', buttons: 'main black') %>
+  
+  <section class="lib-layout-cell-4 lib-layout-gap-2 lib-layout-hcenter">
+    <%= checked_link_to t('.client_care'), page_path('client-care'),
+      class: expand_class('lib',  buttons: 'small gold-border') %>
+  </section>
+
+  <%= checked_link_to t('.switch_lang')[I18n.locale], page_path('english'),
+    class: expand_class('lib', layout: 'cell-2 gap-2', buttons: 'small gray') %>
+  <%= checked_link_to t('.contacts'), page_path('contacts'),
+    class: expand_class('lib', layout: 'cell-2', buttons: 'small gray') %>
+
+  <%= checked_link_to t('.cart'), store_order_path,
+    class: expand_class('lib', layout: 'cell-4', buttons: 'main black') %>
+</menu>

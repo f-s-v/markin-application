@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604105353) do
+ActiveRecord::Schema.define(version: 20140610100955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,24 @@ ActiveRecord::Schema.define(version: 20140604105353) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "content_blocks", force: true do |t|
+    t.integer  "page_id"
+    t.string   "page_type"
+    t.json     "content"
+    t.integer  "width"
+    t.string   "block_style"
+    t.boolean  "padding"
+    t.string   "font_style"
+    t.string   "border_style"
+    t.string   "background_style"
+    t.string   "image_style"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "order"
+  end
+
+  add_index "content_blocks", ["page_id", "page_type"], name: "index_content_blocks_on_page_id_and_page_type", using: :btree
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -86,6 +104,13 @@ ActiveRecord::Schema.define(version: 20140604105353) do
 
   add_index "orders", ["country_id"], name: "index_orders_on_country_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "pages", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "product_batches", force: true do |t|
     t.string   "name"

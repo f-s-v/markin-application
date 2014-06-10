@@ -1,0 +1,11 @@
+ru:
+  lib:
+    menu:
+      store: Магазин
+      our_story: История
+      client_care: Client care
+      switch_lang:
+        ru: English
+        en: По-русски
+      contacts: Адрес
+      cart: Корзина

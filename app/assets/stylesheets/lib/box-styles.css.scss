@@ -1,0 +1,25 @@
+.lib-boxStyle-black {
+  background: black;
+  color: white;
+}
+
+.lib-boxStyle-blackGradient {
+  @extend .lib-boxStyle-black;
+  background: linear-gradient(
+    to bottom, rgba(0,0,0,1) 0%,
+    rgba(245,226,123,1) 66%,
+    rgba(245,226,123,1) 100%
+  );
+}
+
+.lib-boxStyle-gold {
+  background: rgba(245,226,123,1);
+}
+
+.lib-boxStyle-goldGradient {
+  background: linear-gradient(
+    to bottom, rgba(245,226,123,1) 0%,
+    rgba(255,255,255,1) 66%,
+    rgba(255,255,255,1) 100%
+  );
+}

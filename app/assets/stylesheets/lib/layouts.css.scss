@@ -1,0 +1,47 @@
+// = css_module lib-layout
+
+$modules-count: 24;
+
+self.flex {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+self {
+  @extend self.flex;
+}
+
+self.vcenter {
+  @extend self.flex;
+  align-items: center;
+}
+
+self.hcenter {
+  @extend self.flex;
+  justify-content: center;
+}
+
+self.noWrap {
+  @extend self.flex;
+  flex-wrap: nowrap;
+}
+
+
+self.cell {
+  flex-grow: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+@for $i from 1 through $modules-count {
+  self.cell-#{$i} {
+    @extend self.cell;
+    // flex-basis: $i * 100% / $modules-count;
+    flex-basis: $i * 100vw / $modules-count
+  }
+  self.gap-#{$i} {
+    // margin-left: $i * 100% / $modules-count;
+    margin-left: $i * 100vw / $modules-count;
+  }
+}

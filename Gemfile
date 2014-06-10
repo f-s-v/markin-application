@@ -33,9 +33,11 @@ gem 'activemerchant', '1.43.1'
 gem 'inherited_resources'
 gem "default_value_for", "~> 3.0.0"
 gem 'glean'
-gem 'simple_form'
+gem 'simple_form', '~> 3.1.0.rc1'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'bootstrap-sass', '~> 3.1.1.0'
+gem "rails-sass-images"
+gem "autoprefixer-rails"
 
 group :test do
   gem 'capybara'

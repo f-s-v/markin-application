@@ -8,29 +8,10 @@
 </head>
 <body>
 
-<div class="container">
-  <div class="page-header">
-    <h1>
-      <%= link_to 'Store', root_url %>
-      <small class="pull-right">
-        <% if current_user %>
-          <%= link_to_unless_current current_user.name, users_profile_path %>
-        <% end %>
-        <% if current_order.present? && current_order.items.present? %>
-          <%= link_to store_order_path, data: {label: 'store-open-current-order'} do %>
-            Cart (<%= current_order.items.count %>)
-          <% end %>
-        <% end %>
-        <% if current_user %>
-          <%= link_to 'Sign out', destroy_user_session_path, method: 'delete', id: 'sessionSignOut' %>
-        <% else %>
-          <%= link_to 'Sign in', new_user_session_path %>
-        <% end %>
-      </small>
-    </h1>
-  </div>
-  <%= yield %>
-</div>
+<%= render 'lib/site_title' %>
+<%= render 'lib/menu' %>
+
+<%= yield %>
 
 
 </body>

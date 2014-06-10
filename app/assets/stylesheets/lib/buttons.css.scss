@@ -1,0 +1,66 @@
+// = css_module lib-buttons
+
+%self.button {
+  padding: 0 20px;
+  white-space: nowrap;
+}
+
+self.main {
+  @extend %self.button;
+  height: 58px;
+  line-height: 58px;
+  text-align: center;
+  text-decoration: none;
+  font-family: circe;
+  text-transform: uppercase;
+  font-size: 20px;
+  letter-spacing: 2px;
+  transition-property: background linear;
+  transition-duration: 150ms;
+
+}
+
+self.small {
+  @extend self.main;
+  font-size: 12px;
+
+  &:hover, &[checked] {
+    font-weight: bold;
+  }
+
+}
+
+self.black {
+  background: black;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+
+  &:hover, &[checked] {
+    background: rgb(245, 226, 123);
+    color: black;
+  }
+}
+
+self.gold-border {
+  -webkit-font-smoothing: antialiased;
+  color: rgb(245, 226, 123);
+  background: black;
+  border: 1px solid rgb(245, 226, 123);
+  height: 33px;
+  line-height: 33px;
+
+  &:hover, &[checked] {
+    background: rgb(245, 226, 123);
+    color: black;
+  }
+}
+
+self.gray {
+  color: #888;
+
+  &:hover, &[checked] {
+    background: rgb(245, 226, 123);
+    color: black;
+  }
+
+}

@@ -1,0 +1,59 @@
+// = css_module 'lib-contentBlock'
+
+self.contentBlock {
+  box-sizing: border-box;
+  padding: 2px;
+  word-wrap: break-word;
+}
+
+self.background-black {
+  @extend .lib-boxStyle-black;
+}
+
+self.background-blackGradient {
+  @extend .lib-boxStyle-blackGradient;
+}
+
+self.background-gold {
+  @extend .lib-boxStyle-gold;
+}
+
+self.background-goldGradient {
+  @extend .lib-boxStyle-goldGradient;
+}
+
+self.padding {
+  padding: 50px;
+}
+
+self.font-regular {
+  @extend .lib-textStyle-regular;
+}
+
+self.font-condenced {
+  @extend .lib-textStyle-condenced;
+}
+
+self.font-large {
+  @extend .lib-textStyle-large;
+  text-align: center;
+}
+
+%self.border-base {
+  border: 9px solid transparent;
+}
+
+self.border-white {
+  @extend %self.border-base;
+  border-color: white;
+}
+
+self.border-black {
+  @extend %self.border-base;
+  border-color: black;
+}
+
+self.border-gold {
+  @extend %self.border-base;
+  border-color: rgb(245, 226, 123);
+}
