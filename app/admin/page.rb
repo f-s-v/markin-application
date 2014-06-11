@@ -43,7 +43,7 @@ ActiveAdmin.register Page do
             collection: Rails.configuration.send("content_blocks_#{attr}_styles")
         end
         cf.input :padding
-        cf.input :order
+        cf.input :order_number
       end
     end
 
