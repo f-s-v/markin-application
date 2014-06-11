@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610100955) do
+ActiveRecord::Schema.define(version: 20140611080739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140610100955) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order"
+    t.integer  "height"
   end
 
   add_index "content_blocks", ["page_id", "page_type"], name: "index_content_blocks_on_page_id_and_page_type", using: :btree

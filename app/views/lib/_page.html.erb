@@ -2,7 +2,7 @@
   <div class="lib-layout-cell-20 lib-layout-gap-2 lib-layout">
     <% page.content_blocks.each do |block| %>
       <section style="order: <%= block.order%>" class="<%= expand_class('lib',
-        layout: "cell-#{block.width}",
+        layout: "cell-#{block.width} row-#{block.height || 'auto'} vcenter",
         contentBlock: content_block_styles(block).push('contentBlock')
       ) %>">
         <%= render "lib/content_blocks/#{block.block_style}", block: block %>

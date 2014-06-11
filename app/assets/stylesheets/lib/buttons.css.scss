@@ -7,7 +7,7 @@
 
 self.main {
   @extend %self.button;
-  height: 58px;
+  @extend .lib-layout-row-1;
   line-height: 58px;
   text-align: center;
   text-decoration: none;

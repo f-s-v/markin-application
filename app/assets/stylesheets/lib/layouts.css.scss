@@ -1,6 +1,7 @@
 // = css_module lib-layout
 
 $modules-count: 24;
+$max-height-value: 20;
 
 self.flex {
   display: flex;
@@ -43,5 +44,11 @@ self.cell {
   self.gap-#{$i} {
     // margin-left: $i * 100% / $modules-count;
     margin-left: $i * 100vw / $modules-count;
+  }
+}
+
+@for $i from 1 through $max-height-value {
+  self.row-#{$i} {
+    height: 58px * $i;
   }
 }

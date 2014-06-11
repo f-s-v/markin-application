@@ -4,7 +4,7 @@ ActiveAdmin.register Page do
 
   permit_params :title, :slug, content_blocks_attributes: [
     :id, :_destroy,
-    :content, :width, :block_style,
+    :content, :width, :height, :block_style,
     :image_style, :font_style, :border_style,
     :background_style, :padding, :order,
   ]
@@ -36,6 +36,7 @@ ActiveAdmin.register Page do
       f.has_many :content_blocks, :allow_destroy => true, :heading => 'Content' do |cf|
         cf.input :content, as: :text
         cf.input :width
+        cf.input :height
         %w(block image font border background).each do |attr|
           cf.input "#{attr}_style",
             as: :select,
