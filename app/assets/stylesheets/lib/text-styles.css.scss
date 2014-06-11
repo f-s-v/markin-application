@@ -1,5 +1,42 @@
 // = css_module lib-textStyle
 
+@font-face {
+  font-family: 'Circe';
+  src: font-url('CRC55.eot');
+  src: font-url('CRC55.eot?#iefix') format('embedded-opentype'),
+       font-url('CRC55.woff') format('woff'),
+       font-url('CRC55.ttf')  format('truetype'),
+       font-url('CRC55.svg#63f2e869263e2c3a40f5fa2f1f300923') format('svg');
+       
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'FoglihtenNo06';
+  src: font-url('FoglihtenNo06_fMac.eot');
+  src: font-url('FoglihtenNo06_fMac.eot?#iefix') format('embedded-opentype'),
+       font-url('FoglihtenNo06_fMac.woff') format('woff'),
+       font-url('FoglihtenNo06_fMac.ttf')  format('truetype'),
+       font-url('FoglihtenNo06_fMac.svg#5cee54b0a36dbbcfac91e6b818a4627c') format('svg');
+       
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'ReformaGroteskLightC';
+  src: font-url('ReformaGroteskLightC.eot');
+  src: font-url('ReformaGroteskLightC.eot?#iefix') format('embedded-opentype'),
+       font-url('ReformaGroteskLightC.woff') format('woff'),
+       font-url('ReformaGroteskLightC.ttf')  format('truetype'),
+       font-url('ReformaGroteskLightC.svg#5b8411110f09b8eb82aa135ea4744ec7') format('svg');
+       
+  font-style: normal;
+  font-weight: 200;
+}
+
+
 self.regular {
   font-family: "Circe";
   font-size: 22px;
@@ -7,7 +44,7 @@ self.regular {
 }
 
 self.condenced {
-  font-family: "Reforma Grotesk LightC";
+  font-family: "ReformaGroteskLightC";
   font-size: 45px;
   line-height: 46px;
   text-transform: uppercase;
