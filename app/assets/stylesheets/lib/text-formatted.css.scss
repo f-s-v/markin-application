@@ -1,5 +1,8 @@
 .lib-textFormatted {
   p {
     margin-bottom: 1.2em;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
