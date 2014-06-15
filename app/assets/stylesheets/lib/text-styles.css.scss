@@ -43,6 +43,22 @@ self.regular {
   line-height: 1.2;
 }
 
+self.caption {
+  font-family: "Circe";
+  text-transform: uppercase;
+  font-size: 20px;
+  letter-spacing: 0.16em;
+}
+
+self.captionSmall {
+  font-family: "Circe";
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  -webkit-font-smoothing: subpixel-antialiased!important;
+
+}
+
 self.condenced {
   font-family: "ReformaGroteskLightC";
   font-size: 45px;

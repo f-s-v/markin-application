@@ -1,0 +1,15 @@
+<% content_for :main_content do %>
+  <div class="lib-layout-cell-24 lib-layout-row-1 lib-boxStyle-gold lib-layout-flex">
+    <%= link_to current_user.name, users_profile_path,
+      class: expand_class('lib', layout: 'cell-6', buttons: 'small gold') %>
+    <section class="lib-layout-row-1 lib-layout-cell-2 lib-layout-vcenter lib-layout-hcenter lib-layout-gap-16">
+      <%= link_to t('.sign_out'), destroy_user_session_path,
+        method: 'delete',
+        class: expand_class('lib', buttons: 'small blackBorder') %>
+    </section>
+  </div>
+
+  <%= yield %>
+<% end %>
+
+<%= render template: 'layouts/application' %>

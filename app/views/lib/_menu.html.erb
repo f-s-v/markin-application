@@ -5,8 +5,8 @@
     class: expand_class('lib', layout: 'cell-4', buttons: 'main black') %>
   
   <section class="lib-layout-cell-4 lib-layout-gap-2 lib-layout-hcenter">
-    <%= checked_link_to t('.client_care'), page_path('client-care'),
-      class: expand_class('lib',  buttons: 'small gold-border') %>
+    <%= checked_link_to t('.client_care'), users_profile_path,
+      class: expand_class('lib',  buttons: 'small goldBorder') %>
   </section>
 
   <%= checked_link_to t('.switch_lang')[I18n.locale], page_path('english'),

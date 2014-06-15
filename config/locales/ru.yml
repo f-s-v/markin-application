@@ -9,3 +9,42 @@ ru:
         en: По-русски
       contacts: Адрес
       cart: Корзина
+  layouts:
+    user:
+      sign_out: Выход
+  devise:
+    sessions:
+      new:
+        welcome: "Вход в личный кабинет:"
+        login: "Войти"
+    registrations:
+      new:
+        welcome: "Регистрация:"
+        commit: Зарегистрироваться
+    passwords:
+      new:
+        welcome: "Восстановление пароля:"
+        commit: Восстановить
+      edit:
+        welcome: "Введите ваш новый пароль:"
+        commit: Сохранить
+    shared:
+      links:
+        sign_in: Вход
+        sign_up: Регистрация
+        forgotted_password: Восстановить пароль
+  activerecord:
+    attributes:
+      user:
+        email: еmail
+        password: пароль
+        password_confirmation: подтверждение пароля
+        name: имя
+  simple_form:
+    required:
+      html: ''
+
+    placeholders:
+      user:
+        email: Email
+        password: Пароль

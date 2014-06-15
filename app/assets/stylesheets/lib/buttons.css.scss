@@ -1,31 +1,28 @@
 // = css_module lib-buttons
 
-%self.button {
-  padding: 0 20px;
+self.button {
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 0 20px;
+  border: 0;
 }
 
 self.main {
-  @extend %self.button;
+  @extend self.button;
   @extend .lib-layout-row-1;
+  @extend .lib-textStyle-caption;
   line-height: 58px;
   text-align: center;
   text-decoration: none;
-  font-family: circe;
-  text-transform: uppercase;
-  font-size: 20px;
-  letter-spacing: 2px;
   transition-property: background linear;
-  transition-duration: 150ms;
-
-}
+  transition-duration: 150ms;}
 
 self.small {
   @extend self.main;
-  font-size: 12px;
-
+  @extend .lib-textStyle-captionSmall;
   &:hover, &[checked] {
-    font-weight: bold;
+    // font-weight: bold;
   }
 
 }
@@ -36,31 +33,72 @@ self.black {
   -webkit-font-smoothing: antialiased;
 
   &:hover, &[checked] {
-    background: rgb(245, 226, 123);
+    background: $settings-color-gold;
     color: black;
+
   }
 }
 
-self.gold-border {
+self.gold {
+  background: $settings-color-gold;
+  color: black;
+
+  &:hover, &[checked] {
+    background: black;
+    color: white;
+  }
+}
+
+self.goldBorder {
   -webkit-font-smoothing: antialiased;
-  color: rgb(245, 226, 123);
+  color: $settings-color-gold;
   background: black;
-  border: 1px solid rgb(245, 226, 123);
+  border: 1px solid $settings-color-gold;
   height: 33px;
   line-height: 33px;
 
   &:hover, &[checked] {
-    background: rgb(245, 226, 123);
+    background: $settings-color-gold;
     color: black;
   }
+}
+
+self.blackBorder {
+  -webkit-font-smoothing: antialiased;
+  color: inherit;
+  background: inherit;
+  border: 1px solid black;
+  height: 33px;
+  line-height: 33px;
+
+  &:hover, &[checked] {
+    background: black;
+    color: white;
+  }
+}
+
+self.whiteBorder {
+  border: 1px solid white;
+  height: 33px;
+  line-height: 33px;
+  color: black;
 }
 
 self.gray {
   color: #888;
 
   &:hover, &[checked] {
-    background: rgb(245, 226, 123);
+    background: $settings-color-gold;
     color: black;
   }
 
+}
+
+
+self.round {
+  border-radius: 33px;
+}
+
+self.group self.button {
+  margin: 0 0.25em;
 }

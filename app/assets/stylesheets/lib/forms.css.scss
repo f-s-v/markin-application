@@ -1,0 +1,76 @@
+// = css_module lib-form
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+%self.form {
+  input {
+    @include placeholder {
+      // @extend .lib-textStyle-caption;
+      font-family: "Circe";
+      text-transform: uppercase;
+      font-size: 20px;
+      letter-spacing: 0.16em;
+      color: inherit;
+    }
+
+    &:-webkit-autofill {
+      background-color: white !important;
+    }
+  }
+  input.string, input.password, textarea {
+    border: 1px solid transparent;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .input, .form-actions, legend {
+    margin-bottom: 1.2em;
+  }
+  label {
+    @extend .lib-textStyle-caption;
+  }
+}
+
+self.horizontal {
+  background: red;
+}
+
+self.large {
+  @extend %self.form;
+  legend {
+    text-align: center;
+  }
+  .input {
+    &.email, &.password, &.string {
+      input {
+        @extend .lib-layout-row-1;
+        @extend .lib-textStyle-caption;
+        @include placeholder {
+          color: $settings-color-gold;
+        }
+        text-align: center;
+      }
+    }
+  }
+}
+
+self.gold {
+  input.string, input.password, textarea {
+    border: 1px solid $settings-color-gold;
+  }
+}

@@ -11,7 +11,11 @@
 <%= render 'lib/site_title' %>
 <%= render 'lib/menu' %>
 
-<%= yield %>
+<% if content_for?(:main_content) %>
+  <%= yield :main_content %>
+<% else %>
+  <%= yield %>
+<% end %>
 
 
 </body>
