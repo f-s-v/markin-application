@@ -1,19 +1,19 @@
-<h2>Products</h2>
-<% collection.each do |product| %>
-  <div class="media">
-    <%= link_to [:store, product], class: 'pull-left' do %>
-      <%= image_tag uploadcare_url(product.poster, scale_crop: '35x35/center') %>
-    <% end %>
-    
-    <div class="media-body">
-      <h5 class="media-heading">
-        <%= link_to [:store, product] do %>
-          <%= product.batch.name %>
-          “<%= product.name %>”
-        <% end %>
-      </h5>
-      <%= product.options_description %>
-    </div>
-  </div>
+<div class="lib-layout lib-media-list">
+  <div class="lib-layout lib-layout-cell-20 lib-layout-gap-2 lib-layout-justify">
+    <% collection.each do |product| %>
+      <div class="lib-layout-cell-6">
+        <figure>
+          <%= link_to image_tag(uploadcare_url(product.poster, scale_crop: '650x390/center')), [:store, product] %>
+        </figure>
+        <h3>
+          <%= link_to [:store, product] do %>
+            <%= product.name %>
+            <br>
+            <%= number_to_currency product.price %>
+          <% end %>
+        </h3>
+      </div>
 
-<% end %>
+    <% end %>
+  </div>
+</div>

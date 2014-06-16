@@ -9,6 +9,10 @@ self.flex {
   flex-wrap: wrap;
 }
 
+self.justify {
+  justify-content: space-between;
+}
+
 self {
   @extend self.flex;
 }

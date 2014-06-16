@@ -19,7 +19,16 @@ module ApplicationHelper
   end
 
   def checked_link_to(name=nil, url_options=nil, html_options={}, &block)
-    html_options['checked'] = current_page?(url_options)
+    # taken from current_page? method
+    url_string = URI.parser.unescape(url_for(url_options)).force_encoding(Encoding::BINARY)
+    request_uri = url_string.index("?") ? request.fullpath : request.path
+    request_uri = URI.parser.unescape(request_uri).force_encoding(Encoding::BINARY)
+    html_options['checked'] = if url_string =~ /^\w+:\/\//
+      "#{request.protocol}#{request.host_with_port}#{request_uri}".starts_with? url_string
+    else
+      request_uri.starts_with? url_string
+    end
+
     link_to(name, url_options, html_options, &block)
   end
 
