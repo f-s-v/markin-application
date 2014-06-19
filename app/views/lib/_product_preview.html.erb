@@ -1,0 +1,12 @@
+<div class="lib-layout-cell-6">
+  <figure>
+    <%= link_to image_tag(uploadcare_url(product.poster, scale_crop: '650x390/center')), [:store, product] %>
+  </figure>
+  <h3>
+    <%= link_to [:store, product] do %>
+      <%= product.name %>
+      <br>
+      <%= number_to_currency product.price %>
+    <% end %>
+  </h3>
+</div>

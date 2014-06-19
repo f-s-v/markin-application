@@ -5,6 +5,7 @@ class Store::ProductsController < Store::BaseController
     Product.includes(:batch, options: :characteristic).where(public_id: params[:id]).first!
   end
   let(:collection, on: :collection) { Product.all }
+  let(:see_also_products, on: 'show') { Product.all }
 
   def show
     respond_with resource

@@ -1,19 +1,5 @@
 <div class="lib-layout lib-media-list">
   <div class="lib-layout lib-layout-cell-20 lib-layout-gap-2 lib-layout-justify">
-    <% collection.each do |product| %>
-      <div class="lib-layout-cell-6">
-        <figure>
-          <%= link_to image_tag(uploadcare_url(product.poster, scale_crop: '650x390/center')), [:store, product] %>
-        </figure>
-        <h3>
-          <%= link_to [:store, product] do %>
-            <%= product.name %>
-            <br>
-            <%= number_to_currency product.price %>
-          <% end %>
-        </h3>
-      </div>
-
-    <% end %>
+    <%= render partial: 'lib/product_preview', collection: collection, as: :product %>
   </div>
 </div>
