@@ -37,20 +37,20 @@
 }
 
 
-self.regular {
+this.regular {
   font-family: "Circe";
   font-size: 22px;
   line-height: 1.2;
 }
 
-self.caption {
+this.caption {
   font-family: "Circe";
   text-transform: uppercase;
   font-size: 20px;
   letter-spacing: 0.16em;
 }
 
-self.captionSmall {
+this.captionSmall {
   font-family: "Circe";
   text-transform: uppercase;
   font-size: 12px;
@@ -59,7 +59,15 @@ self.captionSmall {
 
 }
 
-self.condenced {
+this.condencedLarge {
+  font-family: "ReformaGroteskLightC";
+  font-size: 75px;
+  line-height: 80px;
+  text-transform: uppercase;
+  letter-spacing: 0.003em;
+}
+
+this.condenced {
   font-family: "ReformaGroteskLightC";
   font-size: 45px;
   line-height: 46px;
@@ -67,9 +75,13 @@ self.condenced {
   letter-spacing: 0.003em;
 }
 
-self.large {
+this.large {
   font-family: "FoglihtenNo06";
   font-size: 71px;
   line-height: 1.2;
   text-transform: uppercase;
+}
+
+this.colorGray {
+  color: #888;
 }

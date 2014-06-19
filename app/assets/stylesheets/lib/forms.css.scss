@@ -18,7 +18,7 @@
   }
 }
 
-%self.form {
+%this.form {
   input {
     @include placeholder {
       // @extend .lib-textStyle-caption;
@@ -46,12 +46,12 @@
   }
 }
 
-self.horizontal {
+this.horizontal {
   background: red;
 }
 
-self.large {
-  @extend %self.form;
+this.large {
+  @extend %this.form;
   legend {
     text-align: center;
   }
@@ -69,7 +69,7 @@ self.large {
   }
 }
 
-self.gold {
+this.gold {
   input.string, input.password, textarea {
     border: 1px solid $settings-color-gold;
   }

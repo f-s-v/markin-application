@@ -12,6 +12,6 @@ class Store::Order::ItemsController < Store::BaseController
   end
 
   protected def item_params
-    params.require("order_item").permit :size, :amount, :product_public_id
+    params.permit :size, :amount, :product_public_id
   end
 end

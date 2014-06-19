@@ -3,60 +3,68 @@
 $modules-count: 24;
 $max-height-value: 20;
 
-self.flex {
+this.flex {
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
-self.justify {
+this.justify {
   justify-content: space-between;
 }
 
-self {
-  @extend self.flex;
+this {
+  @extend this.flex;
 }
 
-self.vcenter {
-  @extend self.flex;
+this.vcenter {
+  @extend this.flex;
   align-items: center;
 }
 
-self.hcenter {
-  @extend self.flex;
+this.hcenter {
+  @extend this.flex;
   justify-content: center;
 }
 
-self.noWrap {
-  @extend self.flex;
+this.noWrap {
+  @extend this.flex;
   flex-wrap: nowrap;
 }
 
 
-self.cell {
+this.cell {
   flex-grow: 0;
   flex-shrink: 0;
   box-sizing: border-box;
 }
 
 @for $i from 1 through $modules-count {
-  self.cell-#{$i} {
-    @extend self.cell;
+  this.cell-#{$i} {
+    @extend this.cell;
     // flex-basis: $i * 100% / $modules-count;
     flex-basis: $i * 100vw / $modules-count
   }
-  self.gap-#{$i} {
+  this.gap-#{$i} {
     // margin-left: $i * 100% / $modules-count;
     margin-left: $i * 100vw / $modules-count;
   }
 }
 
 @for $i from 1 through $max-height-value {
-  self.row-#{$i} {
+  this.row-#{$i} {
     height: 58px * $i;
   }
 }
 
-self.pullRight {
+this.pullRight {
   // float: right;
+}
+
+this.aside {
+  padding-top: 0.6rem;
+  align-self: stretch;
+  this.aside-content {
+    margin: 0 0.6rem;
+  }
 }

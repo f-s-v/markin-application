@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :store do
     root to: "products#index"
-    resources :products
+    resources :products, only: [:index, :show]
     resource :order do
       resources :items, controller: 'order/items'
       resources :payments do

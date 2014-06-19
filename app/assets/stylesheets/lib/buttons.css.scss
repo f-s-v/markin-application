@@ -1,15 +1,16 @@
 // = css_module lib-buttons
 
-self.button {
+this.button {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   padding: 0 20px;
   border: 0;
+  display: inline-block;
 }
 
-self.main {
-  @extend self.button;
+this.main {
+  @extend this.button;
   @extend .lib-layout-row-1;
   @extend .lib-textStyle-caption;
   line-height: 58px;
@@ -18,8 +19,8 @@ self.main {
   transition-property: background linear;
   transition-duration: 150ms;}
 
-self.small {
-  @extend self.main;
+this.small {
+  @extend this.main;
   @extend .lib-textStyle-captionSmall;
   &:hover, &[checked] {
     // font-weight: bold;
@@ -27,7 +28,7 @@ self.small {
 
 }
 
-self.black {
+this.black {
   background: black;
   color: white;
   -webkit-font-smoothing: antialiased;
@@ -39,7 +40,7 @@ self.black {
   }
 }
 
-self.gold {
+this.gold {
   background: $settings-color-gold;
   color: black;
 
@@ -49,7 +50,17 @@ self.gold {
   }
 }
 
-self.goldBorder {
+this.light {
+  background: rgb(250, 241, 189);
+  color: black;
+
+  // &:hover, &[checked] {
+  //   background: black;
+  //   color: white;
+  // }
+}
+
+this.goldBorder {
   -webkit-font-smoothing: antialiased;
   color: $settings-color-gold;
   background: black;
@@ -63,7 +74,7 @@ self.goldBorder {
   }
 }
 
-self.blackBorder {
+this.blackBorder {
   -webkit-font-smoothing: antialiased;
   color: inherit;
   background: inherit;
@@ -77,14 +88,15 @@ self.blackBorder {
   }
 }
 
-self.whiteBorder {
+this.whiteBorder {
+  display: inline-block;
   border: 1px solid white;
   height: 33px;
   line-height: 33px;
   color: black;
 }
 
-self.gray {
+this.gray {
   color: #888;
 
   &:hover, &[checked] {
@@ -95,10 +107,14 @@ self.gray {
 }
 
 
-self.round {
+this.round {
   border-radius: 33px;
 }
 
-self.group self.button {
+this.group this.button {
   margin: 0 0.25em;
+}
+
+this.groupSolid this.button {
+  margin: 0 1px 1px 0;
 }

@@ -9,12 +9,33 @@
     }
   }
 
+  h1 {
+    @extend .lib-textStyle-large;
+    text-align: center;
+  }
+  
+  h2 {
+    @extend .lib-textStyle-condencedLarge;
+    text-align: center;
+  }
+
   h3 {
     @extend .lib-textStyle-condenced;
     text-align: center;
     a {
       text-decoration: none;
       color: inherit;
+    }
+  }
+
+  dl {
+    dt {
+      @extend .lib-textStyle-captionSmall;
+      @extend .lib-textStyle-colorGray;
+      margin-bottom: 0.6em;
+    }
+    dd {
+      margin-bottom: 1.2rem;
     }
   }
 }

@@ -9,6 +9,9 @@ ru:
         en: По-русски
       contacts: Адрес
       cart: Корзина
+    share_buttons:
+      twitter: Twitter
+      facebook: Facebook
   layouts:
     user:
       sign_out: Выход
@@ -35,6 +38,9 @@ ru:
         forgotted_password: Восстановить пароль
   activerecord:
     attributes:
+      product:
+        price: Стоимость
+        batch: Серия
       user:
         email: еmail
         password: пароль
@@ -48,3 +54,6 @@ ru:
       user:
         email: Email
         password: Пароль
+  actions:
+    add_to_cart: Добавить к заказу
+    share: Рекоммендовать

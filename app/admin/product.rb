@@ -66,6 +66,21 @@ ActiveAdmin.register Product do
       end
     end
 
+    f.inputs do
+      f.has_many :content_blocks, :allow_destroy => true, :heading => 'Content' do |cf|
+        cf.input :content, as: :text
+        cf.input :width
+        cf.input :height
+        %w(block image font border background).each do |attr|
+          cf.input "#{attr}_style",
+            as: :select,
+            collection: Rails.configuration.send("content_blocks_#{attr}_styles")
+        end
+        cf.input :padding
+        cf.input :order_number
+      end
+    end
+
     f.actions
   end
 

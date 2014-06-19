@@ -1,5 +1,5 @@
 <div class="lib-layout">
-  <div class="lib-layout-cell-20 lib-layout-gap-2 lib-layout">
+  <div class="lib-layout-cell-20 lib-layout">
     <% page.content_blocks.ordered.each do |block| %>
       <section style="order: <%= block.order_number%>" class="<%= expand_class('lib',
         layout: "cell-#{block.width} row-#{block.height || 'auto'} vcenter",

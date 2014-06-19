@@ -1,4 +1,16 @@
 class Store::ProductsController < Store::BaseController
-  inherit_resources
-  defaults finder: :find_by_public_id!
+  respond_to :html
+  
+  let(:resource, on: :member) do
+    Product.includes(:batch, options: :characteristic).where(public_id: params[:id]).first!
+  end
+  let(:collection, on: :collection) { Product.all }
+
+  def show
+    respond_with resource
+  end
+
+  def index
+    respond_with collection
+  end
 end
