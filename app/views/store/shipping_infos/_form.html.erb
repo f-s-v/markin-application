@@ -4,6 +4,7 @@
     <%= simple_form_for resource, url: store_order_shipping_info_path, html: {class: expand_class('lib', form: 'gold large')} do |f| %>
         <fieldset>
           <legend><%= t('.welcome') %></legend>
+          <%= f.input :shipping_name %>
           <%= f.association :country, collection: Country.all %>
           <%= f.input :shipping_address_line1 %>
           <%= f.input :shipping_address_line2 %>

@@ -18,7 +18,7 @@ class Order::Payment < ActiveRecord::Base
       email: order.user.email,
       no_shipping: true,
       shipping_address: {
-        name: order.user.name,
+        name: order.shipping_info.shipping_name,
         address1: order.shipping_info.shipping_address_line1,
         address2: order.shipping_info.shipping_address_line2,
         city: order.shipping_info.shipping_city,

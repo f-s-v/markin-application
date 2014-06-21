@@ -3,6 +3,7 @@ class Order::ShippingInfo < ActiveRecord::Base
   belongs_to :country
 
   validates :country,
+    :shipping_name,
     :phone_number,
     :shipping_address_line1,
     :shipping_city,

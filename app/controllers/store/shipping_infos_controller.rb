@@ -29,6 +29,7 @@ class Store::ShippingInfosController < ApplicationController
   protected def permitted_params
     params.require(:order_shipping_info).permit(
       :country_id,
+      :shipping_name,
       :phone_number,
       :shipping_address_line1,
       :shipping_address_line2,
