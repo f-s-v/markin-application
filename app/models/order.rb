@@ -17,8 +17,17 @@ class Order < ActiveRecord::Base
   scope :completed, -> { joins(:payments).where('order_payments.state' => 'paid') }
   scope :with_user, -> { where('user_id is not null') }
 
+  def delivery_price
+    zone = Order::DeliveryZone.joins(:countries).where('countries.id' => shipping_info.country_id).first
+    if zone.present?
+      zone.delivery_price
+    else
+      0.0
+    end
+  end
+
   def total
-    items.sum("order_items.price * order_items.amount")
+    items.sum("order_items.price * order_items.amount") + delivery_price
   end
 
   def ready_to_checkout?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621202620) do
+ActiveRecord::Schema.define(version: 20140621212704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,10 +57,27 @@ ActiveRecord::Schema.define(version: 20140621202620) do
     t.datetime "updated_at"
   end
 
+  create_table "countries_order_delivery_zones", id: false, force: true do |t|
+    t.integer  "country_id"
+    t.integer  "delivery_zone_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "countries_order_delivery_zones", ["country_id"], name: "index_countries_order_delivery_zones_on_country_id", using: :btree
+  add_index "countries_order_delivery_zones", ["delivery_zone_id"], name: "index_countries_order_delivery_zones_on_delivery_zone_id", using: :btree
+
   create_table "dummies", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "order_delivery_zones", force: true do |t|
+    t.decimal  "delivery_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "order_items", force: true do |t|

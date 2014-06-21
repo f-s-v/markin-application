@@ -89,6 +89,10 @@
 <% end %>
 
 <dl>
+  <% if order.shipping_info.present? %>
+    <dt><%= Order.human_attribute_name :delivery_price %></dt>
+    <dd><%= number_to_currency order.delivery_price %></dd>
+  <% end %>
   <dt><%= Order.human_attribute_name :total %></dt>
   <dd><%= number_to_currency order.total %></dd>
 </dl>

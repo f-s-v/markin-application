@@ -61,6 +61,7 @@ ru:
         name: имя
       order:
         total: Итого
+        delivery_price: Стоимость доставки
       order/item:
         product: Продукт
         count: Количество
