@@ -18,8 +18,8 @@ class Order < ActiveRecord::Base
   scope :with_user, -> { where('user_id is not null') }
 
   def delivery_price
-    zone = Order::DeliveryZone.joins(:countries).where('countries.id' => shipping_info.country_id).first
-    if zone.present?
+    zone = shipping_info && Order::DeliveryZone.joins(:countries).where('countries.id' => shipping_info.country_id).first
+    if zone
       zone.delivery_price
     else
       0.0
