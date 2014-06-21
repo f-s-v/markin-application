@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611144927) do
+ActiveRecord::Schema.define(version: 20140621152802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,10 +89,8 @@ ActiveRecord::Schema.define(version: 20140611144927) do
   add_index "order_payments", ["order_id"], name: "index_order_payments_on_order_id", using: :btree
   add_index "order_payments", ["state"], name: "index_order_payments_on_state", using: :btree
 
-  create_table "orders", force: true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "order_shipping_infos", force: true do |t|
+    t.integer  "order_id"
     t.integer  "country_id"
     t.string   "shipping_address_line1"
     t.string   "shipping_address_line2"
@@ -100,10 +98,20 @@ ActiveRecord::Schema.define(version: 20140611144927) do
     t.string   "shipping_state"
     t.string   "shipping_zip"
     t.string   "phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "order_shipping_infos", ["country_id"], name: "index_order_shipping_infos_on_country_id", using: :btree
+  add_index "order_shipping_infos", ["order_id"], name: "index_order_shipping_infos_on_order_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "public_id"
   end
 
-  add_index "orders", ["country_id"], name: "index_orders_on_country_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "pages", force: true do |t|

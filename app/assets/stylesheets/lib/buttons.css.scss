@@ -51,7 +51,7 @@ this.gold {
 }
 
 this.light {
-  background: rgb(250, 241, 189);
+  background: $settings-color-light;
   color: black;
 
   // &:hover, &[checked] {

@@ -1,7 +1,7 @@
 // = css_module lib-layout
 
-$modules-count: 24;
-$max-height-value: 20;
+$this.modules-count: 24;
+$this.max-height-value: 20;
 
 this.flex {
   display: flex;
@@ -39,19 +39,19 @@ this.cell {
   box-sizing: border-box;
 }
 
-@for $i from 1 through $modules-count {
+@for $i from 1 through $this.modules-count {
   this.cell-#{$i} {
     @extend this.cell;
-    // flex-basis: $i * 100% / $modules-count;
-    flex-basis: $i * 100vw / $modules-count
+    // flex-basis: $i * 100% / $this.modules-count;
+    flex-basis: $i * 100vw / $this.modules-count
   }
   this.gap-#{$i} {
-    // margin-left: $i * 100% / $modules-count;
-    margin-left: $i * 100vw / $modules-count;
+    // margin-left: $i * 100% / $this.modules-count;
+    margin-left: $i * 100vw / $this.modules-count;
   }
 }
 
-@for $i from 1 through $max-height-value {
+@for $i from 1 through $this.max-height-value {
   this.row-#{$i} {
     height: 58px * $i;
   }

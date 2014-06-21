@@ -27,8 +27,6 @@ class Order::PaymentTest < ActiveSupport::TestCase
         "Tax" => '0.00',
         "Amount" => i.price.to_s,
         "EbayItemPaymentDetailsItem" => nil,
-        # fill options fixtures for next line
-        # "Description" => i.product.options_description
       }
     }.to_a
   end

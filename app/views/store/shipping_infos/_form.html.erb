@@ -1,0 +1,22 @@
+<section class="lib-boxStyle-gold lib-layout">
+  <div class="lib-layout-cell-14 lib-layout-gap-5 lib-contentBlock-padding">
+
+    <%= simple_form_for resource, url: store_order_shipping_info_path, html: {class: expand_class('lib', form: 'gold large')} do |f| %>
+        <fieldset>
+          <legend><%= t('.welcome') %></legend>
+          <%= f.association :country, collection: Country.all %>
+          <%= f.input :shipping_address_line1 %>
+          <%= f.input :shipping_address_line2 %>
+          <%= f.input :shipping_city %>
+          <%= f.input :shipping_state %>
+          <%= f.input :shipping_zip %>
+          <%= f.input :phone_number %>
+          <div class="form-actions">
+            <%= f.button :submit, class: expand_class('lib', buttons: 'small black') %>
+          </div>
+        </fieldset>
+    <% end %>
+
+  </div>
+
+</section>

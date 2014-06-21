@@ -11,16 +11,6 @@ class Product < ActiveRecord::Base
 
   validates :name, :price, :poster, :batch, presence: true
 
-  def options_description
-    opts = options.includes(:characteristic).group_by(&:characteristic)
-    opts.map do |c, o|
-      [
-        c.name, 
-        o.map(&:name).join(', ').mb_chars.downcase
-      ].join(': ') + '.'
-    end.join(' ')
-  end
-
   def to_param
     public_id
   end

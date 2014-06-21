@@ -33,10 +33,13 @@
       background-color: white !important;
     }
   }
-  input.string, input.password, textarea {
+  input.string, input.tel, input.password, input.integer, textarea {
     border: 1px solid transparent;
     width: 100%;
     box-sizing: border-box;
+  }
+  select {
+    width: 100%;
   }
   .input, .form-actions, legend {
     margin-bottom: 1.2em;
@@ -44,10 +47,19 @@
   label {
     @extend .lib-textStyle-caption;
   }
-}
 
-this.horizontal {
-  background: red;
+  .input.boolean {
+    input.boolean {
+      vertical-align: middle;
+      margin-right: 0.5em;
+    }
+    label {
+      @extend .lib-textStyle-captionSmall;
+    }
+  }
+  .form-actions {
+    @extend .lib-layout-hcenter;
+  }
 }
 
 this.large {
@@ -56,7 +68,7 @@ this.large {
     text-align: center;
   }
   .input {
-    &.email, &.password, &.string {
+    &.email, &.password, &.string, &.integer, &.tel {
       input {
         @extend .lib-layout-row-1;
         @extend .lib-textStyle-caption;
@@ -70,7 +82,17 @@ this.large {
 }
 
 this.gold {
-  input.string, input.password, textarea {
+  input.string, input.password, input.number, input.tel, textarea {
     border: 1px solid $settings-color-gold;
+  }
+}
+
+this.table {
+  .input {
+    margin-bottom: 0;
+  }
+
+  table {
+    margin-bottom: 1.6em;
   }
 }

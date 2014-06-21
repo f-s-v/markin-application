@@ -12,6 +12,19 @@ ru:
     share_buttons:
       twitter: Twitter
       facebook: Facebook
+    product_line:
+      batch: "Серия “%{batch}”"
+  store:
+    orders:
+      show:
+        checkout: Оплатить
+        edit_order: Изменить заказ
+        cancel_order: Удалить заказ
+        new_shipping_info: Оформить доставку
+        edit_shipping_info: Информация о доставке
+    shipping_infos:
+      form:
+        welcome: "Введите информацию о доставке:"
   layouts:
     user:
       sign_out: Выход
@@ -46,6 +59,22 @@ ru:
         password: пароль
         password_confirmation: подтверждение пароля
         name: имя
+      order:
+        total: Итого
+      order/item:
+        product: Продукт
+        count: Количество
+        size: Размер
+        amount: Стоимость
+        _destroy: Удалить
+      order/shipping_info:
+        country: Страна
+        shipping_address_line1: "Номер дома, корпуса"
+        shipping_address_line2: Номер квартиры
+        shipping_city: Город
+        shipping_state: Область
+        shipping_zip: Почтовый индекс
+        phone_number: Номер телефона
   simple_form:
     required:
       html: ''
@@ -58,3 +87,11 @@ ru:
     add_to_cart: Добавить к заказу
     share: Рекоммендовать
     see_also: Смотрите также
+    back_to_store: Вернуться в магазин
+  helpers:
+    submit:
+      order:
+        update: "Обновить"
+      order_shipping_info:
+        create: Сохранить
+        update: Сохранить

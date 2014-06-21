@@ -1,0 +1,18 @@
+// = css_module lib-table
+
+@for $i from 1 through $lib-layout-modules-count {
+  this.cell-#{$i} {
+    width: $i * 100vw / $lib-layout-modules-count
+  }
+}
+
+this.underlined {
+  tr td{
+    border-bottom: 1px solid #efefef;
+  }
+
+  tr:last-child td {
+    border: 0;
+  }
+
+}

@@ -4,7 +4,7 @@ class Store::Order::ItemsController < Store::BaseController
 
   def create
     item = current_order.items.create(item_params)
-    redirect_to store_product_path item.product
+    redirect_to [:edit, :store, current_order]
   end
 
   protected def resource

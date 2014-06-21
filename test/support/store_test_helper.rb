@@ -12,11 +12,8 @@ module StoreTestHelper
     assert session["order_id"].present?
   end
 
-  def add_to_cart(product, amount = 1)
-    post_via_redirect store_order_items_url, order_item: {
-      amount: amount,
-      product_public_id: product.public_id
-    }
+  def add_to_cart(product)
+    post_via_redirect store_order_items_url, product_public_id: product.public_id
   end
 
   def fill_order_with(fixture)

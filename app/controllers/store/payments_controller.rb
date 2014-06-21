@@ -2,7 +2,7 @@ class Store::PaymentsController < Store::BaseController
   before_action :authenticate_user!
 
   def new
-    raise ActiveRecord::RecordNotFound unless current_order.ready_to_checkout? and current_order.valid?
+    raise ActiveRecord::RecordNotFound unless current_order.ready_to_checkout?
     current_order.update_attributes user: current_user
     payment = Order::Payment.create_for_order(current_order, request.remote_ip)
     redirect_to payment.checkout_url

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     root to: "products#index"
     resources :products, only: [:index, :show]
     resource :order do
+      resource :shipping_info, only: [:new, :create, :edit, :update]
       resources :items, controller: 'order/items'
       resources :payments do
         collection do

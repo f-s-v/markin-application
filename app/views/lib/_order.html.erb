@@ -1,0 +1,85 @@
+<table class="lib-table-underlined">
+  <thead>
+    <tr>
+      <th class="lib-table-cell-11">
+        <%= Order::Item.human_attribute_name "product" %>
+      </th>
+      <th class="lib-table-cell-3">
+        <%= Order::Item.human_attribute_name "count" %>
+      </th>
+      <th class="lib-table-cell-3">
+        <%= Order::Item.human_attribute_name "size" %>
+      </th>
+      <th class="lib-table-cell-3">
+        <%= Order::Item.human_attribute_name "amount" %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% order.items.each do |item| %>
+      <tr>
+        <td>
+          <%= render 'lib/product_line', product: item.product %>
+        </td>
+        <td>
+          <%= item.amount %>
+        </td>
+        <td>
+          <%= item.size.presence || "—" %>
+        </td>
+        <td>
+          <%= number_to_currency item.total %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<% if order.shipping_info.present? %>
+  <dl>
+    <dt><%= Order::ShippingInfo.human_attribute_name('contry') %></dt>
+    <dd><% if order.shipping_info.country.present? %><%= order.shipping_info.country.name %><% end %></dd>
+
+    <div class="lib-layout">
+      <div class="lib-layout-cell-4">
+        <dt><%= Order::ShippingInfo.human_attribute_name('shipping_address_line1') %>:</dt>
+        <dd><%= order.shipping_info.shipping_address_line1 %></dd>
+      </div>
+      <div class="lib-layout-cell-4">
+        <dt><%= Order::ShippingInfo.human_attribute_name('shipping_address_line2') %>:</dt>
+        <dd><%= order.shipping_info.shipping_address_line2 %></dd>
+      </div>
+    </div>
+
+    <div class="lib-layout">
+      <div class="lib-layout-cell-4">
+        <dt><%= Order::ShippingInfo.human_attribute_name('shipping_city') %>:</dt>
+        <dd><%= order.shipping_info.shipping_city %></dd>
+      </div>
+      <div class="lib-layout-cell-4">
+        <dt><%= Order::ShippingInfo.human_attribute_name('shipping_state') %>:</dt>
+        <dd><%= order.shipping_info.shipping_state %></dd>
+      </div>
+    </div>
+
+    <div class="lib-layout">
+      <div class="lib-layout-cell-4">
+        <dt><%= Order::ShippingInfo.human_attribute_name('shipping_zip') %>:</dt>
+        <dd><%= order.shipping_info.shipping_zip %></dd>
+      </div>
+      <div class="lib-layout-cell-4">
+        <dt><%= Order::ShippingInfo.human_attribute_name('phone_number') %>:</dt>
+        <dd><%= order.shipping_info.phone_number %></dd>
+      </div>
+    </div>
+  </dl>
+
+  <hr>
+<% end %>
+
+<dl>
+  <dt><%= Order.human_attribute_name :total %></dt>
+  <dd><%= number_to_currency order.total %></dd>
+</dl>

@@ -19,18 +19,18 @@ class Order::Payment < ActiveRecord::Base
       no_shipping: true,
       shipping_address: {
         name: order.user.name,
-        address1: order.shipping_address_line1,
-        address2: order.shipping_address_line2,
-        city: order.shipping_city,
-        state: order.shipping_state,
-        zip: order.shipping_zip,
-        country: order.country.code,
-        phone: order.phone_number,
+        address1: order.shipping_info.shipping_address_line1,
+        address2: order.shipping_info.shipping_address_line2,
+        city: order.shipping_info.shipping_city,
+        state: order.shipping_info.shipping_state,
+        zip: order.shipping_info.shipping_zip,
+        country: order.shipping_info.country.code,
+        phone: order.shipping_info.phone_number,
       },
       items: order.items.map do |i|
         {
           name: i.product.name,
-          description: i.product.options_description,
+          description: i.product.batch.name,
           quantity: i.amount,
           amount: i.price * 100
         }

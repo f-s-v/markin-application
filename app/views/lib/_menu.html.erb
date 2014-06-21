@@ -14,6 +14,12 @@
   <%= checked_link_to t('.contacts'), page_path('contacts'),
     class: expand_class('lib', layout: 'cell-2', buttons: 'small gray') %>
 
-  <%= checked_link_to t('.cart'), store_order_path,
-    class: expand_class('lib', layout: 'cell-4', buttons: 'main black') %>
+  <%= checked_link_to store_order_path,
+    class: expand_class('lib', layout: 'cell-4', buttons: 'main black') do %>
+    <% if current_order.items.empty? %>
+      <%= t('.cart') %>
+    <% else %>
+      <%= number_to_currency current_order.total %> &rarr;
+    <% end %>
+  <% end %>
 </menu>

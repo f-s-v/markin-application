@@ -1,4 +1,5 @@
 $settings-color-gold: rgb(245, 226, 123);
+$settings-color-light: rgb(250, 241, 189);
 
 @import 'HTML5-Reset/assets/css/reset';
 @import 'rails-sass-images';
@@ -11,5 +12,6 @@ $settings-color-gold: rgb(245, 226, 123);
 @import 'lib/content-blocks';
 @import 'lib/forms';
 @import 'lib/media';
+@import 'lib/tables';
 @import 'app/site-title';
 @import 'app/menu';

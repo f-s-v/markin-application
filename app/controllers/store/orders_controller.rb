@@ -13,13 +13,6 @@ class Store::OrdersController < Store::BaseController
 
   protected def order_params
     params.require(:order).permit(
-      :country_id,
-      :shipping_address_line1,
-      :shipping_address_line2,
-      :shipping_city,
-      :shipping_state,
-      :shipping_zip,
-      :phone_number,
       items_attributes: [
         :id,
         :amount,

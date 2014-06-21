@@ -46,7 +46,6 @@ ActiveAdmin.register Product do
       end
       row :created_at
       row :has_sizes
-      row :options_description
     end
   end
 

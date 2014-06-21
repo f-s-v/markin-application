@@ -9,6 +9,11 @@
     }
   }
 
+  figure {
+    float: left;
+    margin-right: 0.6em;
+  }
+
   h1 {
     @extend .lib-textStyle-large;
     text-align: center;
@@ -28,6 +33,14 @@
     }
   }
 
+  h4 {
+    @extend .lib-textStyle-caption;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
   dl {
     dt {
       @extend .lib-textStyle-captionSmall;
@@ -41,5 +54,18 @@
 
   hr {
     border: 1px solid $settings-color-gold;
+  }
+
+  table {
+    width: 100%;
+    th {
+      @extend .lib-textStyle-captionSmall;
+      @extend .lib-textStyle-colorGray;
+      text-align: left;
+    }
+
+    td, th {
+      padding: 0.3rem 0.6em 0.3em 0;
+    }
   }
 }

@@ -7,8 +7,10 @@ class Order::Item < ActiveRecord::Base
 
   validates :product, :amount, presence: true
   validates :amount, numericality: { greater_than: 0 }
-  validates :size, presence: true, if: :product_has_sizes
+  # validates :size, presence: true, if: :product_has_sizes
   before_validation :set_price, on: :create
+
+  default_scope -> { order('created_at desc') }
 
   def total
     amount * price
