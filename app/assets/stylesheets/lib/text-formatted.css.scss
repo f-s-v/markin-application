@@ -2,11 +2,17 @@
   @extend .lib-textStyle-regular;
   
 
+
   p {
     margin-bottom: 1.2em;
     &:last-child {
       margin-bottom: 0;
     }
+
+    a {
+      color: royalblue;
+    }
+
   }
 
   figure {

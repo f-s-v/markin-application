@@ -22,6 +22,8 @@ ru:
         cancel_order: Удалить заказ
         new_shipping_info: Оформить доставку
         edit_shipping_info: Информация о доставке
+        empty_cart: Корзина пуста.
+        visit_store: Перейти в магазин
     shipping_infos:
       form:
         welcome: "Введите информацию о доставке:"

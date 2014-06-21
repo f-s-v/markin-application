@@ -4,27 +4,40 @@
       <%= t('lib.menu.cart') %>
     </h1>
 
-    <%= render 'lib/order', order: current_order %>
+    <% if current_order.items.present? %>
 
-    <div class="lib-boxStyle-inFlow lib-layout-hcenter">
-      <% if current_order.ready_to_checkout? %>
-        <%= link_to t('.checkout'), new_store_order_payment_path, class: 'lib-buttons-small lib-buttons-black', id: 'store-order-checkout' %>
-      <% else %>
-        <%= link_to t('.new_shipping_info'), new_store_order_shipping_info_path, class: 'lib-buttons-small lib-buttons-black', id: 'store-order-checkout' %>
-      <% end %>
-    </div>
+      <%= render 'lib/order', order: current_order %>
 
-    <div class="lib-boxStyle-inFlow lib-layout-hcenter lib-buttons-group">
-      <%= link_to t('.edit_order'), edit_store_order_path, class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder', data: {label: 'store-order-edit'} %>
-      <%= link_to t('.edit_shipping_info'), edit_store_order_shipping_info_path, class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder', data: {label: 'store-order-edit'} %>
-      <%= link_to t('.cancel_order'), store_order_path,
-        class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder',
-          data: {
-            confirm: 'Confirm',
-            label: 'store-order-delete'
-          },
-        method: 'delete'
-      %>
-    </div>
+      <div class="lib-boxStyle-inFlow lib-layout-hcenter">
+        <% if current_order.ready_to_checkout? %>
+          <%= link_to t('.checkout'), new_store_order_payment_path, class: 'lib-buttons-small lib-buttons-black', id: 'store-order-checkout' %>
+        <% else %>
+          <%= link_to t('.new_shipping_info'), new_store_order_shipping_info_path, class: 'lib-buttons-small lib-buttons-black', id: 'store-order-checkout' %>
+        <% end %>
+      </div>
+
+      <div class="lib-boxStyle-inFlow lib-layout-hcenter lib-buttons-group">
+        <%= link_to t('.edit_order'), edit_store_order_path, class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder', data: {label: 'store-order-edit'} %>
+        <%= link_to t('.edit_shipping_info'), edit_store_order_shipping_info_path, class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder', data: {label: 'store-order-edit'} %>
+        <%= link_to t('.cancel_order'), store_order_path,
+          class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder',
+            data: {
+              confirm: 'Confirm',
+              label: 'store-order-delete'
+            },
+          method: 'delete'
+        %>
+      </div>
+
+    <% else %>
+      <div class="lib-layout">
+        <div class="lib-layout-cell-20 lib-layout-hcenter">
+          <p>
+            <%= t('.empty_cart') %>
+            <%= link_to t('.visit_store'), store_root_path %>.
+          </p>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
