@@ -1,21 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  order_id: 
-  country_id: 
-  shipping_address_line1: MyString
-  shipping_address_line2: MyString
-  shipping_city: MyString
-  shipping_state: MyString
-  shipping_zip: MyString
-  phone_number: MyString
+valid_us_customer_info:
+  country: us
+  shipping_name: Test Customer
+  shipping_address_line1: Address Line 1
+  shipping_address_line2: Address Line 2
+  shipping_city: Alameda
+  shipping_state: CA
+  shipping_zip: 94501
+  phone_number: 510-263-9651
+  order: us_customer
 
-two:
-  order_id: 
-  country_id: 
-  shipping_address_line1: MyString
-  shipping_address_line2: MyString
-  shipping_city: MyString
-  shipping_state: MyString
-  shipping_zip: MyString
-  phone_number: MyString
+valid_fr_customer_info:
+  country: fr
+  shipping_name: Test Customer
+  shipping_address_line1: Address Line 1
+  shipping_address_line2: Address Line 2
+  shipping_city: Lyon
+  shipping_state: Rhône-Alpes
+  shipping_zip: 69001
+  phone_number: 52-07-34
+  order: fr_customer

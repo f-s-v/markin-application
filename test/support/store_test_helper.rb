@@ -16,18 +16,19 @@ module StoreTestHelper
     post_via_redirect store_order_items_url, product_public_id: product.public_id
   end
 
-  def fill_order_with(fixture)
-    order_params = {
+  def fill_order_shipping_info_with(fixture)
+    shipping_params = {
       country_id: fixture.country.id
     }
 
     %w(shipping_address_line1 shipping_address_line2
-      shipping_city shipping_state shipping_zip phone_number
+      shipping_city shipping_state shipping_zip
+      phone_number shipping_name
     ).each do |field|
-      order_params[field] = fixture.send(field)
+      shipping_params[field] = fixture.send(field)
     end
 
-    patch_via_redirect store_order_url, order: order_params
+    post_via_redirect store_order_shipping_info_url, order_shipping_info: shipping_params
     current_order.reload
   end
 end

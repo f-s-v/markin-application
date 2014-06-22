@@ -5,7 +5,8 @@
     <section class="lib-layout-row-1 lib-layout-cell-2 lib-layout-vcenter lib-layout-hcenter lib-layout-gap-16">
       <%= link_to t('.sign_out'), destroy_user_session_path,
         method: 'delete',
-        class: expand_class('lib', buttons: 'small blackBorder') %>
+        class: expand_class('lib', buttons: 'small blackBorder'),
+        id: 'sessionSignOut' %>
     </section>
   </div>
 

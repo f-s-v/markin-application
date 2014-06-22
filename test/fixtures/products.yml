@@ -17,6 +17,6 @@ two:
 payment_error:
   name: Payment Error
   batch: one
-  price: 107.55
+  price: 97.56 # 107.55 minus delivery price
   poster: none
   public_id: <%= Product.generate_public_id(:public_id) %>

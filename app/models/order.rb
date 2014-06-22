@@ -26,8 +26,12 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def subtotal
+    items.sum("order_items.price * order_items.amount")
+  end
+
   def total
-    items.sum("order_items.price * order_items.amount") + delivery_price
+     subtotal + delivery_price
   end
 
   def ready_to_checkout?

@@ -25,18 +25,13 @@ class CartFlowTest < ActionDispatch::IntegrationTest
 
   test "update contact info" do
     add_to_cart(products(:one))
+    fill_order_shipping_info_with(orders(:us_customer).shipping_info)
     assert current_order.ready_to_checkout?
-    assert current_order.invalid?
-
-    fill_order_with(orders(:valid))
-    assert current_order.ready_to_checkout?
-    assert current_order.valid?
   end
 
   test "delete order items" do
     add_to_cart(products(:one))
     add_to_cart(products(:two))
-    fill_order_with(orders(:valid))
     assert_difference "current_order.items.count", -1 do
       patch_via_redirect store_order_url, order: {
         items_attributes: [{id: current_order.items.last.id, _destroy: '1'}]

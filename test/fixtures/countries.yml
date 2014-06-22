@@ -3,3 +3,7 @@
 us:
   name: United States
   code: us
+
+fr:
+  name: France
+  code: fr

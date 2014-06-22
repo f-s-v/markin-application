@@ -26,4 +26,6 @@
 
 </section>
 
-<%= render 'lib/page', page: Page.where(slug: 'client-care').first! %>
+<% if page = Page.where(slug: 'client-care').first %>
+  <%= render 'lib/page', page: page %>
+<% end %>
