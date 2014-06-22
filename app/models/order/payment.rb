@@ -18,7 +18,7 @@ class Order::Payment < ActiveRecord::Base
       order_id: order.public_id,
       return_url: Rails.application.routes.url_helpers.pay_store_order_payments_url(url_options),
       cancel_return_url: Rails.application.routes.url_helpers.cancel_store_order_payments_url(url_options),
-      currency: 'USD',
+      currency: 'RUB',
       allow_guest_checkout: true,
       email: order.user.email,
       shipping_address: {
