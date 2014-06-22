@@ -1,5 +1,6 @@
-order statuses
 admin
-refund
+  shipping info
+  actions
 emails
 production paypal tokens
+refund

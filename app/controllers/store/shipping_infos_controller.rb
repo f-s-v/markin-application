@@ -5,7 +5,7 @@ class Store::ShippingInfosController < ApplicationController
   let(:resource, on: ['edit', 'update']) { current_order.shipping_info }
 
   def new
-    raise ActionController::RoutingError.new("Not Found") if current_order.shipping_info.present?
+    raise_not_found if current_order.shipping_info.present?
     respond_with resource
   end
 

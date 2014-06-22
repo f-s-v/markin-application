@@ -4,8 +4,8 @@ ActiveAdmin.register Order do
 
   actions :all, :except => [:destroy, :new]
   filter :public_id, label: 'ID'
-  filter :user
-  filter :country
+  # filter :user
+  # filter :country
   filter :created_at
   filter :shipping_address_line1
   filter :shipping_address_line2
@@ -20,6 +20,10 @@ ActiveAdmin.register Order do
 
     def scoped_collection
       Order.completed.includes(:country, :user)
+    end
+
+    def permitted_params
+      params.permit!
     end
   end
 
@@ -72,32 +76,46 @@ ActiveAdmin.register Order do
         number_to_currency order.total
       end
       row :created_at
-      row :country
-      row :shipping_address_line1
-      row :shipping_address_line2
-      row :shipping_city
-      row :shipping_state
-      row :shipping_zip
-      row :phone_number
+      row :country do
+        order.shipping_info.country.name
+      end
+      row :shipping_address_line1 do
+        order.shipping_info.shipping_address_line1
+      end
+      row :shipping_address_line2 do
+        order.shipping_info.shipping_address_line2
+      end
+      row :shipping_city do
+        order.shipping_info.shipping_city
+      end
+      row :shipping_state do
+        order.shipping_info.shipping_state
+      end
+      row :shipping_zip do
+        order.shipping_info.shipping_zip
+      end
+      row :phone_number do
+        order.shipping_info.phone_number
+      end
     end
   end
 
   form do |f|
-    f.inputs do
-      f.input :country
-      f.input :shipping_address_line1
-      f.input :shipping_address_line2
-      f.input :shipping_city
-      f.input :shipping_state
-      f.input :shipping_zip
-      f.input :phone_number
+    f.inputs for: :shipping_info do |sif|
+      sif.input :country
+      sif.input :shipping_address_line1
+      sif.input :shipping_address_line2
+      sif.input :shipping_city
+      sif.input :shipping_state
+      sif.input :shipping_zip
+      sif.input :phone_number
     end
     f.actions :country_id, :shipping_address_line1,
       :shipping_address_line2, :shipping_city,
       :shipping_state, :shipping_zip, :phone_number
   end
 
-  permit_params
+  # permit_params 
 end
 
 

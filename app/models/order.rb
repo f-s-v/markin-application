@@ -13,6 +13,7 @@ class Order < ActiveRecord::Base
   has_one :shipping_info, class_name: 'Order::ShippingInfo', dependent: :destroy
 
   accepts_nested_attributes_for :items, allow_destroy: true
+  accepts_nested_attributes_for :shipping_info
 
   validates :public_id, presence: true
 
