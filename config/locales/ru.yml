@@ -64,6 +64,7 @@ ru:
       order:
         total: Итого
         delivery_price: Стоимость доставки
+        messages: Статус
       order/item:
         product: Продукт
         count: Количество
@@ -99,3 +100,9 @@ ru:
       order_shipping_info:
         create: Сохранить
         update: Сохранить
+  messages:
+    order:
+      paid: оплачено
+      delivered: доставлено
+      sent: отправлено
+      canceled: отменено

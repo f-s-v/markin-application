@@ -1,3 +1,12 @@
+<% if order.messages.present? %>
+  <dl>
+    <dt><%= Order.human_attribute_name 'messages' %></dt>
+    <% order.messages.each do |message| %>
+      <dd><%= I18n.l message.created_at, format: :short %>, <%= message.text %>.</dd>
+    <% end %>
+  </dl>
+<% end %>
+
 <table class="lib-table-underlined">
   <thead>
     <tr>

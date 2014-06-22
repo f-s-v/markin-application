@@ -71,6 +71,7 @@ class Order::Payment < ActiveRecord::Base
 
     if response.success?
       self.state = 'paid'
+      order.send_message :paid
     else
       self.state = 'failed'
     end

@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  include Concerns::Messaging
+
   include Concerns::PublicId
   generates_public_id :public_id
 
