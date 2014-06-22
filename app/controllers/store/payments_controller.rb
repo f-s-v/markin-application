@@ -19,7 +19,6 @@ class Store::PaymentsController < Store::BaseController
   end
 
   def cancel
-    resource.canceled!
     redirect_to store_order_url
   end
 
