@@ -24,5 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'test', to: "pages#test"
   resources :pages, path: '/', only: 'show'
+
 end
