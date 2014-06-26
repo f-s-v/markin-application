@@ -1,4 +1,9 @@
-ActiveMerchant::Billing::Base.mode = :test
+if Rails.env.production?
+  ActiveMerchant::Billing::Base.mode = :production
+else
+  ActiveMerchant::Billing::Base.mode = :test
+end
+
 paypal_options = {
   login: ENV['MARKIN_PAYPAL_API_LOGIN'],
   password: ENV['MARKIN_PAYPAL_API_PASSWORD'],
