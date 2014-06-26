@@ -15,3 +15,4 @@
 /log/*.log
 /tmp
 /vendor/bower_components
+.env
