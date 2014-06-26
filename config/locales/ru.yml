@@ -74,7 +74,7 @@ ru:
       order/shipping_info:
         country: Страна
         shipping_name: Имя
-        shipping_address_line1: "Номер дома, корпуса"
+        shipping_address_line1: "Улица, номер дома"
         shipping_address_line2: Номер квартиры
         shipping_city: Город
         shipping_state: Область
