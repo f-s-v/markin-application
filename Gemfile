@@ -43,3 +43,7 @@ group :test do
   gem 'poltergeist'
   gem 'shoulda-matchers'
 end
+
+group :development do
+  gem 'letter_opener'
+end
