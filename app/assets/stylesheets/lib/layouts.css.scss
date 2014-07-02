@@ -9,6 +9,10 @@ this.flex {
   flex-wrap: wrap;
 }
 
+this.row {
+  flex-wrap: nowrap;
+}
+
 this.justify {
   justify-content: space-between;
 }
