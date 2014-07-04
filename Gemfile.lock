@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/ahuth/emcee.git
+  revision: d787058dd9bf655d0a03e5d5125fd144222096d1
+  branch: fix-character-escaping
+  specs:
+    emcee (1.0.1)
+      nokogiri (~> 1.0)
+      rails (~> 4.0)
+
+GIT
   remote: git://github.com/f-s-v/uploadcare_helpers.git
   revision: 9069c79e18c745258f62b912e4b8371588492385
   specs:
@@ -153,7 +162,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.3.4)
+    minitest (5.3.5)
     money (6.1.1)
       i18n (~> 0.6.4)
     multi_json (1.10.1)
@@ -275,6 +284,7 @@ DEPENDENCIES
   default_value_for (~> 3.0.0)
   devise
   dotenv-rails
+  emcee!
   foreman (~> 0.66.0)
   glean
   inherited_resources

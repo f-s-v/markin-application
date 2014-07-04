@@ -2,12 +2,19 @@ ActiveAdmin.register Page do
   filter :slug
   filter :title
 
-  permit_params :title, :slug, content_blocks_attributes: [
-    :id, :_destroy,
-    :content, :width, :height, :block_style,
-    :image_style, :font_style, :border_style,
-    :background_style, :padding, :order,
-  ]
+  before_filter only: [:create, :update] do
+    params[:page][:content_blocks_attributes] = JSON.parse(params[:page][:content_blocks_attributes])
+  end
+
+  controller do
+    def scoped_collection
+      Page.includes(:content_blocks)
+    end
+
+    def permitted_params
+      params.permit!
+    end
+  end
 
   index do
     selectable_column
@@ -26,26 +33,31 @@ ActiveAdmin.register Page do
   end
 
   form do |f|
+    within @head do
+      link href: asset_path('fullpicture.html'), rel: 'import'
+    end
+
     f.inputs do
       f.input :slug
       f.input :title
+      f.input :content_blocks_attributes, as: :formtastic_json
     end
 
 
-    f.inputs do
-      f.has_many :content_blocks, :allow_destroy => true, :heading => 'Content' do |cf|
-        cf.input :content, as: :text
-        cf.input :width
-        cf.input :height
-        %w(block image font border background).each do |attr|
-          cf.input "#{attr}_style",
-            as: :select,
-            collection: Rails.configuration.send("content_blocks_#{attr}_styles")
-        end
-        cf.input :padding
-        cf.input :order_number
-      end
-    end
+    # f.inputs do
+    #   f.has_many :content_blocks, :allow_destroy => true, :heading => 'Content' do |cf|
+    #     cf.input :content, as: :text
+    #     cf.input :width
+    #     cf.input :height
+    #     %w(block image font border background).each do |attr|
+    #       cf.input "#{attr}_style",
+    #         as: :select,
+    #         collection: Rails.configuration.send("content_blocks_#{attr}_styles")
+    #     end
+    #     cf.input :padding
+    #     cf.input :order_number
+    #   end
+    # end
 
     f.actions
   end

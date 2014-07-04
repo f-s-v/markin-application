@@ -1,7 +1,6 @@
-.lib-textFormatted {
+.lib-textFormatted, body /deep/ .lib-textFormatted {
   @extend .lib-textStyle-regular;
-  
-
+  color: black;
 
   p {
     margin-bottom: 1.2em;

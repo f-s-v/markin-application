@@ -1,0 +1,18 @@
+<polymer-element name="lib-delegator" attributes="methods to" constructor>
+  <script>
+    Polymer('lib-delegator', {
+      ready: function(){
+        this.methods = this.methods.split(' ') || []
+      },
+      attached: function(){
+        this.async(function(){
+          this.methods.forEach(function(name){
+            this.parentNode.host[name] = function(){
+              this.to[name]()
+            }.bind(this)
+          }.bind(this))
+        }.bind(this))
+      }
+    });
+  </script>
+</polymer-element>

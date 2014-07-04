@@ -1,0 +1,16 @@
+
+<polymer-element name="lib-template-injector" attributes="source selector">
+  <template>
+    abc
+  </template>
+  <script>
+    Polymer('lib-template-injector', {
+      ready: function(){
+        [].forEach.call(this.templateInstance.model.querySelectorAll(this.selector), function(template){
+          this.appendChild(this.shadowFromTemplate(a))
+        }.bind(this))
+        
+      }
+    });
+  </script>
+</polymer-element>

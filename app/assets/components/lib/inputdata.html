@@ -1,0 +1,9 @@
+<polymer-element name="lib-inputdata" attributes="source data">
+  <script>
+    Polymer("lib-inputdata", {
+      ready: function(){
+        this.data = JSON.parse(document.getElementById(this.source).value)
+      }
+    })
+  </script>
+</polymer-element>

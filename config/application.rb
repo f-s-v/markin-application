@@ -20,9 +20,6 @@ module Markin
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ru
 
-    config.assets.paths << "#{Rails.root}/app/assets/fonts"
-    config.assets.paths << "#{Rails.root}/vendor/bower_components"
-
     config.generators do |g|
       g.assets false
       g.helper false

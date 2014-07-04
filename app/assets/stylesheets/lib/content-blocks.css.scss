@@ -1,39 +1,41 @@
+// = css_module_global
 // = css_module 'lib-contentBlock'
 
-this.contentBlock {
+
+this.contentBlock, html /deep/ this.contentBlock {
   box-sizing: border-box;
   word-wrap: break-word;
 }
 
-this.background-black {
+this.background-black, html /deep/ this.background-black {
   @extend .lib-boxStyle-black;
 }
 
-this.background-blackGradient {
+this.background-blackGradient, html /deep/ this.background-blackGradient {
   @extend .lib-boxStyle-blackGradient;
 }
 
-this.background-gold {
+this.background-gold, html /deep/ this.background-gold {
   @extend .lib-boxStyle-gold;
 }
 
-this.background-goldGradient {
+this.background-goldGradient, html /deep/ this.background-goldGradient {
   @extend .lib-boxStyle-goldGradient;
 }
 
-this.padding {
+this.padding, html /deep/ this.padding {
   padding: 50px;
 }
 
-this.font-regular {
+this.font-regular, html /deep/ this.font-regular {
   @extend .lib-textStyle-regular;
 }
 
-this.font-condenced {
+this.font-condenced, html /deep/ this.font-condenced {
   @extend .lib-textStyle-condenced;
 }
 
-this.font-large {
+this.font-large, html /deep/ this.font-large {
   @extend .lib-textStyle-large;
   text-align: center;
 }
@@ -42,17 +44,18 @@ this.font-large {
   border: 9px solid transparent;
 }
 
-this.border-white {
+this.border-white, html /deep/ this.border-white {
   @extend %this.border-base;
   border-color: white;
 }
 
-this.border-black {
+this.border-black, html /deep/ this.border-black {
   @extend %this.border-base;
   border-color: black;
 }
 
-this.border-gold {
+this.border-gold, html /deep/ this.border-gold {
   @extend %this.border-base;
   border-color: rgb(245, 226, 123);
 }
+

@@ -36,6 +36,18 @@
   font-weight: 200;
 }
 
+@font-face {
+  font-family: 'Web Symbols Liga Regular';
+  src: font-url('websymbolsligaregular.eot');
+  src: font-url('websymbolsligaregular.eot?#iefix') format('embedded-opentype'),
+       font-url('websymbolsligaregular.woff') format('woff'),
+       font-url('websymbolsligaregular.ttf')  format('truetype'),
+       font-url('websymbolsligaregular.svg#websymbolsligaregular') format('svg');
+       
+  font-style: normal;
+  font-weight: 200;
+}
+
 
 this.regular {
   font-family: "Circe";
@@ -84,4 +96,8 @@ this.large {
 
 this.colorGray {
   color: #888;
+}
+
+this.websymbol, body /deep/ this.websymbol {
+  font-family: "Web Symbols Liga Regular"
 }

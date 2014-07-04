@@ -19,6 +19,10 @@
   ],
   "dependencies": {
     "normalize.css": "~3.0.1",
-    "HTML5-Reset": "~2.1.2"
+    "HTML5-Reset": "~2.1.2",
+    "polymer": "Polymer/polymer#~0.3.3",
+    "underscore.string": "~2.3.3",
+    "lodash": "~2.4.1",
+    "core-overlay": "Polymer/core-overlay#~0.3.3"
   }
 }

@@ -11,6 +11,21 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
+$settings-color-gold: rgb(245, 226, 123);
+$settings-color-light: rgb(250, 241, 189);
+
+@import 'lib/shadowdom-care';
+@import 'lib/box-styles';
+@import 'lib/text-styles';
+@import 'lib/layouts';
+@import 'lib/buttons';
+@import 'lib/text-formatted';
+@import 'lib/embeds';
+@import 'lib/content-blocks';
+@import 'lib/forms';
+@import 'lib/media';
+@import 'lib/tables';
+
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //

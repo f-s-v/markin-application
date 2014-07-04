@@ -1,0 +1,85 @@
+<!--
+  = require core-overlay/core-overlay.html
+-->
+
+<polymer-element name="lib-dialog-action" noscript>
+  <template>
+    <button dialog-action class="lib-textStyle-websymbol lib-buttons-reset" on-click={{toggleEdit}}>
+      <content></content>
+    </button>
+  </template>
+</polymer-element>
+
+<polymer-element name="lib-dialog" attributes="opened autoCloseDisabled">
+  <template>
+    <lib-delegator methods="open close" to="{{$.overlay}}"></lib-delegator>
+    <style shim-shadowdom>
+      :host {
+        background: white;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: scroll;
+      }
+      .scroll-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: scroll;
+      }
+      menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+      }
+
+      menu lib-dialog-action::shadow [dialog-action],
+      content.menu::content lib-dialog-action::shadow [dialog-action] {
+        font-size: 24px;
+        color: royalblue;
+        transition: color linear 0.3s;
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 8px!important;
+      }
+
+      menu lib-dialog-action::shadow [dialog-action]:hover,
+      content.menu::content lib-dialog-action::shadow [dialog-action]:hover {
+        color: black;
+      }
+
+      menu {
+        display: flex;
+        flex-direction: column;
+      }
+
+    </style>
+
+    <core-overlay id="overlay"
+      layered backdrop
+      opened="{{opened}}"
+      autoCloseDisabled="{{autoCloseDisabled}}" 
+      transition="core-transition-center">
+    </core-overlay>
+
+    <menu>
+      <lib-dialog-action core-overlay-toggle on-click="{{close}}">&#204;</lib-dialog-action>
+      <content class="menu" select="lib-dialog-action"></content>
+    </menu>
+    <content select="main"></content>
+  </template>
+
+  
+  <script>
+    Polymer('lib-dialog', {
+      ready: function() {
+        this.$.overlay.target = this;
+      }
+    });
+
+  </script>
+</polymer-element>

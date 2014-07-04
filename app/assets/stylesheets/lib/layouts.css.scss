@@ -3,72 +3,73 @@
 $this.modules-count: 24;
 $this.max-height-value: 20;
 
-this.flex {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
 
-this.row {
-  flex-wrap: nowrap;
-}
-
-this.justify {
-  justify-content: space-between;
-}
-
-this {
-  @extend this.flex;
-}
-
-this.vcenter {
-  @extend this.flex;
-  align-items: center;
-}
-
-this.hcenter {
-  @extend this.flex;
-  justify-content: center;
-}
-
-this.noWrap {
-  @extend this.flex;
-  flex-wrap: nowrap;
-}
-
-
-this.cell {
-  flex-grow: 0;
-  flex-shrink: 0;
-  box-sizing: border-box;
-}
-
-@for $i from 1 through $this.modules-count {
-  this.cell-#{$i} {
-    @extend this.cell;
-    // flex-basis: $i * 100% / $this.modules-count;
-    flex-basis: $i * 100vw / $this.modules-count
+  this.flex, html /deep/ this.flex {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
-  this.gap-#{$i} {
-    // margin-left: $i * 100% / $this.modules-count;
-    margin-left: $i * 100vw / $this.modules-count;
-  }
-}
 
-@for $i from 1 through $this.max-height-value {
-  this.row-#{$i} {
-    height: 58px * $i;
+  this.row, html /deep/ this.row {
+    flex-wrap: nowrap;
   }
-}
 
-this.pullRight {
-  // float: right;
-}
-
-this.aside {
-  padding-top: 0.6rem;
-  align-self: stretch;
-  this.aside-content {
-    margin: 0 0.6rem;
+  this.justify, html /deep/ this.justify {
+    justify-content: space-between;
   }
-}
+
+  this, html /deep/ this {
+    @extend this.flex;
+  }
+
+  this.vcenter, html /deep/ this.vcenter {
+    @extend this.flex;
+    align-items: center;
+  }
+
+  this.hcenter, html /deep/ this.hcenter {
+    @extend this.flex;
+    justify-content: center;
+  }
+
+  this.noWrap, html /deep/ this.noWrap {
+    @extend this.flex;
+    flex-wrap: nowrap;
+  }
+
+
+  this.cell, html /deep/ this.cell {
+    flex-grow: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  @for $i from 1 through $this.modules-count {
+    this.cell-#{$i}, html /deep/ this.cell-#{$i} {
+      @extend this.cell;
+      // flex-basis: $i * 100% / $this.modules-count;
+      flex-basis: $i * 100vw / $this.modules-count
+    }
+    this.gap-#{$i}, html /deep/ this.gap-#{$i} {
+      // margin-left: $i * 100% / $this.modules-count;
+      margin-left: $i * 100vw / $this.modules-count;
+    }
+  }
+
+  @for $i from 1 through $this.max-height-value {
+    this.row-#{$i}, html /deep/ this.row-#{$i} {
+      height: 58px * $i;
+    }
+  }
+
+  this.pullRight, html /deep/ this.pullRight {
+    // float: right;
+  }
+
+  this.aside, html /deep/ this.aside {
+    padding-top: 0.6rem;
+    align-self: stretch;
+    this.aside-content {
+      margin: 0 0.6rem;
+    }
+  }

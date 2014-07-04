@@ -1,0 +1,18 @@
+<polymer-element name="fp-opener" attributes="canvas">
+  <template>
+    <button on-click="{{buttonClick}}">
+      Edit
+    </button>
+
+  </template>
+  <script>
+    Polymer('fp-opener', {
+      ready: function() {
+        this.canvasElement = document.getElementById(this.canvas)
+      },
+      buttonClick: function() {
+        this.canvasElement.open()
+      }
+    })
+  </script>
+</polymer-element>

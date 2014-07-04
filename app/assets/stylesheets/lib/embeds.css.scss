@@ -1,6 +1,6 @@
 // = css_module lib-embed
 
-this.iframeWrapper {
+this.iframeWrapper, html /deep/ this.iframeWrapper {
   width: 100%;
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
@@ -15,4 +15,3 @@ this.iframeWrapper {
     height: 100%;
   }
 }
-

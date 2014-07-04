@@ -1,0 +1,69 @@
+<polymer-element name="fp-canvas" attributes="source open">
+  <template>
+    <lib-inputdata id="contentBlocks" source="{{source}}"></lib-inputdata>
+    <lib-delegator methods="open close" to="{{$.dialog}}"></lib-delegator>
+
+    <!-- TODO: suspicious paragraph of code -->
+    <!-- http://stackoverflow.com/questions/23437493/polymer-how-do-you-create-repeating-elements-dynamic -->
+    <template id="contentblock-embed">
+      <fp-contentblock-embed block="{{block}}"></contentblock-embed>
+    </template>
+    <template id="contentblock-image">
+      <fp-contentblock-image block="{{block}}"></contentblock-image>
+    </template>
+    <template id="contentblock-text">
+      <fp-contentblock-text block="{{block}}"></contentblock-text>
+    </template>
+    <template id="contentblock-spacer">
+      <fp-contentblock-spacer block="{{block}}"></contentblock-spacer>
+    </template>
+
+    <lib-dialog id="dialog">
+      <lib-dialog-action on-click="{{toggleEdit}}">&#0063;</lib-dialog-action>
+      <lib-dialog-action on-click="{{toggleOrdering}}">&#0112;</lib-dialog-action>
+      <lib-dialog-action on-click="{{toggleResize}}">&#0045;</lib-dialog-action>
+
+      <main class="lib-layout lib-layout-hcenter lib-textFormatted">
+        <template repeat="{{block in $.contentBlocks.data}}">
+          <section style="order: {{block.order_number}}" class="{{block | contentBlockClasses }}">
+            <template bind ref="contentblock-{{block.block_style}}"></template>
+            <template if="{{state == 'edit'}}">
+            </template>
+          </section>
+        </template>
+      </main>
+    </lib-dialog>
+  </template>
+
+  <script>
+    Polymer('fp-canvas', {
+      toggleState: function(state){
+        if (this.state == state)
+          this.state = null
+        else
+          this.state = state
+      },
+      toggleEdit: function(){
+        this.toggleState('edit')
+      },
+      contentBlockClasses: function(block) {
+        var attrs = ['block', 'image', 'font', 'border', 'background']
+
+        var classes = attrs.filter(
+          function(attr){ return !!block[attr + "_style"] }
+        ).map(
+          function(attr){ return "lib-contentBlock-" + attr + "-" + block[attr + "_style"] }
+        ).concat([
+          "lib-layout-cell-" + block.width,
+          "lib-layout-row-" + (block.height || 'auto'),
+          "lib-layout-cell-vcenter",
+        ])
+
+        if (block.padding)
+          classes.push('lib-contentBlock-padding') 
+
+        return classes.join(' ')
+      }
+    })
+  </script>
+</polymer-element>
