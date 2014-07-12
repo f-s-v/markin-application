@@ -2,13 +2,15 @@
 // = css_module 'lib-contentBlock'
 
 
-this.contentBlock, html /deep/ this.contentBlock {
+this, html /deep/ this {
   box-sizing: border-box;
   word-wrap: break-word;
+  position: relative;
+  background: white;
 }
 
 this.background-black, html /deep/ this.background-black {
-  @extend .lib-boxStyle-black;
+  background: black;
 }
 
 this.background-blackGradient, html /deep/ this.background-blackGradient {

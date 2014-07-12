@@ -1,0 +1,52 @@
+<polymer-element name="fp-manage-move"
+  attributes="block"
+  draggable="true"
+  on-dragover="{{highlight}}"
+  on-dragleave="{{removeHighlight}}"
+  on-dragstart="{{putElement}}"
+  on-drop="{{pushElement}}">
+  
+  <template>
+    <fp-manage-panel></fp-manage-panel>
+  </template>
+
+  <script>
+    Polymer('fp-manage-move', {
+      ready: function(){
+      },
+      putElement: function(){
+        this.__proto__.draggedElement = this
+      },
+      pushElement: function(e){
+        if (this.validateDrop()) {
+          this.removeHighlight()
+          this.fire('manage-move', {
+            source: this.__proto__.draggedElement,
+            position: this.getPosition(e.x)
+          })
+        }
+      },
+      highlight: function(e){
+        if (this.validateDrop()) {
+          e.preventDefault()
+          this.removeHighlight()
+
+          if (this.getPosition(e.x) == 'before')
+            this.parentNode.classList.add('fp-manage-move-insertionBefore')
+          else
+            this.parentNode.classList.add('fp-manage-move-insertionAfter')
+        }
+      },
+      removeHighlight: function(){
+        this.parentNode.classList.remove('fp-manage-move-insertionBefore', 'fp-manage-move-insertionAfter')
+      },
+      getPosition: function(x){
+        var dimensions = this.getBoundingClientRect()
+        return (x - dimensions.left < dimensions.width / 2) ? 'before' : 'after'
+      },
+      validateDrop: function(){
+        return this.__proto__.draggedElement && this.__proto__.draggedElement !== this
+      }
+    });
+  </script>
+</polymer-element>

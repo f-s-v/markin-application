@@ -26,6 +26,8 @@ $settings-color-light: rgb(250, 241, 189);
 @import 'lib/media';
 @import 'lib/tables';
 
+@import 'fp/canvas';
+
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //

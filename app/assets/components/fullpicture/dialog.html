@@ -1,0 +1,105 @@
+<!--
+  = require core-overlay/core-overlay.html
+-->
+
+<polymer-element name="fp-dialog-action" noscript>
+  <template>
+    <button dialog-action class="lib-textStyle-websymbol lib-buttons-reset fp-canvas-action">
+      <content></content>
+    </button>
+  </template>
+</polymer-element>
+
+<polymer-element name="fp-dialog-checkaction" attributes="active caption name">
+  <template>
+    <label for="checkbox" class="lib-textStyle-websymbol fp-canvas-action" active?="{{active}}">
+      <input type="checkbox" class="lib-buttons-reset" checked="{{active}}" id="checkbox">
+      <template id="caption">{{caption}}</template>
+      <template id="content"><content></content></template>
+      <template bind ref="{{caption ? 'caption' : 'content'}}"></template>
+    </label>
+  </template>
+  <script>
+    Polymer('fp-dialog-checkaction', {
+      activeChanged: function(oldValue, newValue){
+        this.async(function(){
+          if (
+            this.parentNode.nodeName == 'CORE-SELECTOR' &&
+            [undefined, false].indexOf(newValue) > -1 &&
+            this.parentNode.selected == this.name
+          ) {
+            this.parentNode.selected = null
+          }
+        }.bind(this))
+      }
+    })
+  </script>
+</polymer-element>
+
+<polymer-element name="fp-dialog" attributes="opened autoCloseDisabled">
+  <template>
+    <lib-delegator methods="open close" to="{{$.overlay}}"></lib-delegator>
+    <style shim-shadowdom>
+      :host {
+        background: white;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: scroll;
+      }
+      .scroll-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: scroll;
+      }
+      menu {
+        margin: 0;
+        position: fixed;
+        top: 24px;
+        right: 24px;
+      }
+
+      menu {
+        display: flex;
+        flex-direction: column;
+      }
+
+      main.managed {
+        background: #efefef;
+      }
+
+      main.managed /deep/ section.lib-contentBlock {
+        margin: 4px;
+      }
+
+    </style>
+
+    <core-overlay id="overlay"
+      layered backdrop
+      opened="{{opened}}"
+      autoCloseDisabled="{{autoCloseDisabled}}" 
+      transition="core-transition-center">
+    </core-overlay>
+
+    <menu>
+      <fp-dialog-action core-overlay-toggle on-click="{{close}}">&#204;</fp-dialog-action>
+      <content class="menu" select="fp-dialog-action, fp-dialog-checkaction, core-selector">
+      </content>
+    </menu>
+    <content select="main"></content>
+  </template>
+
+  
+  <script>
+    Polymer('fp-dialog', {
+      ready: function() {
+        this.$.overlay.target = this;
+      }
+    });
+
+  </script>
+</polymer-element>
