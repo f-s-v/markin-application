@@ -47,7 +47,7 @@
       </core-selector>
 
       <main class="lib-layout lib-layout-hcenter lib-textFormatted" managed?="{{manageState}}">
-        <div class="lib-layout-cell-21 lib-layout">
+        <div class="lib-layout-cell-20 lib-layout">
           <template repeat="{{block in $.contentBlocks.data}}">
             <div class="manageBlockWrap {{block | layoutClasses }}" style="order: {{block.order_number}}">
               <section class="{{block | contentBlockClasses }}">
@@ -112,6 +112,8 @@
         }).forEach(function(b, i){
           b.order_number = source.block.order_number + i + 1
         })
+
+        this.$.contentBlocks.dataChanged()
       }
     })
   </script>

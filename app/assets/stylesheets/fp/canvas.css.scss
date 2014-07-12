@@ -26,13 +26,13 @@ this.action, body /deep/ this.action {
 
 body /deep/ fp-manage-move {
   cursor: move;
+  z-index: 1000;
 }
 
 body /deep/ .fp-manage-move-insertionBefore, body /deep/ .fp-manage-move-insertionAfter {
   z-index: 1000;
   fp-manage-move {
     border-color: red;
-    
   }
 }
 
@@ -80,20 +80,33 @@ body /deep/ fp-dialog {
   main /deep/ .lib-contentBlock {
     left: 0px;
     transition: left ease-out 0.3s,
+      transform ease-out 0.2s 0s,
       box-shadow ease-out 0.3s 0s;
     box-shadow: 0;
+    z-index: 1;
   }
 
   main[managed] /deep/ .manageBlockWrap {
     transition-delay: 0.5s;
-    margin: 4px;
+    // margin: 4px;
   }
 
   main[managed] /deep/ .lib-contentBlock {
     transition: left linear 0.2s,
+      transform ease-out 0.2s 0s,
       box-shadow ease-out 0.3s 0.5s;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    // transform-style: preserve-3d;
+    transform: translateZ(-10px);
   }
+
+  main[managed] /deep/ .manageBlockWrap:nth-child(2n) .lib-contentBlock {
+    // transform: rotateX(2deg) rotateY(2deg) rotateZ(-1deg) translateZ(-5px);
+  }
+  main[managed] /deep/ .manageBlockWrap:nth-child(2n+1) .lib-contentBlock {
+    // transform: rotateX(2deg) rotateY(-2deg) rotateZ(1deg) translateZ(-5px);
+  }
+
 }
 
 .fp-manage-panel, body /deep/ .fp-manage-panel {

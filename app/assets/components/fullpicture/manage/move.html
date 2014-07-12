@@ -29,15 +29,25 @@
       highlight: function(e){
         if (this.validateDrop()) {
           e.preventDefault()
-          this.removeHighlight()
+          position = this.getPosition(e.x)
+          
+          if (this.lastPosition != position) {
+            this.lastPosition = position
 
-          if (this.getPosition(e.x) == 'before')
-            this.parentNode.classList.add('fp-manage-move-insertionBefore')
-          else
-            this.parentNode.classList.add('fp-manage-move-insertionAfter')
+            if (this.getPosition(e.x) == 'before') {
+              this.parentNode.classList.remove('fp-manage-move-insertionAfter')
+              this.parentNode.classList.add('fp-manage-move-insertionBefore')
+            }
+            else {
+              this.parentNode.classList.remove('fp-manage-move-insertionBefore')
+              this.parentNode.classList.add('fp-manage-move-insertionAfter')
+            }
+          }
         }
       },
+
       removeHighlight: function(){
+        delete this.lastPosition
         this.parentNode.classList.remove('fp-manage-move-insertionBefore', 'fp-manage-move-insertionAfter')
       },
       getPosition: function(x){

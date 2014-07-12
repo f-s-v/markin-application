@@ -2,7 +2,11 @@
   <script>
     Polymer("lib-inputdata", {
       ready: function(){
-        this.data = JSON.parse(document.getElementById(this.source).value)
+        this.element = document.getElementById(this.source)
+        this.data = JSON.parse(this.element.value)
+      },
+      dataChanged: function(){
+        this.element.value = JSON.stringify(this.data)
       }
     })
   </script>
