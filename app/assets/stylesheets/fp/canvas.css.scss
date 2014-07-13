@@ -31,12 +31,12 @@ body /deep/ fp-manage-move {
 
 body /deep/ .fp-manage-move-insertionBefore, body /deep/ .fp-manage-move-insertionAfter {
   z-index: 1000;
-  fp-manage-move {
+  &::shadow fp-manage-move {
     border-color: red;
   }
 }
 
-body /deep/ .fp-manage-move-insertionBefore {
+body /deep/ .fp-manage-move-insertionBefore::shadow {
   fp-manage-move {
     border-left-style: solid;
     border-left-width: 4px;
@@ -47,7 +47,7 @@ body /deep/ .fp-manage-move-insertionBefore {
   } 
 }
 
-body /deep/ .fp-manage-move-insertionAfter {
+body /deep/ .fp-manage-move-insertionAfter::shadow {
   fp-manage-move {
     border-right-style: solid;
     border-right-width: 4px;
@@ -67,13 +67,13 @@ body /deep/ fp-dialog {
       transition-delay: 0s;
     }
 
-    .manageBlockWrap {
+    .manageBlockWrap, fp-canvas-contentblock {
       perspective: 800px;
     }
   }
 
 
-  main /deep/ .manageBlockWrap {
+  main /deep/ .manageBlockWrap, main /deep/ fp-canvas-contentblock {
     transition: margin ease-out 0.3s 0s;
   }
 
@@ -86,7 +86,7 @@ body /deep/ fp-dialog {
     z-index: 1;
   }
 
-  main[managed] /deep/ .manageBlockWrap {
+  main[managed] /deep/ .manageBlockWrap, main[managed] /deep/ fp-canvas-contentblock {
     transition-delay: 0.5s;
     // margin: 4px;
   }

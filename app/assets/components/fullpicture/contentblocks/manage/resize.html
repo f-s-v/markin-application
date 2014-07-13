@@ -1,0 +1,25 @@
+<polymer-element name="fp-canvas-resize" attributes="direction">
+  <template>
+    <style>
+      #control {
+        position: absolute;
+      }
+      #control.horizontal {
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 4px;
+        cursor: ew-resize;
+      }
+    </style>
+    <div id="control" class="{{direction}}"></div>
+  </template>
+  <script>
+    Polymer('fp-canvas-resize', {
+      direction: 'horizontal',
+      // track: function(e) {
+      //   this.fire('resize')
+      // },
+    });
+  </script>
+</polymer-element>

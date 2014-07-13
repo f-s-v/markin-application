@@ -1,0 +1,28 @@
+<!--
+  = require_self
+  = require fullpicture/contentblocks/manage/move
+  = require fullpicture/contentblocks/manage/add
+  = require fullpicture/contentblocks/manage/delete
+-->
+
+<polymer-element name="fp-manage-panel">
+  <script>
+    Polymer('fp-manage-panel', {
+      attached: function(){
+        this.parentNode.host.classList.add('fp-manage-panel');
+      }
+    });
+  </script>
+</polymer-element>
+
+<polymer-element name="fp-manage-panelaction" noscript>
+  <template>
+    <style>
+      :host {
+        cursor: pointer;
+      }
+    </style>
+    <fp-manage-panel></fp-manage-panel>
+  </template>
+</polymer-element>
+

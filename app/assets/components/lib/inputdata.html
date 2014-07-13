@@ -3,7 +3,7 @@
     Polymer("lib-inputdata", {
       ready: function(){
         this.element = document.getElementById(this.source)
-        this.data = JSON.parse(this.element.value)
+        window.data = this.data = JSON.parse(this.element.value)
       },
       dataChanged: function(){
         this.element.value = JSON.stringify(this.data)

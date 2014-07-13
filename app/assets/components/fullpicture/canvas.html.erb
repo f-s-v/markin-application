@@ -1,41 +1,15 @@
 <!--
   = require core-selector/core-selector
-  = require core-drag-drop/core-drag-drop
   = require fullpicture/dialog
-  = require fullpicture/manage
+  = require fullpicture/contentblocks
+  = require fullpicture/blockform
 -->
-
-<polymer-element name="fp-canvas-resize" attributes="direction">
-  <template>
-    <style>
-      #control {
-        position: absolute;
-      }
-      #control.horizontal {
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 4px;
-        cursor: ew-resize;
-      }
-    </style>
-    <div id="control" class="{{direction}}"></div>
-  </template>
-  <script>
-    Polymer('fp-canvas-resize', {
-      direction: 'horizontal',
-      // track: function(e) {
-      //   this.fire('resize')
-      // },
-    });
-  </script>
-</polymer-element>
-
 
 <polymer-element name="fp-canvas" attributes="source open">
   <template>
     <lib-inputdata id="contentBlocks" source="{{source}}"></lib-inputdata>
     <lib-delegator methods="open close" to="{{$.dialog}}"></lib-delegator>
+    <fp-blockform id="form"></fp-blockform>
 
     <fp-dialog id="dialog">
       <core-selector selected="{{manageState}}">
@@ -48,23 +22,15 @@
 
       <main class="lib-layout lib-layout-hcenter lib-textFormatted" managed?="{{manageState}}">
         <div class="lib-layout-cell-20 lib-layout">
-          <template repeat="{{block in $.contentBlocks.data}}">
-            <div class="manageBlockWrap {{block | layoutClasses }}" style="order: {{block.order_number}}">
-              <section class="{{block | contentBlockClasses }}">
-              <% Rails.configuration.content_blocks_block_styles.each do |style| %>
-                <template if="{{block.block_style == '<%= style %>'}}">
-                  <fp-contentblock-<%= style %> block="{{block}}"></fp-contentblock-<%= style %>>
-                </template>
-              <% end %>
-              </section>
-
-              <template if="{{manageState == 'move'}}">
-                <fp-manage-move block="{{block}}" on-manage-move="{{onSort}}"></fp-manage-move>
-              </template>
-              <template if="{{manageState == 'edit'}}">
-                <fp-canvas-blockResizer block="{{block}}"></fp-canvas-blockResizer>
-              </template>
-            </div>
+          <template repeat="{{block in $.contentBlocks.data }}">
+            <template if="{{ !block._destroy }}">
+              <fp-canvas-contentblock block="{{block}}"
+                state="{{manageState}}"
+                on-block-delete="{{onBlockDelete}}"
+                on-block-move="{{onBlockMove}}"
+                on-block-edit="{{onBlockEdit}}">
+              </fp-canvas-contentblock>
+            </template>
           </template>
         </div>
       </main>
@@ -73,32 +39,7 @@
 
   <script>
     Polymer('fp-canvas', {
-      layoutClasses: function(block) {
-        return [
-          "lib-layout-cell-" + block.width,
-        ].join(' ')
-      },
-      contentBlockClasses: function(block) {
-        var attrs = ['block', 'image', 'font', 'border', 'background']
-        var classes = [
-          "lib-contentBlock",
-          "lib-layout-cell-" + block.width,
-          "lib-layout-row-" + (block.height || 'auto'),
-          "lib-layout-cell-vcenter"
-        ].concat(
-          attrs.filter(
-            function(attr){ return !!block[attr + "_style"] }
-          ).map(
-            function(attr){ return "lib-contentBlock-" + attr + "-" + block[attr + "_style"] }
-          )
-        )
-
-        if (block.padding)
-          classes.push('lib-contentBlock-padding')
-
-        return classes.join(' ')
-      },
-      onSort: function(event, data){
+      onBlockMove: function(event, data){
         var destination = event.target
         var source = data.source
         var position = data.position
@@ -114,8 +55,15 @@
         })
 
         this.$.contentBlocks.dataChanged()
+      },
+      onBlockDelete: function(event){
+        event.target.block._destroy = 1
+        this.$.contentBlocks.dataChanged()
+      },
+      onBlockEdit: function(event) {
+        window.block = event.target.block
+        this.$.form.edit(event.target.block)
       }
     })
   </script>
 </polymer-element>
-

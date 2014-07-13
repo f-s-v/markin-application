@@ -1,0 +1,22 @@
+<polymer-element name="lib-input-text" attributes="name value">
+  <template>
+    <p>
+      <paper-input id="input" multiline label="{{label()}}" value="{{value}}"></paper-input>
+    </p>
+  </template>
+  <script>
+    Polymer('lib-input-text', {
+      domReady: function(){
+        // strange paper-input bug
+        var value = this.$.input.value
+        this.$.input.value = ''
+        this.async(function(){
+          this.$.input.value = value
+        }.bind(this), 300)
+      },
+      label: function(){
+        return I18n.t('activerecord.attributes.' + this.name)
+      }
+    });
+  </script>
+</polymer-element>

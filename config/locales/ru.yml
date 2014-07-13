@@ -80,6 +80,16 @@ ru:
         shipping_state: Область
         shipping_zip: Почтовый индекс
         phone_number: Номер телефона
+      content_block:
+        font_style: Шрифт
+        border_style: Стиль рамки
+        background_style: Стиль фона
+        image_style: Стиль картинки
+        block_style: Тип блока
+        padding: Отступ
+        content:
+          text: Текст
+          image: Картинка
   simple_form:
     required:
       html: ''
@@ -93,6 +103,7 @@ ru:
     share: Рекоммендовать
     see_also: Смотрите также
     back_to_store: Вернуться в магазин
+    save: Сохранить
   helpers:
     submit:
       order:
@@ -116,3 +127,29 @@ ru:
         significant: false
         strip_insignificant_zeros: false
         unit: $
+  options:
+    content_block:
+      font_style:
+        large: Крупный
+        condenced: Узкий
+        regular: Обычный
+      border_style:
+        white: Белый
+        gold: Золотой
+        black: Черный
+      background_style:
+        gold: Золотой
+        black: Черный
+        goldGradient: Золотой градиент
+        blackGradient: Черный градиент
+      image_style:
+        centered: В центре
+        background: Фоном
+      block_style:
+        text: Текст
+        image: Картинка
+        embed: Видео
+        spacer: Разделитель
+  manage:
+    content_blocks:
+      editing: Редактирование блока

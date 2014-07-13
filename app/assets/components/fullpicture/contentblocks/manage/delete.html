@@ -1,0 +1,22 @@
+<polymer-element name="fp-manage-delete"
+  attributes="block"
+  on-click="delete">
+
+  <template>
+    <style>
+      :host {
+        cursor: pointer;
+      }
+    </style>
+    <fp-manage-panel></fp-manage-panel>
+  </template>
+
+  <script>
+    Polymer('fp-manage-delete', {
+      delete: function(){
+        if (confirm('Confirm')) this.fire('manage-delete')
+      }
+    })
+  </script>
+
+</polymer-element>

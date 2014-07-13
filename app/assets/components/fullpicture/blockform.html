@@ -1,0 +1,67 @@
+<!--
+  = require paper-dialog/paper-dialog
+  = require paper-button/paper-button
+  = require paper-radio-button/paper-radio-button
+  = require paper-radio-group/paper-radio-group
+  = require paper-checkbox/paper-checkbox
+  = require paper-input/paper-input
+-->
+<polymer-element name="fp-blockform" attributes="object">
+  <template>
+    <style>
+      :host paper-dialog {
+        z-index: 1100;
+      }
+    </style>
+
+    <paper-dialog id="dialog" heading="{{'manage.content_blocks.editing' | t}}" autoCloseDisabled backdrop>
+      <form>
+
+        <template bind="{{object}}">
+          <lib-input-radiogroup name="content_block.block_style" value="{{block_style}}"></lib-input-radiogroup>
+          
+          <template if="{{block_style == 'text'}}">
+            <template bind="{{content}}">
+              <lib-input-text name="content_block.content.text" value="{{text}}"></lib-input-text>
+            </template>
+            <lib-input-radiogroup name="content_block.font_style" value="{{font_style}}"></lib-input-radiogroup>
+          </template>
+          
+          <template if="{{block_style == 'image'}}">
+            <template bind="{{content}}">
+              <lib-input-uploadcare name="content_block.content.image" value="{{image}}"></lib-input-uploadcare>
+            </template>
+
+            <lib-input-radiogroup name="content_block.image_style" value="{{image_style}}"></lib-input-radiogroup>
+          </template>
+
+          <lib-input-boolean name="content_block.padding" value="{{padding}}"></lib-input-boolean>
+          
+          <lib-input-radiogroup name="content_block.border_style" value="{{border_style}}"></lib-input-radiogroup>
+          
+          <lib-input-radiogroup name="content_block.background_style" value="{{background_style}}"></lib-input-radiogroup>
+          
+          
+        
+        </template>
+      </form>
+      <paper-button label="{{'actions.save' | t }}" affirmative autofocus></paper-button>
+      
+    </paper-dialog>
+  </template>
+  <script>
+    Polymer('fp-blockform', {
+      created: function(){
+        this.object = {}
+      },
+      edit: function(object) {
+        this.object = object
+        this.$.dialog.toggle()
+      },
+
+      t: function(key) {
+        return I18n.t(key)
+      }
+    });
+  </script>
+</polymer-element>

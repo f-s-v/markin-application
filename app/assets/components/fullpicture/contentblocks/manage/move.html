@@ -35,12 +35,12 @@
             this.lastPosition = position
 
             if (this.getPosition(e.x) == 'before') {
-              this.parentNode.classList.remove('fp-manage-move-insertionAfter')
-              this.parentNode.classList.add('fp-manage-move-insertionBefore')
+              this.parentNode.host.classList.remove('fp-manage-move-insertionAfter')
+              this.parentNode.host.classList.add('fp-manage-move-insertionBefore')
             }
             else {
-              this.parentNode.classList.remove('fp-manage-move-insertionBefore')
-              this.parentNode.classList.add('fp-manage-move-insertionAfter')
+              this.parentNode.host.classList.remove('fp-manage-move-insertionBefore')
+              this.parentNode.host.classList.add('fp-manage-move-insertionAfter')
             }
           }
         }
@@ -48,7 +48,7 @@
 
       removeHighlight: function(){
         delete this.lastPosition
-        this.parentNode.classList.remove('fp-manage-move-insertionBefore', 'fp-manage-move-insertionAfter')
+        this.parentNode.host.classList.remove('fp-manage-move-insertionBefore', 'fp-manage-move-insertionAfter')
       },
       getPosition: function(x){
         var dimensions = this.getBoundingClientRect()

@@ -1,0 +1,22 @@
+<polymer-element name="fp-manage-add"
+  attributes="block"
+  on-click="add">
+
+  <template>
+    <style>
+      :host {
+        cursor: pointer;
+      }
+    </style>
+    <fp-manage-panel></fp-manage-panel>
+  </template>
+
+  <script>
+    Polymer('fp-manage-add', {
+      add: function(){
+        if (confirm('Confirm')) this.fire('manage-add')
+      }
+    })
+  </script>
+
+</polymer-element>

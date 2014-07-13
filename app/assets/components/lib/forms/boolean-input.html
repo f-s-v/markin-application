@@ -1,0 +1,14 @@
+<polymer-element name="lib-input-boolean" attributes="name value">
+  <template>
+    <p>
+      <paper-checkbox label="{{label()}}" checked="{{value}}"></paper-checkbox>
+    </p>
+  </template>
+  <script>
+    Polymer('lib-input-boolean', {
+      label: function(){
+        return I18n.t('activerecord.attributes.' + this.name)
+      }
+    });
+  </script>
+</polymer-element>

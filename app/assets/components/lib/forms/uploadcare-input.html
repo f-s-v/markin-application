@@ -1,0 +1,15 @@
+<polymer-element name="lib-input-uploadcare" attributes="name value">
+  <template>
+    <p>
+      <label>{{label()}}</label>
+      <input id="input" type="hidden" role="uploadcare-uploader" value="{{value}}" />
+    </p>
+  </template>
+  <script>
+    Polymer('lib-input-uploadcare', {
+      label: function(){
+        return I18n.t('activerecord.attributes.' + this.name)
+      }
+    });
+  </script>
+</polymer-element>
