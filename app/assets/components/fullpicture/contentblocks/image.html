@@ -1,7 +1,13 @@
-<polymer-element name="fp-contentblock-image" attributes="block" noscript>
+<polymer-element name="fp-contentblock-image" attributes="content" noscript>
   <template>
+    <style>
+      img {
+        max-width: 100%;
+        overflow: hidden;
+      }
+    </style>
     <div class="lib-layout-vcenter lib-layout-hcenter">
-      <img src="{{block.content.image}}" />
+      <img src="http://www.ucarecdn.com/{{content.image}}/-/quality/best/" />
     </div>
   </template>
 </polymer-element>

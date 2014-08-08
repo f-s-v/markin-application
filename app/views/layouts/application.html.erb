@@ -2,20 +2,23 @@
 <html class="lib-textFormatted">
 <head>
   <title>Markin</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'shim-shadowdom' => 'yes' %>
   <%= javascript_include_tag 'application' %>
+  <%= html_import_tag 'polymer/polymer'  %>
+  <%= html_import_tag 'lib' %>
+  <%= html_import_tag 'fullpicture' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'lib/site_title' %>
-<%= render 'lib/menu' %>
+  <lib-layout modules="24">
+    <%= render 'lib/site_title' %>
+    <%= render 'lib/menu' %>
 
-<% if content_for?(:main_content) %>
-  <%= yield :main_content %>
-<% else %>
-  <%= yield %>
-<% end %>
-
-
+    <% if content_for?(:main_content) %>
+      <%= yield :main_content %>
+    <% else %>
+      <%= yield %>
+    <% end %>
+  </lib-layout>
 </body>
 </html>

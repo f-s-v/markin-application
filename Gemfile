@@ -37,8 +37,8 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'bootstrap-sass', '~> 3.1.1.0'
 gem "rails-sass-images"
 gem "autoprefixer-rails"
-gem 'emcee', '0.2.0'
-# gem 'emcee', path: '/Users/oktoberliner/Temporary/emcee'
+# gem 'emcee', '0.2.0'
+gem 'emcee', path: '/Users/oktoberliner/Temporary/emcee'
 
 group :test do
   gem 'capybara'

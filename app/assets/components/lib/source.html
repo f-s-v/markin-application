@@ -1,0 +1,19 @@
+<!--
+  = require core-ajax/core-ajax
+-->
+<polymer-element name="lib-source" extends="core-ajax" attributes="receiver" on-core-response="{{respond}}">
+  <script>
+    Polymer('lib-source', {
+      auto: true,
+      handleAs: 'json',
+
+      respond: function(e){
+        this.receiverElement && (this.receiverElement.source = e.detail.response)
+      },
+
+      attached: function(){
+        this.receiverElement = this.ownerDocument.getElementById(this.receiver)
+      }
+    });
+  </script>
+</polymer-element>

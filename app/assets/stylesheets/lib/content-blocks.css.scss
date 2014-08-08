@@ -1,6 +1,10 @@
 // = css_module_global
 // = css_module 'lib-contentBlock'
 
+html /deep/ this.block-image /deep/ img, this.block-image img {
+  max-width: 100%;
+  overflow: hidden;
+}
 
 this, html /deep/ this {
   box-sizing: border-box;
@@ -11,18 +15,29 @@ this, html /deep/ this {
 
 this.background-black, html /deep/ this.background-black {
   background: black;
+  color: white;
 }
 
 this.background-blackGradient, html /deep/ this.background-blackGradient {
-  @extend .lib-boxStyle-blackGradient;
+  color: white;
+  background: linear-gradient(
+    to bottom, rgba(0,0,0,1) 0%,
+    rgba(245,226,123,1) 66%,
+    rgba(245,226,123,1) 100%
+  );
 }
 
 this.background-gold, html /deep/ this.background-gold {
-  @extend .lib-boxStyle-gold;
+  background: rgba(245,226,123,1);
 }
 
 this.background-goldGradient, html /deep/ this.background-goldGradient {
-  @extend .lib-boxStyle-goldGradient;
+    background: linear-gradient(
+    to bottom, rgba(245,226,123,1) 0%,
+    rgba(255,255,255,1) 66%,
+    rgba(255,255,255,1) 100%
+  );
+
 }
 
 this.padding, html /deep/ this.padding {

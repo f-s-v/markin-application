@@ -1,38 +1,55 @@
 <!--
   = require core-selector/core-selector
   = require fullpicture/dialog
-  = require fullpicture/contentblocks
   = require fullpicture/blockform
+  = require fullpicture/contentblocks
 -->
 
 <polymer-element name="fp-canvas" attributes="source open">
   <template>
     <lib-inputdata id="contentBlocks" source="{{source}}"></lib-inputdata>
     <lib-delegator methods="open close" to="{{$.dialog}}"></lib-delegator>
+    <lib-throttle method="onBlockResizeX"></lib-throttle>
+    <lib-throttle method="onBlockResizeY"></lib-throttle>
     <fp-blockform id="form"></fp-blockform>
 
-    <fp-dialog id="dialog">
+    <fp-dialog id="dialog" on-fp-dialog-close="{{storeData}}">
       <core-selector selected="{{manageState}}">
         <fp-dialog-checkaction name="edit" caption="&#094;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="resize" caption="&#0112;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="move" caption="&#0045;"></fp-dialog-checkaction>
-        <fp-dialog-checkaction name="add" caption="&#194;"></fp-dialog-checkaction>
+        <fp-dialog-checkaction name="add" on-click="{{onAddBlock}}" caption="&#194;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="delete" caption="&#197;"></fp-dialog-checkaction>
       </core-selector>
 
-      <main class="lib-layout lib-layout-hcenter lib-textFormatted" managed?="{{manageState}}">
-        <div class="lib-layout-cell-20 lib-layout">
-          <template repeat="{{block in $.contentBlocks.data }}">
-            <template if="{{ !block._destroy }}">
-              <fp-canvas-contentblock block="{{block}}"
-                state="{{manageState}}"
-                on-block-delete="{{onBlockDelete}}"
-                on-block-move="{{onBlockMove}}"
-                on-block-edit="{{onBlockEdit}}">
-              </fp-canvas-contentblock>
-            </template>
-          </template>
-        </div>
+      <main id="main" class="lib-layout-hcenter lib-textFormatted" managed?="{{manageState}}">
+        <lib-layout modules="24" hcenter>
+          <lib-layout-cell width="20">
+            <lib-layout modules="20">
+              <template repeat="{{block in $.contentBlocks.data }}">
+                <template if="{{!block._destroy}}">
+                  <fp-contentblock-managed model="{{block}}"
+                    blockstyle="{{block.block_style}}"
+                    order="{{block.order_number}}"
+                    width="{{block.width}}"
+                    height="{{block.height}}"
+                    padding?="{{block.padding}}"
+                    imagestyle="{{block.image_style}}"
+                    fontstyle="{{block.font_style}}"
+                    borderstyle="{{block.border_style}}"
+                    backgroundstyle="{{block.background_style}}"
+                    state="{{manageState}}"
+                    managed?="{{manageState}}"
+                    on-block-delete="{{onBlockDelete}}"
+                    on-block-move="{{onBlockMove}}"
+                    on-block-resize-x="{{onBlockResizeX}}"
+                    on-block-resize-y="{{onBlockResizeY}}">
+                  </fp-contentblock>
+                </template>
+              </template>
+            </lib-layout>
+          </lib-layout-cell>
+        </lib-layout>
       </main>
     </fp-dialog>
   </template>
@@ -43,26 +60,58 @@
         var destination = event.target
         var source = data.source
         var position = data.position
-
-        source.block.order_number = destination.block.order_number + ((position == 'before') ? 0 : 1)
+        
+        source.model.order_number = destination.model.order_number + ((position == 'before') ? 0 : 1)
 
         this.$.contentBlocks.data.filter(function(b){
-          return b.order_number >= source.block.order_number && b.id != source.block.id
+          return b.order_number >= source.model.order_number && b !== source.model
         }).sort(function(a, b) {
           return a.order_number < b.order_number ? -1 : 1
         }).forEach(function(b, i){
-          b.order_number = source.block.order_number + i + 1
+          b.order_number = source.model.order_number + i + 1
         })
-
-        this.$.contentBlocks.dataChanged()
       },
       onBlockDelete: function(event){
-        event.target.block._destroy = 1
-        this.$.contentBlocks.dataChanged()
+        event.target.model._destroy = 1
       },
-      onBlockEdit: function(event) {
-        window.block = event.target.block
-        this.$.form.edit(event.target.block)
+      onAddBlock: function(event){
+        event.preventDefault()
+
+        var block = {
+          content: {},
+          block_style: 'text',
+          font_style: 'regular',
+          order_number: this.$.contentBlocks.data.length + 1,
+          height: 1,
+          width: 10
+        }
+
+        this.$.contentBlocks.data.push(block)
+        this.$.contentBlocks.dataChanged()
+
+        // todo: make mutation observer of $.main
+        var blocks = this.$.main.querySelectorAll('fp-contentblock-managed').array().sort(function(x, y){
+          return x.model.order_number - y.model.order_number
+        })
+        blocks[blocks.length - 1].scrollIntoView()
+
+        this.$.form.object = block
+        this.$.form.open()
+        this.$.form.addEventListener('fp-blockform-close', function(){
+          delete this.manageState
+        }.bind(this))
+      },
+
+      onBlockResizeX: function(event, data){
+        data.model.width = data.width
+      },
+
+      onBlockResizeY: function(event, data){
+        data.model.height = data.height
+      },
+
+      storeData: function() {
+        this.$.contentBlocks.dataChanged()
       }
     })
   </script>

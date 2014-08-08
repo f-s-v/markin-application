@@ -2,6 +2,7 @@
 
 $this.modules-count: 24;
 $this.max-height-value: 20;
+$this.sector-height: 58px;
 
 
   this.flex, html /deep/ this.flex {
@@ -46,9 +47,9 @@ $this.max-height-value: 20;
 
   @for $i from 1 through $this.modules-count {
     this.cell-#{$i}, html /deep/ this.cell-#{$i} {
-      @extend this.cell;
-      // flex-basis: $i * 100% / $this.modules-count;
-      flex-basis: $i * 100vw / $this.modules-count
+      // @extend this.cell;
+      // // flex-basis: $i * 100% / $this.modules-count;
+      // flex-basis: $i * 100vw / $this.modules-count
     }
     this.gap-#{$i}, html /deep/ this.gap-#{$i} {
       // margin-left: $i * 100% / $this.modules-count;
@@ -58,7 +59,7 @@ $this.max-height-value: 20;
 
   @for $i from 1 through $this.max-height-value {
     this.row-#{$i}, html /deep/ this.row-#{$i} {
-      height: 58px * $i;
+      min-height: $this.sector-height * $i;
     }
   }
 

@@ -1,4 +1,4 @@
-<!-- 
+<!--
   = require fullpicture/contentblocks/embed
   = require fullpicture/contentblocks/image
   = require fullpicture/contentblocks/spacer
@@ -6,50 +6,148 @@
   = require fullpicture/contentblocks/manage
 -->
 
-<polymer-element name="fp-canvas-contentblock" attributes="block state">
+<polymer-element name="fp-contentblock" attributes="content order" extends="lib-layout-cell">
   <template>
-    <section id="contentBlock"></section>
+    <style>
+      :host {
+        order: {{order}};
+      }
+
+      :host([padding]){
+        padding: 50px;
+      }
+
+      :host([fontstyle=large]) {
+        text-align: center;
+      }
+
+      :host([borderstyle]) {
+        border: 9px solid transparent;
+      }
+
+      :host([borderstyle=white]) {
+        border-color: white;
+      }
+
+      :host([borderstyle=black]) {
+        border-color: black;
+      }
+
+      :host([borderstyle=gold]) {
+        border-color: rgb(245, 226, 123);
+      }
+    </style>
+    <shadow></shadow>
+  </template>
+  <script>
+    (function(){
+      Polymer('fp-contentblock', {
+        order: 0,
+
+        publish: {
+          blockstyle: {reflect: true},
+          padding: {reflect: true},
+          imagestyle: {reflect: true},
+          fontstyle: {reflect: true},
+          borderstyle: {reflect: true},
+          backgroundstyle: {reflect: true}
+        },
+
+        blockstyleChanged: function(_, style) {
+          var content = this.querySelector('#content')
+          if (content) {
+            content.remove()
+          }
+          if (style) {
+            var element = document.createElement('fp-contentblock-' + style)
+            element.content = this.content
+            element.id = 'content'
+            this.appendChild(element)
+          }
+        },
+
+        fontstyleChanged: function(oldval, newval){
+          var styles = ['regular', 'condenced', 'large']
+          if (styles.indexOf(newval) > -1){
+            this._toggleStyle('lib-textStyle-', styles, newval)
+          }
+        },
+
+        backgroundstyleChanged: function(oldval, newval){
+          var styles = ['gold', 'black', 'goldGradient', 'blackGradient']
+          if (styles.indexOf(newval) > -1){
+            this._toggleStyle('lib-boxStyle-', styles, newval)
+          }
+        },
+
+        _toggleStyle: function(prefix, styles, style) {
+          styles.forEach(function(s){
+            this.classList.remove(prefix + s)
+          }.bind(this))
+          this.classList.add(prefix + style)
+        }
+      });
+    })()
+  </script>
+</polymer-element>
+
+<polymer-element name="fp-contentblock-managed" extends="fp-contentblock" attributes="state model">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+        transition: flex-basis 0.1s linear,
+          margin 0.1s linear,
+          box-shadow 0.1s linear;
+      }
+
+      :host([managed]) {
+        flex-basis: calc({{relativeWidth}}% - 1%);
+        margin: 0.5%;
+        background: white;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      :host /deep/ .fp-manage-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        user-select: none;
+      }
+
+      :host([borderstyle]) /deep/ .fp-manage-panel {
+        top: -9px;
+        left: -9px;
+        right: -9px;
+        bottom: -9px;
+      }
+    </style>
+    <shadow></shadow>
     <template if="{{state == 'move'}}">
-      <fp-manage-move block="{{block}}" on-manage-move="{{onMove}}"></fp-manage-move>
+      <fp-manage-move on-manage-move="{{onMove}}"></fp-manage-move>
+    </template>
+    <template if="{{state == 'resize'}}">
+      <fp-manage-resize
+        on-manage-before-resize-x="{{onBeforeResizeX}}"
+        on-manage-before-resize-y="{{onBeforeResizeY}}"
+        on-manage-resize-x="{{onResizeX}}"
+        on-manage-resize-y="{{onResizeY}}">
+      </fp-manage-resize>
     </template>
     <template if="{{state == 'edit'}}">
-      <fp-manage-panelaction on-click="{{ onEdit }}"></fp-manage-panelaction>
+      <fp-manage-edit block="{{model}}"></fp-manage-edit>
     </template>
     <template if="{{state == 'delete'}}">
       <fp-manage-panelaction on-click="{{ onDelete }}"></fp-manage-panelaction>
     </template>
   </template>
-
   <script>
-    Polymer('fp-canvas-contentblock', {
-      observe: {
-        'block.block_style': 'blockStyleChanged',
-        'block.order_number': 'orderChanged',
-        'block.width': 'layoutChanged',
-        'block.padding': 'contentBlockClassesChanged',
-        'block.image_style': 'contentBlockClassesChanged',
-        'block.font_style': 'contentBlockClassesChanged',
-        'block.border_style': 'contentBlockClassesChanged',
-        'block.background_style': 'contentBlockClassesChanged'
-      },
-
-      contentBlockClassesChanged: function(){
-        this.$.contentBlock.className = this.contentBlockClasses(this.block)
-      },
-
-      blockStyleChanged: function(_, style) {
-        var element = document.createElement('fp-contentblock-' + this.block.block_style)
-        element.block = this.block
-        this.$.contentBlock.innerHTML = ''
-        this.$.contentBlock.appendChild(element)
-      },
-
-      orderChanged: function(oldval, newval){
-        this.style.order = newval
-      },
-
-      layoutChanged: function(oldval, newval) {
-        this.className = "lib-layout-cell-" + this.block.width
+    Polymer('fp-contentblock-managed', {
+      modelChanged: function(){
+        this.content = this.model.content
       },
 
       onDelete: function(event) {
@@ -57,34 +155,37 @@
           this.fire('block-delete')
         }
       },
-
-      onEdit: function(event) {
-        this.fire('block-edit')
-      },
-
+      
       onMove: function(event, data){
+        data.source = data.source.parentNode.host
         this.fire('block-move', data)
       },
 
-      contentBlockClasses: function(block) {
-        var attrs = ['block', 'image', 'font', 'border', 'background']
-        var classes = [
-          "lib-contentBlock",
-          "lib-layout-cell-" + block.width,
-          "lib-layout-row-" + (block.height || 'auto'),
-          "lib-layout-cell-vcenter"
-        ].concat(
-          attrs.filter(
-            function(attr){ return !!block[attr + "_style"] }
-          ).map(
-            function(attr){ return "lib-contentBlock-" + attr + "-" + block[attr + "_style"] }
-          )
-        )
+      onBeforeResizeX: function(event){
+        this.widthBeforeResizing = this.clientWidth
+        this.relativeWidthBeforeResizing = this.model.width
+      },
 
-        if (block.padding)
-          classes.push('lib-contentBlock-padding')
+      onBeforeResizeY: function(event){
+        this.absoluteHeightBeforeResizing = this.clientHeight
+        this.relativeHeightBeforeResizing = this.minHeight()
+      },
 
-        return classes.join(' ')
+      onResizeX: function(event, data) {
+        var sectorWidth = this.widthBeforeResizing / this.relativeWidthBeforeResizing
+        var width = Math.floor((this.widthBeforeResizing + data.delta) / sectorWidth)
+        width = Math.max(1, Math.min(20, width))
+        this.fire('block-resize-x', {width: width, model: this.model})
+      },
+
+      onResizeY: function(event, data) {
+        var height = Math.floor((this.absoluteHeightBeforeResizing + data.delta) / this.sectorHeight)
+        height = Math.max(this.minHeight(), height)
+        this.fire('block-resize-y', {height: height, model: this.model})
+      },
+
+      minHeight: function(){
+        return Math.floor(this.clientHeight / this.sectorHeight);
       }
     });
   </script>

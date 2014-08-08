@@ -20,7 +20,7 @@
   "dependencies": {
     "normalize.css": "~3.0.1",
     "HTML5-Reset": "~2.1.2",
-    "polymer": "Polymer/polymer#~0.3.3",
+    "polymer": "Polymer/polymer#~0.3.5",
     "underscore.string": "~2.3.3",
     "lodash": "~2.4.1",
     "core-overlay": "Polymer/core-overlay#~0.3.3",
@@ -29,6 +29,7 @@
     "paper-radio-button": "Polymer/paper-radio-button#~0.3.4",
     "paper-input": "Polymer/paper-input#~0.3.4",
     "paper-checkbox": "Polymer/paper-checkbox#~0.3.4",
-    "paper-radio-group": "Polymer/paper-radio-group#~0.3.4"
+    "paper-radio-group": "Polymer/paper-radio-group#~0.3.4",
+    "core-ajax": "Polymer/core-ajax#~0.3.5"
   }
 }

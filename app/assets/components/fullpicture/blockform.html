@@ -10,16 +10,14 @@
   <template>
     <style>
       :host paper-dialog {
-        z-index: 1100;
+        /*z-index: 1100;*/
       }
     </style>
 
-    <paper-dialog id="dialog" heading="{{'manage.content_blocks.editing' | t}}" autoCloseDisabled backdrop>
+    <paper-dialog id="dialog" heading="{{'manage.content_blocks.editing' | t}}" autoCloseDisabled layered on-core-overlay-open="{{onPaperDialogOpen}}">
       <form>
-
+        <lib-input-radiogroup name="content_block.block_style" value="{{object.block_style}}"></lib-input-radiogroup>
         <template bind="{{object}}">
-          <lib-input-radiogroup name="content_block.block_style" value="{{block_style}}"></lib-input-radiogroup>
-          
           <template if="{{block_style == 'text'}}">
             <template bind="{{content}}">
               <lib-input-text name="content_block.content.text" value="{{text}}"></lib-input-text>
@@ -35,32 +33,52 @@
             <lib-input-radiogroup name="content_block.image_style" value="{{image_style}}"></lib-input-radiogroup>
           </template>
 
+          <template if="{{block_style == 'embed'}}">
+            <template bind="{{content}}">
+              <lib-input-text name="content_block.content.code" value="{{code}}"></lib-input-text>
+            </template>
+          </template>
+
           <lib-input-boolean name="content_block.padding" value="{{padding}}"></lib-input-boolean>
           
           <lib-input-radiogroup name="content_block.border_style" value="{{border_style}}"></lib-input-radiogroup>
           
           <lib-input-radiogroup name="content_block.background_style" value="{{background_style}}"></lib-input-radiogroup>
-          
-          
-        
         </template>
       </form>
-      <paper-button label="{{'actions.save' | t }}" affirmative autofocus></paper-button>
+      <paper-button label="{{'actions.close' | t }}" affirmative></paper-button>
       
     </paper-dialog>
   </template>
   <script>
     Polymer('fp-blockform', {
       created: function(){
-        this.object = {}
+        if (!this.object)
+          this.object = {}
       },
-      edit: function(object) {
-        this.object = object
-        this.$.dialog.toggle()
+      open: function(){
+        document.querySelectorAll('html /deep/ fp-blockform').array().forEach(function(form){
+          if (form.$.dialog.opened)
+            form.close()
+        })
+        this.$.dialog.opened = true
+        // this.async(function(){
+        //   this.$.dialog.$.overlay.updateTargetDimensions()
+        // }.bind(this))
+      },
+
+      close: function() {
+        this.$.dialog.opened = false
+        this.fire('fp-blockform-close')
       },
 
       t: function(key) {
         return I18n.t(key)
+      },
+
+      onPaperDialogOpen: function(event, opened){
+        if (opened != true) // the `!=` is important
+          this.close()
       }
     });
   </script>

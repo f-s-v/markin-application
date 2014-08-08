@@ -38,7 +38,7 @@
 
 <polymer-element name="fp-dialog" attributes="opened autoCloseDisabled">
   <template>
-    <lib-delegator methods="open close" to="{{$.overlay}}"></lib-delegator>
+    <lib-delegator methods="open" to="{{$.overlay}}"></lib-delegator>
     <style shim-shadowdom>
       :host {
         background: white;
@@ -47,6 +47,7 @@
         bottom: 0;
         right: 0;
         overflow: scroll;
+        width: 100%;
       }
       .scroll-wrap {
         position: absolute;
@@ -67,15 +68,6 @@
         display: flex;
         flex-direction: column;
       }
-
-      main.managed {
-        background: #efefef;
-      }
-
-      main.managed /deep/ section.lib-contentBlock {
-        margin: 4px;
-      }
-
     </style>
 
     <core-overlay id="overlay"
@@ -93,11 +85,15 @@
     <content select="main"></content>
   </template>
 
-  
+
   <script>
     Polymer('fp-dialog', {
       ready: function() {
         this.$.overlay.target = this;
+      },
+      close: function() {
+        this.$.overlay.close()
+        this.fire('fp-dialog-close')
       }
     });
 

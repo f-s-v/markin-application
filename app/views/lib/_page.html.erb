@@ -1,12 +1,25 @@
-<div class="lib-layout">
-  <div class="lib-layout-cell-20 lib-layout">
-    <% page.content_blocks.ordered.each do |block| %>
-      <section style="order: <%= block.order_number%>" class="<%= expand_class('lib',
-        layout: "cell-#{block.width} row-#{block.height || 'auto'} vcenter",
-        contentBlock: content_block_styles(block).push('contentBlock')
-      ) %>">
-        <%= render "lib/content_blocks/#{block.block_style}", block: block %>
-      </section>
-    <% end %>
-  </div>
-</div>
+<lib-source
+  url="<%= api_content_holders_path(page_type: page.class.name, page_id: page.id) %>"
+  receiver="pageContentBlocks">
+</lib-source>
+
+<lib-layout modules="24" hcenter>
+  <lib-layout-cell width="20">
+    <lib-layout modules="20">
+      <template id="pageContentBlocks" is="auto-binding" repeat="{{source}}">
+        <fp-contentblock
+          content="{{content}}"
+          blockstyle="{{block_style}}"
+          order="{{order_number}}"
+          width="{{width}}"
+          height="{{height}}"
+          padding?="{{padding}}"
+          imagestyle="{{image_style}}"
+          fontstyle="{{font_style}}"
+          borderstyle="{{border_style}}"
+          backgroundstyle="{{background_style}}">
+        </fp-contentblock>
+      </template>
+    </lib-layout>
+  </lib-layout-cell>
+</lib-layout>

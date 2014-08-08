@@ -1,12 +1,14 @@
-<polymer-element name="fp-manage-move"
-  attributes="block"
-  draggable="true"
-  on-dragover="{{highlight}}"
-  on-dragleave="{{removeHighlight}}"
-  on-dragstart="{{putElement}}"
-  on-drop="{{pushElement}}">
-  
+<polymer-element name="fp-manage-move" draggable="true"
+  on-dragover="{{highlight}}" on-dragleave="{{removeHighlight}}"
+  on-dragstart="{{putElement}}" on-drop="{{pushElement}}">
+
   <template>
+    <style>
+      cursor: move;
+      z-index: 1000;
+      border-color: red;
+    </style>
+
     <fp-manage-panel></fp-manage-panel>
   </template>
 
@@ -30,7 +32,7 @@
         if (this.validateDrop()) {
           e.preventDefault()
           position = this.getPosition(e.x)
-          
+
           if (this.lastPosition != position) {
             this.lastPosition = position
 

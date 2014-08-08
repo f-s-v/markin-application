@@ -1,0 +1,16 @@
+<polymer-element name="fp-manage-edit" attributes="block">
+
+  <template>
+    <fp-blockform id="form" object="{{block}}"></fp-blockform>
+    <fp-manage-panelaction on-click="{{ openForm }}"></fp-manage-panelaction>
+  </template>
+
+  <script>
+    Polymer('fp-manage-edit', {
+      openForm: function(){
+        this.$.form.open()
+      }
+    })
+  </script>
+
+</polymer-element>

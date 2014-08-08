@@ -1,32 +1,32 @@
 // = css_module lib-boxStyle
 
 
-  this.black {
-    background: black;
-    color: white;
-  }
+html /deep/ this.black, this.black {
+  background: black;
+  color: white;
+}
 
-  this.blackGradient {
-    color: white;
-    background: linear-gradient(
-      to bottom, rgba(0,0,0,1) 0%,
-      rgba(245,226,123,1) 66%,
-      rgba(245,226,123,1) 100%
-    );
-  }
+html /deep/ this.blackGradient, this.blackGradient {
+  color: white;
+  background: linear-gradient(
+    to bottom, rgba(0,0,0,1) 0%,
+    rgba(245,226,123,1) 66%,
+    rgba(245,226,123,1) 100%
+  );
+}
 
-  this.gold {
-    background: rgba(245,226,123,1);
-  }
+html /deep/ this.gold, this.gold {
+  background: rgba(245,226,123,1);
+}
 
-  this.goldGradient {
-    background: linear-gradient(
-      to bottom, rgba(245,226,123,1) 0%,
-      rgba(255,255,255,1) 66%,
-      rgba(255,255,255,1) 100%
-    );
-  }
+html /deep/ this.goldGradient, this.goldGradient {
+  background: linear-gradient(
+    to bottom, rgba(245,226,123,1) 0%,
+    rgba(255,255,255,1) 66%,
+    rgba(255,255,255,1) 100%
+  );
+}
 
-  this.inFlow {
-    margin-bottom: 1.2rem;
-  }
+html /deep/ this.inFlow, this.inFlow {
+  margin-bottom: 1.2rem;
+}

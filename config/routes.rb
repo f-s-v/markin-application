@@ -24,5 +24,9 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resources :content_holders
+  end
+
   resources :pages, path: '/', only: 'show'
 end

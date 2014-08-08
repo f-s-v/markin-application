@@ -1,0 +1,19 @@
+<polymer-element name="lib-input-wrapper" noscript>
+  <template>
+    <p>
+      <content></content>
+    </p>
+  </template>
+</polymer-element>
+
+<polymer-element name="lib-input" attributes="name value">
+  <template>
+  </template>
+  <script>
+    Polymer('lib-input', {
+      label: function(){
+        return I18n.t('activerecord.attributes.' + this.name)
+      }
+    });
+  </script>
+</polymer-element>

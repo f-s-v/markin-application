@@ -1,0 +1,81 @@
+<polymer-element name="lib-layout" attributes="modules hcenter">
+  <template>
+    <style>
+      :host {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      :host([hcenter]) {
+        justify-content: center;
+      }
+    </style>
+    <content></content>
+  </template>
+  <script>
+    Polymer('lib-layout', {
+      cellWidth: function(i){
+        return i * 100 / parseInt(this.modules)
+      },
+      range: function(num){
+        return _.range(1, parseInt(num) + 1)
+      }
+    });
+  </script>
+</polymer-element>
+
+<polymer-element name="lib-layout-cell" attributes="width height vcenter hcenter gap">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: {{relativeWidth}}%;
+      }
+
+      :host([height]) {
+        min-height: calc({{sectorHeight}}px * {{height}});
+      }
+    </style>
+    <content></content>
+  </template>
+  <script>
+    Polymer('lib-layout-cell', {
+      sectorHeight: 58,
+      publish: {
+        width: {reflect: true},
+        height: {reflect: true},
+        gap: {reflect: true}
+      },
+      observe: {
+        'width': 'calculateRelativeWidth',
+        'layoutElement': 'calculateRelativeWidth',
+        'layoutElement.modules': 'calculateRelativeWidth'
+      },
+      attached: function(){
+        var findParent = function(element){
+          if (!element) return null
+          return element.nodeName == 'LIB-LAYOUT' ? element : findParent(element.parentNode || element.host)
+        }
+        this.layoutElement = findParent(this)
+      },
+
+      calculateRelativeWidth: function(){
+        if (this.width && this.layoutElement && this.layoutElement.modules)
+          this.relativeWidth = this.width * 100 / this.layoutElement.modules
+        else
+          this.relativeWidth = null
+      }
+    });
+  </script>
+</polymer-element>
+
+@for $i from 1 through $this.modules-count {
+  this.gap-#{$i}, html /deep/ this.gap-#{$i} {
+    margin-left: $i * 100vw / $this.modules-count;
+  }
+}

@@ -1,0 +1,16 @@
+<polymer-element name="lib-throttle" attributes="method wait">
+  <template>
+  </template>
+  <script>
+    Polymer('lib-throttle', {
+      wait: 100,
+      attached: function(){
+        var parent = this.parentNode.host
+        if (!(parent[this.method] instanceof Function)){
+          throw new TypeError('Throttled method should be a function')
+        }
+        parent[this.method] = _.throttle(parent[this.method], this.wait)
+      }
+    });
+  </script>
+</polymer-element>

@@ -1,11 +1,4 @@
-// SASS variable overrides must be declared before loading up Active Admin's styles.
-//
-// To view the variables that Active Admin provides, take a look at
-// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
-// Active Admin source.
-//
-// For example, to change the sidebar width:
-// $sidebar-width: 242px;
+// = require application
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
@@ -13,18 +6,6 @@
 
 $settings-color-gold: rgb(245, 226, 123);
 $settings-color-light: rgb(250, 241, 189);
-
-@import 'lib/shadowdom-care';
-@import 'lib/box-styles';
-@import 'lib/text-styles';
-@import 'lib/layouts';
-@import 'lib/buttons';
-@import 'lib/text-formatted';
-@import 'lib/embeds';
-@import 'lib/content-blocks';
-@import 'lib/forms';
-@import 'lib/media';
-@import 'lib/tables';
 
 @import 'fp/canvas';
 

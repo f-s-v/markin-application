@@ -1,19 +1,16 @@
-<polymer-element name="lib-input-radiogroup" attributes="name value">
+<polymer-element name="lib-input-radiogroup" extends="lib-input">
   <template>
-    <p>
+    <lib-input-wrapper>
       <label>{{label()}}</label>
       <paper-radio-group selected="{{value}}" label="Group">
         <template repeat="{{ key in collection()}}">
           <paper-radio-button name="{{key[0]}}" label="{{key[1]}}"></paper-radio-button>
         </template>
       </paper-radio-group>
-    </p>
+    </lib-input-wrapper>
   </template>
   <script>
     Polymer('lib-input-radiogroup', {
-      label: function(){
-        return I18n.t('activerecord.attributes.' + this.name)
-      },
       collection: function(){
         return _.pairs(I18n.t('options.' + this.name))
       }

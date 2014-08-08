@@ -49,7 +49,7 @@
 }
 
 
-this.regular {
+this.regular, body /deep/ this.regular {
   font-family: "Circe";
   font-size: 22px;
   line-height: 1.2;
@@ -79,7 +79,7 @@ this.condencedLarge {
   letter-spacing: 0.003em;
 }
 
-this.condenced {
+this.condenced, body /deep/ this.condenced {
   font-family: "ReformaGroteskLightC";
   font-size: 45px;
   line-height: 46px;
@@ -87,7 +87,7 @@ this.condenced {
   letter-spacing: 0.003em;
 }
 
-this.large {
+this.large, body /deep/ this.large {
   font-family: "FoglihtenNo06";
   font-size: 71px;
   line-height: 1.2;

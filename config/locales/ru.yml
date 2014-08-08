@@ -90,6 +90,7 @@ ru:
         content:
           text: Текст
           image: Картинка
+          code: Код для вставки
   simple_form:
     required:
       html: ''
@@ -104,6 +105,7 @@ ru:
     see_also: Смотрите также
     back_to_store: Вернуться в магазин
     save: Сохранить
+    close: Закрыть
   helpers:
     submit:
       order:
