@@ -1,15 +1,17 @@
 <% content_for :main_content do %>
-  <div class="lib-layout-cell-24 lib-layout-row-1 lib-boxStyle-gold lib-layout-flex">
+  <lib-layout class="lib-boxStyle-gold">
     <%= link_to current_user.name, users_profile_path,
-      class: expand_class('lib', layout: 'cell-6', buttons: 'small gold') %>
-    <section class="lib-layout-row-1 lib-layout-cell-2 lib-layout-vcenter lib-layout-hcenter lib-layout-gap-16">
-      <%= link_to t('.sign_out'), destroy_user_session_path,
-        method: 'delete',
-        class: expand_class('lib', buttons: 'small blackBorder'),
-        id: 'sessionSignOut' %>
-    </section>
-  </div>
-
+      is: 'lib-layout-acell', width: 6,
+      class: expand_class('lib', buttons: 'small gold') %>
+    <%= link_to t('.sign_out'), destroy_user_session_path,
+      is: 'lib-layout-acell',
+      width: 2,
+      height: 1,
+      gap: 16,
+      method: 'delete',
+      class: expand_class('lib', buttons: 'small blackBorder'),
+      id: 'sessionSignOut' %>
+  </lib-layout>
   <%= yield %>
 <% end %>
 

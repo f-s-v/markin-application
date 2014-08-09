@@ -1,9 +1,7 @@
-<div class="lib-layout">
-  <div class="lib-layout-cells-20 lib-layout-gap-2">
-    <h1 class="lib-contentBlock-padding">
-      Order #<%= resource.public_id %>
-    </h1>
+<lib-layout-cell width="20" gap="2">
+  <h1 class="lib-contentBlock-padding">
+    Order #<%= resource.public_id %>
+  </h1>
 
-    <%= render 'lib/order', order: resource %>
-  </div>
-</div>
+  <%= render 'lib/order', order: resource %>
+</lib-layout-cell>

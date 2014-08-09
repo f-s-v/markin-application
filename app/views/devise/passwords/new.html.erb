@@ -1,26 +1,21 @@
-
-<section class="lib-boxStyle-gold lib-layout">
-  <div class="lib-layout-cell-14 lib-layout-gap-5 lib-contentBlock-padding">
-
+<lib-layout class="lib-boxStyle-gold" hcenter>
+  <lib-layout-cell width="12" class="lib-contentBlock-padding">
     <%= simple_form_for resource,
       as: resource_name, url: password_path(resource_name),
       html: {class: expand_class('lib', form: 'gold large'), method: :post} do |f| %>
         <fieldset>
           <legend><%= t('.welcome') %></legend>
-          <div class="lib-layout">
-            <%= f.input :email, required: false,
-              autofocus: true, label: false,
-              wrapper_html: {class: 'lib-layout-cell-9'} %>
-            <div class="form-actions">
+          <lib-layout>
+            <lib-layout-cell width="9">
+              <%= f.input :email, required: false, autofocus: true, label: false %>
+            </lib-layout-cell>
+            <lib-layout-cell width="3" class="form-actions">
               <%= f.button :submit, t('.commit'),
-                class: expand_class('lib', layout: 'row-1 cell-3', buttons: 'small black') %>
-            </div>
-          </div>
+                class: expand_class('lib', buttons: 'small black') %>
+            </lib-layout-cell>
+          </lib-layout>
         </fieldset>
     <% end %>
-
     <%= render "devise/shared/links" %>
-
-  </div>
-
-</section>
+  </lib-layout-cell>
+</lib-layout>

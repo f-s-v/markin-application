@@ -1,25 +1,34 @@
-<menu class="app-menu lib-layout-vcenter lib-layout-noWrap">
+<lib-layout vcenter row class="app-menu">
   <%= checked_link_to t('.store'), store_root_path,
-    class: expand_class('lib', layout: 'cell-4', buttons: 'main black') %>
+    is: 'lib-layout-acell', width: 4,
+    class: 'lib-buttons-main lib-buttons-black' %>
+
   <%= checked_link_to t('.our_story'), page_path('our-story'),
-    class: expand_class('lib', layout: 'cell-4', buttons: 'main black') %>
-  
-  <section class="lib-layout-cell-4 lib-layout-gap-2 lib-layout-hcenter">
-    <%= checked_link_to t('.client_care'), users_profile_path,
-      class: expand_class('lib',  buttons: 'small goldBorder') %>
-  </section>
+    is: 'lib-layout-acell', width: 4,
+    class: 'lib-buttons-main lib-buttons-black' %>
+
+  <lib-layout-cell width="4" gap="2">
+    <lib-layout hcenter>
+      <%= checked_link_to t('.client_care'), users_profile_path,
+        class: 'lib-buttons-small lib-buttons-goldBorder' %>
+    </lib-layout>
+  </lib-layout-cell>
 
   <%= checked_link_to t('.switch_lang')[I18n.locale], page_path('english'),
-    class: expand_class('lib', layout: 'cell-2 gap-2', buttons: 'small gray') %>
+    is: 'lib-layout-acell', width: 2, gap: 2,
+    class: 'lib-buttons-small lib-buttons-gray' %>
+
   <%= checked_link_to t('.contacts'), page_path('contacts'),
-    class: expand_class('lib', layout: 'cell-2', buttons: 'small gray') %>
+    is: 'lib-layout-acell', width: 2,
+    class: 'lib-buttons-small lib-buttons-gray' %>
 
   <%= checked_link_to store_order_path,
-    class: expand_class('lib', layout: 'cell-4', buttons: 'main black') do %>
+    is: 'lib-layout-acell', width: 4,
+    class: 'lib-buttons-main lib-buttons-black' do %>
     <% if current_order.items.empty? %>
       <%= t('.cart') %>
     <% else %>
       <%= number_to_currency current_order.total %> &rarr;
     <% end %>
   <% end %>
-</menu>
+</lib-layout>

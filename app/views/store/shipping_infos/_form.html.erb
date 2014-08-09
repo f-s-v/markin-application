@@ -1,6 +1,5 @@
-<section class="lib-boxStyle-gold lib-layout">
-  <div class="lib-layout-cell-14 lib-layout-gap-5 lib-contentBlock-padding">
-
+<lib-layout class="lib-boxStyle-gold" hcenter>
+  <lib-layout-cell width="14" class="lib-contentBlock-padding">
     <%= simple_form_for resource, url: store_order_shipping_info_path, html: {class: expand_class('lib', form: 'gold large')} do |f| %>
         <fieldset>
           <legend><%= t('.welcome') %></legend>
@@ -17,7 +16,5 @@
           </div>
         </fieldset>
     <% end %>
-
-  </div>
-
-</section>
+  </lib-layout-cell>
+</lib-layout>

@@ -1,5 +1,5 @@
-<aside class="lib-layout-cell-4 lib-boxStyle-gold lib-layout-aside">
-  <div class="lib-layout">
+<lib-layout-cell width="4" class="lib-boxStyle-gold lib-layout-aside">
+  <lib-layout>
     <dl class="lib-layout-aside-content">
       <dt><%= Product.human_attribute_name :price %></dt>
       <dd>
@@ -9,8 +9,10 @@
 
     <%= link_to t('actions.add_to_cart'),
       store_order_items_path(product_public_id: resource.public_id),
+      is: 'lib-layout-acell',
+      width: "4",
       method: 'post',
-      class: expand_class('lib', layout: 'cell-4', buttons: 'small black', boxStyle: 'inFlow'),
+      class: expand_class('lib', buttons: 'small black', boxStyle: 'inFlow'),
       id: 'storeItemAddToCart'
     %>
     
@@ -31,6 +33,5 @@
     </dl>
 
     <%= render 'lib/share_buttons', url: store_product_url(resource) %>
-
-  </div>
-</aside>
+  </lib-layout>
+</lib-layout-cell>

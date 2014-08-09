@@ -1,4 +1,4 @@
-<div class="lib-layout-cell-20">
+<lib-layout-cell width="20">
   <div class="lib-contentBlock-contentBlock lib-contentBlock-padding lib-contentBlock-border-gold">
     <h1><%= resource.name %></h1>
     <h2><%= resource.batch.name %></h2>
@@ -6,20 +6,20 @@
 
   <%= render 'lib/page', page: resource %>
 
-  <div class="lib-layout-gap-1 lib-contentBlock-padding">
-    <%= render 'lib/share_buttons', url: store_product_url(resource), style: 'gold' %>
+  <div class="lib-boxStyle-inFlow">
+    <%= render 'lib/share_buttons', url: store_product_url(resource), style: 'gold' %>  
   </div>
-
-  <div class="lib-layout lib-layout-gap-6 lib-boxStyle-inFlow">
-    <h2 class="lib-layout-cell-4">
+  
+  <lib-layout vcenter stack>
+    <h2>
       <%= number_to_currency resource.price %>
     </h2>
     <%= link_to t('actions.add_to_cart'),
       store_order_items_path(product_public_id: resource.public_id),
       method: 'post',
-      class: expand_class('lib', layout: 'cell-4', buttons: 'small black', boxStyle: 'inFlow')
+      class: expand_class('lib', buttons: 'small black', boxStyle: 'inFlow')
     %>
-  </div>
+  </lib-layout>
 
   <hr>
 
@@ -27,13 +27,11 @@
     <h2>
       <%= t('actions.see_also') %>
     </h2>
-
   </div>
 
-
-  <div class="lib-layout lib-layout-justify">
+  <lib-layout justify>
     <%= render partial: 'lib/product_preview', collection: see_also_products.limit(3), as: :product %>
-  </div>
-
+  </lib-layout>
   <hr>
-</div>
+</lib-layout-cell>
+

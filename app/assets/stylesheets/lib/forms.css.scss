@@ -71,11 +71,12 @@ this.large {
   .input {
     &.email, &.password, &.string, &.integer, &.tel {
       input {
-        @extend .lib-layout-row-1;
         @extend .lib-textStyle-caption;
         @include placeholder {
           color: $settings-color-gold;
         }
+        height: 58px;
+        line-height: 58px;
         text-align: center;
       }
     }

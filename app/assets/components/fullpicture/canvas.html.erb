@@ -22,10 +22,10 @@
         <fp-dialog-checkaction name="delete" caption="&#197;"></fp-dialog-checkaction>
       </core-selector>
 
-      <main id="main" class="lib-layout-hcenter lib-textFormatted" managed?="{{manageState}}">
-        <lib-layout modules="24" hcenter>
+      <main id="main" managed?="{{manageState}}">
+        <lib-layout modules="24" hcenter class="lib-textFormatted">
           <lib-layout-cell width="20">
-            <lib-layout modules="20">
+            <lib-layout>
               <template repeat="{{block in $.contentBlocks.data }}">
                 <template if="{{!block._destroy}}">
                   <fp-contentblock-managed model="{{block}}"

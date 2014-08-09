@@ -1,0 +1,23 @@
+<polymer-element name="lib-parent" attributes="match element">
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+  </template>
+  <script>
+    (function(){
+      var findParent = function(element, selector){
+        if (!element) return undefined
+        return (element.matches && element.matches(selector)) ? element : findParent(element.parentNode || element.host, selector)
+      }
+      Polymer('lib-parent', {
+        attached: function(){
+          var host = this.parentNode.host
+          this.element = findParent(host.parentNode || host.host, this.match)
+        }
+      });
+    })()
+  </script>
+</polymer-element>

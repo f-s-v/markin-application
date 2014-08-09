@@ -1,6 +1,5 @@
-<section class="lib-boxStyle-gold lib-layout">
-  <div class="lib-layout-cell-14 lib-layout-gap-5 lib-contentBlock-padding">
-
+<lib-layout class="lib-boxStyle-gold">
+  <lib-layout-cell width="14" gap="5" class="lib-contentBlock-padding">
     <%= simple_form_for resource,
       as: resource_name, url: registration_path(resource_name),
       html: {class: expand_class('lib', form: 'gold large')} do |f| %>
@@ -18,7 +17,5 @@
     <% end %>
 
     <%= render "devise/shared/links" %>
-
-  </div>
-
-</section>
+  </lib-layout-cell>
+</lib-layout>

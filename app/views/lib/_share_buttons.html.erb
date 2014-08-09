@@ -1,12 +1,17 @@
 <% style ||= 'light' %>
 
-<div class="lib-layout lib-buttons-groupSolid">
+<lib-layout class="lib-buttons-groupSolid" hcenter>
   <% [
     ['facebook', "https://www.facebook.com/sharer/sharer.php?s=100&p[url]=#{url}"],
     ['twitter', "https://twitter.com/intent/tweet?url=#{url}"],
     ['vkontakte', "http://vkontakte.ru/share.php?url=#{url}"],
     ['pinterest', "http://www.pinterest.com/pin/find/?url=#{url}"]
   ].each do |name, link| %>
-    <%= link_to t(".#{name}"), link, class: "lib-buttons-small lib-buttons-#{style} lib-layout-cell-4", target: '_blank' %>
+    <%= link_to t(".#{name}"), link,
+      is: 'lib-layout-acell',
+      width: 4,
+      class: "lib-buttons-small lib-buttons-#{style}",
+      target: '_blank'
+    %>
   <% end %>
-</div>
+</lib-layout>

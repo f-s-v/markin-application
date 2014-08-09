@@ -3,23 +3,21 @@
   receiver="pageContentBlocks">
 </lib-source>
 
-<lib-layout modules="24" hcenter>
-  <lib-layout-cell width="20">
-    <lib-layout modules="20">
-      <template id="pageContentBlocks" is="auto-binding" repeat="{{source}}">
-        <fp-contentblock
-          content="{{content}}"
-          blockstyle="{{block_style}}"
-          order="{{order_number}}"
-          width="{{width}}"
-          height="{{height}}"
-          padding?="{{padding}}"
-          imagestyle="{{image_style}}"
-          fontstyle="{{font_style}}"
-          borderstyle="{{border_style}}"
-          backgroundstyle="{{background_style}}">
-        </fp-contentblock>
-      </template>
-    </lib-layout>
-  </lib-layout-cell>
-</lib-layout>
+<lib-layout-cell width="20">
+  <lib-layout>
+    <template id="pageContentBlocks" is="auto-binding" repeat="{{source}}">
+      <fp-contentblock
+        content="{{content}}"
+        blockstyle="{{block_style}}"
+        order="{{order_number}}"
+        width="{{width}}"
+        height="{{height}}"
+        padding?="{{padding}}"
+        imagestyle="{{image_style}}"
+        fontstyle="{{font_style}}"
+        borderstyle="{{border_style}}"
+        backgroundstyle="{{background_style}}">
+      </fp-contentblock>
+    </template>
+  </lib-layout>
+</lib-layout-cell>

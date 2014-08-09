@@ -49,49 +49,49 @@
 <% if order.shipping_info.present? %>
   <dl>
 
-    <div class="lib-layout">
-      <div class="lib-layout-cell-4">
+    <lib-layout>
+      <lib-layout-cell width="4">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_name') %>:</dt>
         <dd><%= order.shipping_info.shipping_name %></dd>
-      </div>
-      <div class="lib-layout-cell-4">
+      </lib-layout-cell>
+      <lib-layout-cell width="4" gap="2">
         <dt><%= Order::ShippingInfo.human_attribute_name('country') %>:</dt>
         <dd><% if order.shipping_info.country.present? %><%= order.shipping_info.country.name %><% end %></dd>
-      </div>
-    </div>
+      </lib-layout-cell>
+    </lib-layout>
 
-    <div class="lib-layout">
-      <div class="lib-layout-cell-4">
+    <lib-layout>
+      <lib-layout-cell width="4">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_address_line1') %>:</dt>
         <dd><%= order.shipping_info.shipping_address_line1 %></dd>
-      </div>
-      <div class="lib-layout-cell-4">
+      </lib-layout-cell>
+      <lib-layout-cell width="4" gap="2">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_address_line2') %>:</dt>
         <dd><%= order.shipping_info.shipping_address_line2 %></dd>
-      </div>
-    </div>
+      </lib-layout-cell>
+    </lib-layout>
 
-    <div class="lib-layout">
-      <div class="lib-layout-cell-4">
+    <lib-layout>
+      <lib-layout-cell width="4">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_city') %>:</dt>
         <dd><%= order.shipping_info.shipping_city %></dd>
-      </div>
-      <div class="lib-layout-cell-4">
+      </lib-layout-cell>
+      <lib-layout-cell width="4" gap="2">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_state') %>:</dt>
         <dd><%= order.shipping_info.shipping_state %></dd>
-      </div>
-    </div>
+      </lib-layout-cell>
+    </lib-layout>
 
-    <div class="lib-layout">
-      <div class="lib-layout-cell-4">
+    <lib-layout>
+      <lib-layout-cell width="4">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_zip') %>:</dt>
         <dd><%= order.shipping_info.shipping_zip %></dd>
-      </div>
-      <div class="lib-layout-cell-4">
+      </lib-layout-cell>
+      <lib-layout-cell width="4" gap="2">
         <dt><%= Order::ShippingInfo.human_attribute_name('phone_number') %>:</dt>
         <dd><%= order.shipping_info.phone_number %></dd>
-      </div>
-    </div>
+      </lib-layout-cell>
+    </lib-layout>
   </dl>
 
   <hr>

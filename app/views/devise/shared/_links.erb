@@ -1,4 +1,4 @@
-<div class="lib-layout-hcenter lib-buttons-group">
+<lib-layout hcenter class="lib-buttons-group">
   <%- if controller_name != 'sessions' %>
     <%= link_to t('.sign_in'), new_session_path(resource_name),
       class: expand_class('lib', buttons: 'small round whiteBorder')
@@ -29,4 +29,4 @@
     <% end -%>
   <% end -%>
 
-</div>
+</lib-layout>

@@ -17,13 +17,11 @@ this.button {
 this.main {
   @extend this.button;
   @extend .lib-textStyle-caption;
-  @extend .lib-layout-row-1;
   line-height: 58px;
 }
 
 this.small {
   @extend this.button;
-  @extend .lib-layout-row-1;
   line-height: 58px;
   @extend .lib-textStyle-captionSmall;
 }

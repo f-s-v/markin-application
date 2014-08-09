@@ -1,5 +1,5 @@
-<section class="lib-boxStyle-gold lib-layout">
-  <div class="lib-layout-cell-14 lib-layout-gap-5 lib-contentBlock-padding">
+<lib-layout class="lib-boxStyle-gold">
+  <lib-layout-cell width="14" gap="5" class="lib-contentBlock-padding">
 
     <%= simple_form_for resource,
       as: resource_name, url: password_path(resource_name),
@@ -12,7 +12,7 @@
 
           <div class="form-actions">
             <%= f.button :submit, t('.commit'),
-              class: expand_class('lib', layout: 'row-1 cell-3', buttons: 'small black') %>
+              class: expand_class('lib', buttons: 'small black') %>
           </div>
 
         </fieldset>
@@ -20,6 +20,6 @@
 
     <%= render "devise/shared/links" %>
 
-  </div>
+  </lib-layout-cell>
+</lib-layout>
 
-</section>

@@ -1,4 +1,8 @@
-<polymer-element name="lib-layout" attributes="modules hcenter">
+<!--
+  = require core-style/core-style
+-->
+
+<polymer-element name="lib-layout" attributes="modules parentModules vcenter hcenter">
   <template>
     <style>
       :host {
@@ -11,71 +15,91 @@
       :host([hcenter]) {
         justify-content: center;
       }
+
+      :host([vcenter]) {
+        align-items: center;
+      }
+
+      :host([justify]) {
+        justify-content: space-between;
+      }
+
+      :host([row]) {
+        flex-wrap: nowrap;
+      }
+      
+      :host([stack]) {
+        flex-direction: column;
+      }
     </style>
+    <lib-parent
+      id="parent"
+      match="lib-layout, lib-layout-cell, lib-layout-acell"></lib-parent>
     <content></content>
   </template>
   <script>
     Polymer('lib-layout', {
-      cellWidth: function(i){
-        return i * 100 / parseInt(this.modules)
+      observe: {
+        '$.parent.element.modules': 'updateParentModules',
+        '$.parent.element.parentModules': 'updateParentModules',
+        '$.parent.element.width': 'updateParentModules'
       },
-      range: function(num){
-        return _.range(1, parseInt(num) + 1)
+      updateParentModules: function(__, newVal){
+        this.parentModules = newVal
       }
     });
   </script>
 </polymer-element>
 
-<polymer-element name="lib-layout-cell" attributes="width height vcenter hcenter gap">
-  <template>
-    <style>
-      :host {
-        display: block;
-        box-sizing: border-box;
-        flex-grow: 0;
-        flex-shrink: 0;
-        flex-basis: {{relativeWidth}}%;
-      }
+<template id="libLayoutCellStyle">
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: calc({{width}} * 100% / {{$.layout.element.parentModules || $.layout.element.modules}});
+    }
 
-      :host([height]) {
-        min-height: calc({{sectorHeight}}px * {{height}});
-      }
-    </style>
+    :host([height]) {
+      min-height: calc({{sectorHeight}}px * {{height}});
+    }
+
+    :host([gap]) {
+      margin-left: calc({{gap}} * 100% / {{$.layout.element.parentModules || $.layout.element.modules}});
+    }
+  </style>
+</template>
+
+<script>
+  window.libLayoutCellProto = {
+    sectorHeight: 58,
+    publish: {
+      width: {reflect: true},
+      height: {reflect: true},
+      gap: {reflect: true}
+    }
+  }
+</script>
+
+<polymer-element name="lib-layout-cell">
+  <template>
+    <lib-parent match="lib-layout" id="layout"></lib-parent>
+    <template bind ref="libLayoutCellStyle"></template>
     <content></content>
   </template>
   <script>
-    Polymer('lib-layout-cell', {
-      sectorHeight: 58,
-      publish: {
-        width: {reflect: true},
-        height: {reflect: true},
-        gap: {reflect: true}
-      },
-      observe: {
-        'width': 'calculateRelativeWidth',
-        'layoutElement': 'calculateRelativeWidth',
-        'layoutElement.modules': 'calculateRelativeWidth'
-      },
-      attached: function(){
-        var findParent = function(element){
-          if (!element) return null
-          return element.nodeName == 'LIB-LAYOUT' ? element : findParent(element.parentNode || element.host)
-        }
-        this.layoutElement = findParent(this)
-      },
-
-      calculateRelativeWidth: function(){
-        if (this.width && this.layoutElement && this.layoutElement.modules)
-          this.relativeWidth = this.width * 100 / this.layoutElement.modules
-        else
-          this.relativeWidth = null
-      }
-    });
+    Polymer('lib-layout-cell', _.extend({}, libLayoutCellProto));
   </script>
 </polymer-element>
 
-@for $i from 1 through $this.modules-count {
-  this.gap-#{$i}, html /deep/ this.gap-#{$i} {
-    margin-left: $i * 100vw / $this.modules-count;
-  }
-}
+<polymer-element name="lib-layout-acell" extends="a">
+  <template>
+    <lib-parent match="lib-layout" id="layout"></lib-parent>
+    <template bind ref="libLayoutCellStyle"></template>
+    <content></content>
+  </template>
+  <script>
+    Polymer('lib-layout-acell', _.extend({}, libLayoutCellProto));
+  </script>
+</polymer-element>
