@@ -23,7 +23,7 @@ class FormtasticJsonInput < Formtastic::Inputs::StringInput
 
       label_html <<
       builder.text_field(method, input_html_options) <<
-      template.content_tag('fp-canvas', nil, source: canvas_source, id: canvas_id) <<
+      template.content_tag('fp-canvas', nil, source: canvas_source, id: canvas_id, width: input_options[:width]) <<
       template.content_tag('fp-opener', nil, canvas: canvas_id)
     end
   end

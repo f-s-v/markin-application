@@ -5,7 +5,7 @@
   = require fullpicture/contentblocks
 -->
 
-<polymer-element name="fp-canvas" attributes="source open">
+<polymer-element name="fp-canvas" attributes="source open width">
   <template>
     <lib-inputdata id="contentBlocks" source="{{source}}"></lib-inputdata>
     <lib-delegator methods="open" to="{{$.dialog}}"></lib-delegator>
@@ -24,11 +24,12 @@
 
       <main id="main" managed?="{{manageState}}">
         <lib-layout modules="24" hcenter class="lib-textFormatted">
-          <lib-layout-cell width="20">
+          <lib-layout-cell width="{{width}}">
             <lib-layout>
               <template repeat="{{block in $.contentBlocks.data }}">
                 <template if="{{!block._destroy}}">
                   <fp-contentblock-managed model="{{block}}"
+                    maxwidth="{{width}}"
                     blockstyle="{{block.block_style}}"
                     order="{{block.order_number}}"
                     width="{{block.width}}"

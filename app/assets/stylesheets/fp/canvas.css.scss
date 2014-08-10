@@ -19,7 +19,7 @@ this.action, body /deep/ this.action {
 }
 
 body /deep/ .core-selected::shadow this.action {
-  color: black
+  color: #333;
 }
 
 body /deep/ .fp-manage-move-insertionBefore, body /deep/ .fp-manage-move-insertionAfter {

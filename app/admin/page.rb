@@ -40,7 +40,7 @@ ActiveAdmin.register Page do
     f.inputs do
       f.input :slug
       f.input :title
-      f.input :content_blocks_attributes, as: :formtastic_json
+      f.input :content_blocks_attributes, as: :formtastic_json, width: 24
     end
     f.actions
   end

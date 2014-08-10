@@ -69,7 +69,7 @@ ActiveAdmin.register Product do
       f.input :price
       f.input :poster, as: :formtastic_uploadcare
       f.input :has_sizes
-      f.input :content_blocks_attributes, as: :formtastic_json
+      f.input :content_blocks_attributes, as: :formtastic_json, width: 20
     end
 
     Product::Characteristic.all.each do |c|

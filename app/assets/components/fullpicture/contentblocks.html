@@ -90,7 +90,7 @@
   </script>
 </polymer-element>
 
-<polymer-element name="fp-contentblock-managed" extends="fp-contentblock" attributes="state model">
+<polymer-element name="fp-contentblock-managed" extends="fp-contentblock" attributes="state model maxwidth">
   <template>
     <style>
       :host {
@@ -145,6 +145,8 @@
   </template>
   <script>
     Polymer('fp-contentblock-managed', {
+      maxwidth: 24,
+
       modelChanged: function(){
         this.content = this.model.content
       },
@@ -173,7 +175,7 @@
       onResizeX: function(event, data) {
         var sectorWidth = this.widthBeforeResizing / this.relativeWidthBeforeResizing
         var width = Math.floor((this.widthBeforeResizing + data.delta) / sectorWidth)
-        width = Math.max(1, Math.min(20, width))
+        width = Math.max(1, Math.min(this.maxwidth, width))
         this.fire('block-resize-x', {width: width, model: this.model})
       },
 
