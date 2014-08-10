@@ -58,7 +58,7 @@
     Polymer('fp-canvas', {
       close: function(){
         delete this.manageState
-        this.storeData()
+        this.$.contentBlocks.dataChanged()
       },
       onBlockMove: function(event, data){
         var destination = event.target
@@ -112,10 +112,6 @@
 
       onBlockResizeY: function(event, data){
         data.model.height = data.height
-      },
-
-      storeData: function() {
-        this.$.contentBlocks.dataChanged()
       }
     })
   </script>
