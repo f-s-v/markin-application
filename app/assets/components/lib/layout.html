@@ -7,28 +7,47 @@
     <style>
       :host {
         width: 100%;
+        
+        display: -ms-flexbox;
+        display: -webkit-flex;
         display: flex;
+        
+        -ms-flex-align: start;
+        -webkit-align-items: flex-start;
         align-items: flex-start;
+        
+        -ms-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
         flex-wrap: wrap;
       }
 
       :host([hcenter]) {
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
         justify-content: center;
       }
 
       :host([vcenter]) {
+        -ms-flex-align: center;
+        -webkit-align-items: center;
         align-items: center;
       }
 
       :host([justify]) {
+        -ms-flex-pack: justify;
+        -webkit-justify-content: space-between;
         justify-content: space-between;
       }
 
       :host([row]) {
+        -ms-flex-wrap: nowrap;
+        -webkit-flex-wrap: nowrap;
         flex-wrap: nowrap;
       }
       
       :host([stack]) {
+        -ms-flex-direction: column;
+        -webkit-flex-direction: column;
         flex-direction: column;
       }
     </style>
@@ -51,41 +70,90 @@
   </script>
 </polymer-element>
 
-<template id="libLayoutCellStyle">
-  <style>
-    :host {
-      display: block;
-      box-sizing: border-box;
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-basis: calc({{width}} * 100% / {{$.layout.element.parentModules || $.layout.element.modules}});
-    }
+<core-style id="libLayoutCellStyle">
+  :host {
+    display: block;
+    box-sizing: border-box;
+    
+    -ms-flex-grow: 0;
+    -webkit-flex-grow: 0;
+    flex-grow: 0;
 
-    :host([height]) {
-      min-height: calc({{sectorHeight}}px * {{height}});
-    }
-
-    :host([gap]) {
-      margin-left: calc({{gap}} * 100% / {{$.layout.element.parentModules || $.layout.element.modules}});
-    }
-  </style>
-</template>
+    -ms-flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    
+  }
+</core-style>
 
 <script>
   window.libLayoutCellProto = {
     sectorHeight: 58,
+
     publish: {
       width: {reflect: true},
       height: {reflect: true},
       gap: {reflect: true}
+    },
+
+    observe: {
+      'width': 'flexBasisStyleChanged',
+      '$.layout.element.parentModules': 'modulesChanged',
+      '$.layout.element.modules': 'modulesChanged',
+      'height': 'heightStyleChanged',
+      'sectorHeight': 'heightStyleChanged',
+      'gap': 'gapStyleChanged',
+    },
+
+    modulesChanged: function(){
+      this.gapStyleChanged()
+      this.flexBasisStyleChanged()
+    },
+
+    gapStyleChanged: function(){
+      this.style.removeProperty('margin-left')
+      if (
+        this.gap &&
+        this.$.layout.element &&
+        (this.$.layout.element.parentModules || this.$.layout.element.modules)
+      ) {
+        var gap = this.gap
+        var modules = this.$.layout.element.parentModules || this.$.layout.element.modules
+        this.style.setProperty('margin-left', 'calc(' + gap + ' * 100% / ' + modules + ')')
+      }
+    },
+
+    heightStyleChanged: function(){
+      this.style.removeProperty('min-height')
+      if (this.height && this.sectorHeight) {
+        this.style.setProperty('min-height', 'calc(' + this.sectorHeight + 'px * ' + this.height + ')')
+      }
+    },
+
+    flexBasisStyleChanged: function(){
+      this.style.removeProperty('-ms-flex-basis')
+      this.style.removeProperty('-webkit-flex-basis')
+      this.style.removeProperty('flex-basis')
+      if (
+        this.width &&
+        this.$.layout.element &&
+        (this.$.layout.element.parentModules || this.$.layout.element.modules)
+      ) {
+        var width = this.width
+        var modules = this.$.layout.element.parentModules || this.$.layout.element.modules
+
+        this.style.setProperty('-ms-flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
+        this.style.setProperty('-webkit-flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
+        this.style.setProperty('flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
+      }
     }
   }
 </script>
 
 <polymer-element name="lib-layout-cell">
   <template>
+    <core-style ref="libLayoutCellStyle"></core-style>
     <lib-parent match="lib-layout" id="layout"></lib-parent>
-    <template bind ref="libLayoutCellStyle"></template>
     <content></content>
   </template>
   <script>
@@ -95,8 +163,8 @@
 
 <polymer-element name="lib-layout-acell" extends="a">
   <template>
+    <core-style ref="libLayoutCellStyle"></core-style>
     <lib-parent match="lib-layout" id="layout"></lib-parent>
-    <template bind ref="libLayoutCellStyle"></template>
     <content></content>
   </template>
   <script>

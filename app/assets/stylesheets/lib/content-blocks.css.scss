@@ -13,6 +13,11 @@ this, html /deep/ this {
   background: white;
 }
 
+this.background-none, html /deep/ this.background-none {
+  background: white;
+  color: black;
+}
+
 this.background-black, html /deep/ this.background-black {
   background: black;
   color: white;

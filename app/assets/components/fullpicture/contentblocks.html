@@ -21,19 +21,18 @@
         text-align: center;
       }
 
-      :host([borderstyle]) {
-        border: 9px solid transparent;
-      }
-
       :host([borderstyle=white]) {
+        border: 9px solid transparent;
         border-color: white;
       }
 
       :host([borderstyle=black]) {
+        border: 9px solid transparent;
         border-color: black;
       }
 
       :host([borderstyle=gold]) {
+        border: 9px solid transparent;
         border-color: rgb(245, 226, 123);
       }
     </style>
@@ -74,7 +73,7 @@
         },
 
         backgroundstyleChanged: function(oldval, newval){
-          var styles = ['gold', 'black', 'goldGradient', 'blackGradient']
+          var styles = ['none', 'gold', 'black', 'goldGradient', 'blackGradient']
           if (styles.indexOf(newval) > -1){
             this._toggleStyle('lib-boxStyle-', styles, newval)
           }
@@ -103,7 +102,7 @@
       }
 
       :host([managed]) {
-        flex-basis: calc({{relativeWidth}}% - 1%);
+        flex-basis: calc({{width}} * 100% / {{$.layout.element.parentModules || $.layout.element.modules}} - 1%)!important;
         margin: 0.5%;
         background: white;
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);

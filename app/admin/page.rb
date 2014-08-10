@@ -34,7 +34,7 @@ ActiveAdmin.register Page do
 
   form do |f|
     within @head do
-      link href: asset_path('fullpicture.html'), rel: 'import'
+      link href: asset_path('fullpicture-manage.html'), rel: 'import'
     end
 
     f.inputs do

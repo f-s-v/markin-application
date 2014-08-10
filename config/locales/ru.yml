@@ -136,10 +136,12 @@ ru:
         condenced: Узкий
         regular: Обычный
       border_style:
+        none: Без рамки
         white: Белый
         gold: Золотой
         black: Черный
       background_style:
+        none: Белый
         gold: Золотой
         black: Черный
         goldGradient: Золотой градиент

@@ -2,7 +2,7 @@
   <template>
     <lib-input-wrapper>
       <label>{{label()}}</label>
-      <paper-radio-group selected="{{value}}" label="Group">
+      <paper-radio-group selected="{{value}}" label="Group" id="radioGroup">
         <template repeat="{{ key in collection()}}">
           <paper-radio-button name="{{key[0]}}" label="{{key[1]}}"></paper-radio-button>
         </template>

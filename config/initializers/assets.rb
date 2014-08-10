@@ -4,6 +4,7 @@ Rails.application.config.instance_eval do |config|
   config.assets.precompile += [
     'active_admin.css', 'active_admin.js',
     'fullpicture.html',
+    'fullpicture-manage.html',
   ]
 
   config.assets.paths << "#{Rails.root}/app/assets/fonts"
