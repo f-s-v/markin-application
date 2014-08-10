@@ -8,12 +8,12 @@
 <polymer-element name="fp-canvas" attributes="source open">
   <template>
     <lib-inputdata id="contentBlocks" source="{{source}}"></lib-inputdata>
-    <lib-delegator methods="open close" to="{{$.dialog}}"></lib-delegator>
+    <lib-delegator methods="open" to="{{$.dialog}}"></lib-delegator>
     <lib-throttle method="onBlockResizeX"></lib-throttle>
     <lib-throttle method="onBlockResizeY"></lib-throttle>
     <fp-blockform id="form"></fp-blockform>
 
-    <fp-dialog id="dialog" on-fp-dialog-close="{{storeData}}">
+    <fp-dialog id="dialog" on-fp-dialog-close="{{close}}">
       <core-selector selected="{{manageState}}">
         <fp-dialog-checkaction name="edit" caption="&#094;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="resize" caption="&#0112;"></fp-dialog-checkaction>
@@ -56,6 +56,10 @@
 
   <script>
     Polymer('fp-canvas', {
+      close: function(){
+        delete this.manageState
+        this.storeData()
+      },
       onBlockMove: function(event, data){
         var destination = event.target
         var source = data.source

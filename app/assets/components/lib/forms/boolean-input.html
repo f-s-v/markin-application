@@ -1,7 +1,14 @@
-<polymer-element name="lib-input-boolean" extends="lib-input" noscript>
+<polymer-element name="lib-input-boolean" extends="lib-input">
   <template>
     <lib-input-wrapper>
-      <paper-checkbox label="{{label()}}" checked="{{value}}"></paper-checkbox>
+      <paper-checkbox on-change="{{fixCheckboxChecked}}" label="{{label()}}" checked?="{{value}}"></paper-checkbox>
     </lib-input-wrapper>
   </template>
+  <script>
+    Polymer('lib-input-boolean', {
+      fixCheckboxChecked: function(e){
+        this.value = e.target.checked
+      }
+    })
+  </script>
 </polymer-element>

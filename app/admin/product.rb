@@ -10,8 +10,16 @@ ActiveAdmin.register Product do
   filter :created_at
   filter :has_sizes
 
+  before_filter only: [:create, :update] do
+    params[:product][:content_blocks_attributes] = JSON.parse(params[:product][:content_blocks_attributes])
+  end
+
   controller do
     defaults finder: :find_by_public_id!
+
+    def permitted_params
+      params.permit!
+    end
   end
 
   index do
@@ -51,32 +59,22 @@ ActiveAdmin.register Product do
 
 
   form do |f|
+    within @head do
+      link href: asset_path('fullpicture-manage.html'), rel: 'import'
+    end
+
     f.inputs do
       f.input :name
       f.input :batch
       f.input :price
       f.input :poster, as: :formtastic_uploadcare
       f.input :has_sizes
+      f.input :content_blocks_attributes, as: :formtastic_json
     end
 
     Product::Characteristic.all.each do |c|
       f.inputs c.name do
         f.input :option_ids, as: :check_boxes, collection: c.options
-      end
-    end
-
-    f.inputs do
-      f.has_many :content_blocks, :allow_destroy => true, :heading => 'Content' do |cf|
-        cf.input :content, as: :text
-        cf.input :width
-        cf.input :height
-        %w(block image font border background).each do |attr|
-          cf.input "#{attr}_style",
-            as: :select,
-            collection: Rails.configuration.send("content_blocks_#{attr}_styles")
-        end
-        cf.input :padding
-        cf.input :order_number
       end
     end
 

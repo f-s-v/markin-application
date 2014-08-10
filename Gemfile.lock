@@ -24,11 +24,11 @@ GIT
 
 GIT
   remote: git://github.com/rastyagaev/emcee.git
-  revision: ee0d7ab3c6ccf152147ab75f8d4eac1aee0d98b3
-  branch: hpricot_html_parser
+  revision: 1187cf0097b063cf2ee132c37e9f54ba909eaebf
   specs:
-    emcee (1.0.3)
-      hpricot (= 0.8.6)
+    emcee (1.0.5)
+      nokogiri (~> 1.0)
+      nokogumbo (~> 1.1)
       rails (~> 4.0)
 
 GEM
@@ -133,7 +133,6 @@ GEM
       activesupport (>= 3.2, < 5)
     hashie (2.1.1)
     hike (1.2.3)
-    hpricot (0.8.6)
     i18n (0.6.11)
     i18n-js (3.0.0.rc6)
       i18n (~> 0.6)
@@ -168,8 +167,10 @@ GEM
       i18n (~> 0.6.4)
     multi_json (1.10.1)
     multipart-post (2.0.0)
-    nokogiri (1.6.2.1)
+    nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
+    nokogumbo (1.1.10)
+      nokogiri
     octokit (2.7.2)
       sawyer (~> 0.5.2)
     orm_adapter (0.5.0)

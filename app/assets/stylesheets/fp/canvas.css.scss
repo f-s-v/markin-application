@@ -12,14 +12,14 @@ this.action, body /deep/ this.action {
   cursor: pointer;
   user-select: none;
 
-  &[active] {
-    color: black;
-  }
-
   input[type="checkbox"] {
     opacity: 0;
     position: absolute;
   }
+}
+
+body /deep/ .core-selected::shadow this.action {
+  color: black
 }
 
 body /deep/ .fp-manage-move-insertionBefore, body /deep/ .fp-manage-move-insertionAfter {

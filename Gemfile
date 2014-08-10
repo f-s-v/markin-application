@@ -36,9 +36,7 @@ gem 'simple_form', '~> 3.1.0.rc2'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem "rails-sass-images"
 gem "autoprefixer-rails"
-# gem 'emcee', '0.2.0'
-# gem 'emcee', path: '/Users/oktoberliner/Temporary/emcee'
-gem 'emcee', github: 'rastyagaev/emcee', branch: 'hpricot_html_parser'
+gem 'emcee', github: 'rastyagaev/emcee'
 
 group :test do
   gem 'capybara'
