@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: git://github.com/rastyagaev/emcee.git
-  revision: 1187cf0097b063cf2ee132c37e9f54ba909eaebf
+  revision: 7a95e809d77fa6e40276f499991404f79f91adda
   specs:
     emcee (1.0.5)
       nokogiri (~> 1.0)
