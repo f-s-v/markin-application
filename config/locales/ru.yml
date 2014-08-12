@@ -53,6 +53,10 @@ ru:
         forgotted_password: Восстановить пароль
   activerecord:
     attributes:
+      page:
+        slug: Идентификатор
+        title: Заголовок
+        content_blocks_attributes: Страница
       product:
         price: Стоимость
         batch: Серия
@@ -87,6 +91,7 @@ ru:
         image_style: Стиль картинки
         block_style: Тип блока
         padding: Отступ
+        stretch_height: Выравнивать высоту
         content:
           text: Текст
           image: Картинка

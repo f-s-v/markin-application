@@ -6,6 +6,7 @@ class FormtasticJsonInput < Formtastic::Inputs::StringInput
       :width,
       :block_style,
       :padding,
+      :stretch_height,
       :font_style,
       :border_style,
       :background_style,

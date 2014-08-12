@@ -17,6 +17,13 @@
         padding: 50px;
       }
 
+      :host([stretchheight]){
+        -ms-align-self: stretch;
+        -webkit-align-self: stretch;
+        align-self: stretch;
+
+      }
+
       :host([fontstyle=large]) {
         text-align: center;
       }
@@ -46,6 +53,7 @@
         publish: {
           blockstyle: {reflect: true},
           padding: {reflect: true},
+          stretchheight: {reflect: true},
           imagestyle: {reflect: true},
           fontstyle: {reflect: true},
           borderstyle: {reflect: true},
