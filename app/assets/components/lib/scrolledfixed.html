@@ -1,0 +1,45 @@
+<polymer-element name="lib-scrolledFixed" attributes="offset ref">
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('lib-scrolledFixed', {
+      offset: 0,
+      refChanged: function(){
+        this.target = this.ownerDocument.getElementById(this.ref)
+      },
+      attached: function(){
+        requestAnimationFrame(this.checkPosition.bind(this))
+        requestAnimationFrame(this.checkParentWidth.bind(this))
+      },
+
+      checkParentWidth: function(){
+        if (this.target) {
+          this.target.style.width = this.target.parentNode.clientWidth + 'px'
+        }
+
+        this.job('requestFrame', function(){
+          requestAnimationFrame(this.checkParentWidth.bind(this))
+        }.bind(this), 1000)
+      },
+
+      checkPosition: function(){
+        var top = this.target.parentNode.getBoundingClientRect().top
+        if (top < this.offset) {
+          this.target.classList.add('lib-scrollFied-fixed')
+          this.target.style.top = (this.target.clientHeight - window.innerHeight) * (top / (this.target.parentNode.clientHeight - window.innerHeight)) + 'px'
+        }
+        else {
+          this.target.classList.remove('lib-scrollFied-fixed')
+        }
+
+        requestAnimationFrame(this.checkPosition.bind(this))
+        
+      }
+    });
+  </script>
+</polymer-element>

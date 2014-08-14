@@ -1,5 +1,5 @@
-<lib-layout-cell width="4" class="lib-boxStyle-gold lib-layout-aside">
-  <lib-layout>
+<lib-layout-cell width="4" class="lib-boxStyle-gold lib-layout-aside app-store-productAside">
+  <lib-layout id="appAsideContent">
     <dl class="lib-layout-aside-content">
       <dt><%= Product.human_attribute_name :price %></dt>
       <dd>
@@ -34,4 +34,8 @@
 
     <%= render 'lib/share_buttons', url: store_product_url(resource) %>
   </lib-layout>
+
+  <lib-scrolledFixed ref="appAsideContent"></lib-scrolledFixed>
+
+
 </lib-layout-cell>

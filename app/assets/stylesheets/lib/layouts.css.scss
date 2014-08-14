@@ -7,9 +7,9 @@ this.break {
 }
 
 this.aside, html /deep/ this.aside {
-  padding-top: 0.6rem;
   align-self: stretch;
   this.aside-content {
+    padding-top: 0.6rem;
     margin: 0 0.6rem;
   }
 }

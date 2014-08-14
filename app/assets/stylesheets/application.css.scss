@@ -15,6 +15,8 @@ $settings-color-light: rgb(250, 241, 189);
 @import 'lib/forms';
 @import 'lib/media';
 @import 'lib/tables';
+@import 'lib/scrolledfixed';
 
 @import 'app/site-title';
 @import 'app/menu';
+@import 'app/store';
