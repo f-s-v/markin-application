@@ -84,10 +84,17 @@ this.large {
 }
 
 this.gold {
-  input.string, input.password, input.number, input.tel, textarea {
+  input.string, input.password, input.integer, input.tel, textarea {
     border: 1px solid $settings-color-gold;
   }
 }
+
+this.black {
+  input.string, input.password, input.integer, input.tel, textarea {
+    border: 1px solid black;
+  }
+}
+
 
 this.table {
   .input {
