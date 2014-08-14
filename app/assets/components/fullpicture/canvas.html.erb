@@ -1,5 +1,4 @@
 <!--
-  = require core-selector/core-selector
   = require fullpicture/dialog
   = require fullpicture/blockform
   = require fullpicture/contentblocks
@@ -14,13 +13,13 @@
     <fp-blockform id="form"></fp-blockform>
 
     <fp-dialog id="dialog" on-fp-dialog-close="{{close}}">
-      <core-selector selected="{{manageState}}">
+      <lib-toggleable-selector toggles selected="{{manageState}}">
         <fp-dialog-checkaction name="edit" caption="&#094;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="resize" caption="&#0112;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="move" caption="&#0045;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="add" on-click="{{onAddBlock}}" caption="&#194;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="delete" caption="&#197;"></fp-dialog-checkaction>
-      </core-selector>
+      </lib-toggleable-selector>
 
       <main id="main" managed?="{{manageState}}">
         <lib-layout modules="24" hcenter class="lib-textFormatted">

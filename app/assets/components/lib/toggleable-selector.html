@@ -1,0 +1,34 @@
+<!--
+  = require core-selector/core-selector
+-->
+
+<polymer-element name="lib-toggleable-selector" extends="core-selector" attributes="toggles">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <shadow></shadow>
+  
+  </template>
+  <script>
+    Polymer('lib-toggleable-selector', {
+      toggles: false,
+      ready: function(){
+        this.super()
+        
+        var wasSelected;
+        this.addEventListener('tap', function(){
+          wasSelected = this.selectedItem
+        })
+        this.addEventListener('core-activate', function(event){
+          if (this.toggles && event.detail.item == wasSelected) {
+            this.selected = null
+          }
+        })
+      }
+    })
+  </script>
+</polymer-element>
