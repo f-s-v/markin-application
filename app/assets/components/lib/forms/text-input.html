@@ -12,11 +12,10 @@
   </template>
   <script>
     Polymer('lib-input-text', {
-      domReady: function(){
-        // strange paper-input bug
-        // var value = this.$.input.value
-        // this.$.input.value = ''
-        // this.$.input.value = value
+      attached: function(){
+        this.job('rewrite input value', function(){
+          this.$.input.value = new String(this.$.input.value)
+        }, 100)
       }
     });
   </script>
