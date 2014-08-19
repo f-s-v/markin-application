@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812154852) do
+ActiveRecord::Schema.define(version: 20140819100354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 20140812154852) do
     t.integer  "order_number"
     t.integer  "height"
     t.boolean  "stretch_height"
+    t.text     "text"
+    t.string   "image"
+    t.text     "embed_code"
   end
 
   add_index "content_blocks", ["page_id", "page_type"], name: "index_content_blocks_on_page_id_and_page_type", using: :btree
@@ -189,6 +192,18 @@ ActiveRecord::Schema.define(version: 20140812154852) do
   end
 
   add_index "products", ["batch_id"], name: "index_products_on_batch_id", using: :btree
+
+  create_table "translations", force: true do |t|
+    t.string   "locale"
+    t.text     "text"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "key"
+  end
+
+  add_index "translations", ["owner_id", "owner_type"], name: "index_translations_on_owner_id_and_owner_type", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

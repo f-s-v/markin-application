@@ -13,6 +13,7 @@ class FormtasticJsonInput < Formtastic::Inputs::StringInput
       :image_style,
       :order_number,
       :height,
+      :text
     ]))
   end
 
@@ -23,7 +24,7 @@ class FormtasticJsonInput < Formtastic::Inputs::StringInput
       canvas_id = "fp#{sanitized_object_name.camelize}#{sanitized_method_name.camelize}Canvas"
 
       label_html <<
-      builder.text_field(method, input_html_options) <<
+      # builder.text_field(method, input_html_options) <<
       template.content_tag('fp-canvas', nil, source: canvas_source, id: canvas_id, width: input_options[:width]) <<
       template.content_tag('fp-opener', nil, canvas: canvas_id)
     end

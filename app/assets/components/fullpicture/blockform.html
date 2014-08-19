@@ -19,24 +19,17 @@
         <lib-input-radiogroup name="content_block.block_style" value="{{object.block_style}}"></lib-input-radiogroup>
         <template bind="{{object}}">
           <template if="{{block_style == 'text'}}">
-            <template bind="{{content}}">
-              <lib-input-text name="content_block.content.text" value="{{text}}"></lib-input-text>
-            </template>
+            <lib-input-text name="content_block.text" value="{{text}}"></lib-input-text>
             <lib-input-radiogroup name="content_block.font_style" value="{{font_style}}"></lib-input-radiogroup>
           </template>
           
           <template if="{{block_style == 'image'}}">
-            <template bind="{{content}}">
-              <lib-input-uploadcare name="content_block.content.image" value="{{image}}"></lib-input-uploadcare>
-            </template>
-
+            <lib-input-uploadcare name="content_block.image" value="{{image}}"></lib-input-uploadcare>
             <lib-input-radiogroup name="content_block.image_style" value="{{image_style}}"></lib-input-radiogroup>
           </template>
 
           <template if="{{block_style == 'embed'}}">
-            <template bind="{{content}}">
-              <lib-input-text name="content_block.content.code" value="{{code}}"></lib-input-text>
-            </template>
+            <lib-input-text name="content_block.embed_code" value="{{embed_code}}"></lib-input-text>
           </template>
 
           <lib-input-boolean name="content_block.padding" value="{{padding}}"></lib-input-boolean>

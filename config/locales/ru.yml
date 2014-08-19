@@ -60,6 +60,7 @@ ru:
       product:
         price: Стоимость
         batch: Серия
+        name: Название
       user:
         email: еmail
         password: пароль
@@ -92,10 +93,9 @@ ru:
         block_style: Тип блока
         padding: Отступ
         stretch_height: Выравнивать высоту
-        content:
-          text: Текст
-          image: Картинка
-          code: Код для вставки
+        text: Текст
+        image: Картинка
+        embed_code: Код для вставки
   simple_form:
     required:
       html: ''

@@ -1,13 +1,90 @@
-<polymer-element name="lib-inputdata" attributes="source data">
+<polymer-element name="lib-formdata" attributes="form path source data" hidden>
+  <template>
+  </template>
   <script>
-    Polymer("lib-inputdata", {
-      ready: function(){
-        this.element = document.getElementById(this.source)
-        window.data = this.data = JSON.parse(this.element.value)
-      },
-      dataChanged: function(){
-        this.element.value = JSON.stringify(this.data)
+    (function(){
+      var setDataValue = function(self, name, path, value){
+        if (path.length == 0) {
+          return self[name] = value
+        }
+        else {
+          var key = path[0]
+          if (self[name] == undefined) self[name] = (typeof key == 'number') ? new Array : new Object
+          return setDataValue(self[name], key, path.slice(1), value)
+        }
       }
-    })
+
+      var typecast = function(s) {
+        if (s === 't')
+          return true
+        if (s === 'f')
+          return false
+        return s
+      }
+
+      var reverseTypecast = function(s) {
+        if (s === true)
+          return 't'
+        if (s === false)
+          return 'f'
+        return s
+      }
+
+      var objectToPaths = function(object, path){
+        var concat = function(previous, current){ return previous.concat(current) }
+
+        if (path == undefined)
+          path = []
+
+        if (object instanceof Array)
+          return object.map(function(value, index){
+            return objectToPaths(value, path.concat([index]))
+          }).reduce(concat)
+
+        if (object instanceof Object && !(object instanceof String))
+          return _.pairs(object).map(function(pair){
+            return objectToPaths(pair[1], path.concat([pair[0]]))
+          }).reduce(concat)
+
+        return [[path, reverseTypecast(object)]]
+      }
+
+      var getSourceElements = function(form, path){
+        return form.querySelectorAll('input[name^="' + path + '["]')
+      }
+
+      Polymer('lib-formdata', {
+        pathChanged: function(){
+          this.source = getSourceElements(this.form, this.path)
+          this.source.array().forEach(function(input){
+            var path = input.name.
+              replace(this.path, '').
+              replace(/^\[/, '').
+              replace(/\]$/, '').
+              split('][').
+              map(function(a){ return a.search(/^\d+$/) > -1 ? parseInt(a) : a })
+            setDataValue(this, 'data', path, typecast(input.value))
+          }.bind(this))
+
+        },
+        dataChanged: function(){
+          this.source.array().forEach(function(element){
+            element.remove()
+          })
+
+          objectToPaths(this.data).forEach(function(pair){
+            var path = pair[0]
+            var value = pair[1]
+            var element = document.createElement('input')
+            element.setAttribute('name', this.path + '[' + path.join('][') + ']')
+            element.setAttribute('value', value)
+            element.setAttribute('type', 'hidden')
+            this.form.appendChild(element)
+          }.bind(this))
+
+          this.source = getSourceElements(this.form, this.path)
+        }
+      })
+    })()
   </script>
 </polymer-element>

@@ -4,7 +4,7 @@
   </figure>
   <h3>
     <%= link_to [:store, product] do %>
-      <%= product.name %>
+      <%= product.name.value %>
       <br>
       <%= number_to_currency product.price %>
     <% end %>

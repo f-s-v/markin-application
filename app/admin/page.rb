@@ -2,9 +2,9 @@ ActiveAdmin.register Page do
   filter :slug
   filter :title
 
-  before_filter only: [:create, :update] do
-    params[:page][:content_blocks_attributes] = JSON.parse(params[:page][:content_blocks_attributes])
-  end
+  # before_filter only: [:create, :update] do
+  #   params[:page][:content_blocks_attributes] = JSON.parse(params[:page][:content_blocks_attributes])
+  # end
 
   controller do
     def scoped_collection
@@ -42,6 +42,32 @@ ActiveAdmin.register Page do
       f.input :title
       f.input :content_blocks_attributes, as: :formtastic_json, width: 24
     end
+
+    f.inputs do
+      content_tag 'div', id: 'abc' do
+        f.fields_for :content_blocks do |cb_inputs|
+          # (Rails.application.config.i18n_enabled_locales.map(&:to_s) - cb_inputs.object.text.pluck(:locale)).each do |locale|
+          #   cb_inputs.object.text.build(locale: locale)
+          # end
+
+          cb_inputs.hidden_field(:width) <<
+          cb_inputs.hidden_field(:block_style) <<
+          cb_inputs.hidden_field(:padding) <<
+          cb_inputs.hidden_field(:stretch_height) <<
+          cb_inputs.hidden_field(:font_style) <<
+          cb_inputs.hidden_field(:border_style) <<
+          cb_inputs.hidden_field(:background_style) <<
+          cb_inputs.hidden_field(:image_style) <<
+          cb_inputs.hidden_field(:order_number) <<
+          cb_inputs.hidden_field(:height) <<
+          cb_inputs.hidden_field(:text)
+          # cb_inputs.fields_for(:text) do |tx_inputs|
+          #   tx_inputs.hidden_field :text
+          # end
+        end
+      end
+    end
+
     f.actions
   end
 

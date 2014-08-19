@@ -1,4 +1,4 @@
-<polymer-element name="fp-contentblock-image" attributes="content" noscript hcenter vcenter extends="lib-layout">
+<polymer-element name="fp-contentblock-image" attributes="model" noscript hcenter vcenter extends="lib-layout">
   <template>
     <style>
       img {
@@ -6,6 +6,6 @@
         overflow: hidden;
       }
     </style>
-    <img src="http://www.ucarecdn.com/{{content.image}}/-/quality/best/" />
+    <img src="http://www.ucarecdn.com/{{model.image}}/-/quality/best/" />
   </template>
 </polymer-element>

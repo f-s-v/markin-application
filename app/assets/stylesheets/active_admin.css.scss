@@ -13,3 +13,13 @@ $settings-color-light: rgb(250, 241, 189);
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+form fieldset.inputs {
+  box-shadow: none;
+}
+
+form fieldset.inputs.translated > ol > li fieldset:not(.has_many_fields) ol {
+float: none;
+width: 100%;
+padding: 0;
+}

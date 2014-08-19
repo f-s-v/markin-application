@@ -2,7 +2,7 @@ ActiveAdmin.register Product do
 
   menu parent: "Store"
 
-  filter :name
+  # filter :name
   filter :public_id, label: 'ID'
   filter :batch
   filter :price
@@ -28,7 +28,9 @@ ActiveAdmin.register Product do
       link_to product.public_id, [:admin, product]
     end
 
-    column :name
+    column :name do |product|
+      product.name.value
+    end
     column :batch
     column :price do |product|
       number_to_currency product.price
@@ -47,7 +49,9 @@ ActiveAdmin.register Product do
       row :price do
         number_to_currency product.price
       end
-      row :name
+      row :name do
+        product.name.value
+      end
       row :batch
       row :poster do
         image_tag uploadcare_url(product.poster, resize: 'x100')
@@ -63,8 +67,17 @@ ActiveAdmin.register Product do
       link href: asset_path('fullpicture-manage.html'), rel: 'import'
     end
 
+
+    f.inputs f.object.class.human_attribute_name('name'), class: 'inputs translated' do
+      (Rails.application.config.i18n_enabled_locales.map(&:to_s) - f.object.name.pluck(:locale)).each do |locale|
+        f.object.name.build(locale: locale)
+      end
+      f.inputs for: :name do |inputs|
+        inputs.input :text, as: :string, label: inputs.object.locale
+      end
+    end
+
     f.inputs do
-      f.input :name
       f.input :batch
       f.input :price
       f.input :poster, as: :formtastic_uploadcare

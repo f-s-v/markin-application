@@ -6,7 +6,9 @@
 
 <polymer-element name="fp-canvas" attributes="source open width">
   <template>
-    <lib-inputdata id="contentBlocks" source="{{source}}"></lib-inputdata>
+    <lib-parent id="containerForm" match="form"></lib-parent>
+    <lib-formdata id="contentBlocks" path="page[content_blocks_attributes]" form="{{$.containerForm.element}}">
+    </lib-formdata>
     <lib-delegator methods="open" to="{{$.dialog}}"></lib-delegator>
     <lib-throttle method="onBlockResizeX"></lib-throttle>
     <lib-throttle method="onBlockResizeY"></lib-throttle>
@@ -29,16 +31,6 @@
                 <template if="{{!block._destroy}}">
                   <fp-contentblock-managed model="{{block}}"
                     maxwidth="{{width}}"
-                    blockstyle="{{block.block_style}}"
-                    order="{{block.order_number}}"
-                    width="{{block.width}}"
-                    height="{{block.height}}"
-                    padding?="{{block.padding}}"
-                    stretchheight?="{{block.stretch_height}}"
-                    imagestyle="{{block.image_style}}"
-                    fontstyle="{{block.font_style}}"
-                    borderstyle="{{block.border_style}}"
-                    backgroundstyle="{{block.background_style}}"
                     state="{{manageState}}"
                     managed?="{{manageState}}"
                     on-block-delete="{{onBlockDelete}}"

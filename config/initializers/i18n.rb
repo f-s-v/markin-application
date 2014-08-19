@@ -1,0 +1,1 @@
+Rails.application.config.i18n_enabled_locales = [:ru, :en]

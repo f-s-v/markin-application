@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  locale: MyString
+  text: MyText
+  owner_id: 
+
+two:
+  locale: MyString
+  text: MyText
+  owner_id: 

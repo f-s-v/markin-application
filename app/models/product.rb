@@ -2,6 +2,9 @@ class Product < ActiveRecord::Base
   include Concerns::PublicId
   generates_public_id :public_id
 
+  include Concerns::Translated
+  translated :name
+
   belongs_to :batch
   has_and_belongs_to_many :options, class_name: 'Product::Characteristic::Option'
   has_and_belongs_to_many :sizes, class_name: 'Product::Size'

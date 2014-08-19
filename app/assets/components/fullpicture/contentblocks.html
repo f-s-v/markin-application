@@ -6,7 +6,7 @@
   = require fullpicture/contentblocks/manage
 -->
 
-<polymer-element name="fp-contentblock" attributes="content order" extends="lib-layout-cell">
+<polymer-element name="fp-contentblock" attributes="model order text" extends="lib-layout-cell">
   <template>
     <style>
       :host {
@@ -60,6 +60,19 @@
           backgroundstyle: {reflect: true}
         },
 
+        observe: {
+          'model.block_style': function(_, v){ this.blockstyle = v },
+          'model.order_number': function(_, v){ this.order = v },
+          'model.width': function(_, v){ this.width = v },
+          'model.height': function(_, v){ this.height = v },
+          'model.padding': function(_, v){ this.padding = v },
+          'model.stretch_height': function(_, v){ this.stretchheight = v },
+          'model.image_style': function(_, v){ this.imagestyle = v },
+          'model.font_style': function(_, v){ this.fontstyle = v },
+          'model.border_style': function(_, v){ this.borderstyle = v },
+          'model.background_style': function(_, v){ this.backgroundstyle = v }
+        },
+
         blockstyleChanged: function(_, style) {
           var content = this.querySelector('#content')
           if (content) {
@@ -67,7 +80,7 @@
           }
           if (style) {
             var element = document.createElement('fp-contentblock-' + style)
-            element.content = this.content
+            element.model = this.model
             element.id = 'content'
             this.appendChild(element)
           }
@@ -98,7 +111,7 @@
   </script>
 </polymer-element>
 
-<polymer-element name="fp-contentblock-managed" extends="fp-contentblock" attributes="state model maxwidth">
+<polymer-element name="fp-contentblock-managed" extends="fp-contentblock" attributes="state maxwidth">
   <template>
     <style>
       :host {
@@ -154,10 +167,6 @@
   <script>
     Polymer('fp-contentblock-managed', {
       maxwidth: 24,
-
-      modelChanged: function(){
-        this.content = this.model.content
-      },
 
       onDelete: function(event) {
         if (confirm('Confirm.')) {
