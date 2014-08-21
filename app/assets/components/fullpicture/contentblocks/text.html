@@ -1,5 +1,17 @@
-<polymer-element name="fp-contentblock-text" attributes="model" noscript>
+<polymer-element name="fp-contentblock-text" attributes="model">
   <template>
-    {{model.text}}
+    {{model.text_attributes | localize }}
   </template>
+  <script>
+    Polymer('fp-contentblock-text', {
+      localize: function(text){
+        if (this.model) {
+          var forLocale = this.model.text_attributes.filter(function(l){
+            return l.locale == I18n.currentLocale()
+          })[0]
+          return forLocale && forLocale.text
+        }
+      }
+    })
+  </script>
 </polymer-element>

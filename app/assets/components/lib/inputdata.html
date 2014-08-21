@@ -39,12 +39,12 @@
         if (object instanceof Array)
           return object.map(function(value, index){
             return objectToPaths(value, path.concat([index]))
-          }).reduce(concat)
+          }).reduce(concat, [])
 
         if (object instanceof Object && !(object instanceof String))
           return _.pairs(object).map(function(pair){
             return objectToPaths(pair[1], path.concat([pair[0]]))
-          }).reduce(concat)
+          }).reduce(concat, [])
 
         return [[path, reverseTypecast(object)]]
       }

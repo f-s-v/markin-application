@@ -34,7 +34,12 @@ ActiveAdmin.register Page do
 
   form do |f|
     within @head do
+      # binding.pry
       link href: asset_path('fullpicture-manage.html'), rel: 'import'
+      script raw("
+        I18n.defaultLocale = \"#{I18n.locale}\";
+        I18n.locale = I18n.defaultLocale;
+      ")
     end
 
     f.inputs do
@@ -46,9 +51,9 @@ ActiveAdmin.register Page do
     f.inputs do
       content_tag 'div', id: 'abc' do
         f.fields_for :content_blocks do |cb_inputs|
-          # (Rails.application.config.i18n_enabled_locales.map(&:to_s) - cb_inputs.object.text.pluck(:locale)).each do |locale|
-          #   cb_inputs.object.text.build(locale: locale)
-          # end
+          (Rails.application.config.i18n_enabled_locales.map(&:to_s) - cb_inputs.object.text.pluck(:locale)).each do |locale|
+            cb_inputs.object.text.build(locale: locale)
+          end
 
           cb_inputs.hidden_field(:width) <<
           cb_inputs.hidden_field(:block_style) <<
@@ -60,10 +65,11 @@ ActiveAdmin.register Page do
           cb_inputs.hidden_field(:image_style) <<
           cb_inputs.hidden_field(:order_number) <<
           cb_inputs.hidden_field(:height) <<
-          cb_inputs.hidden_field(:text)
-          # cb_inputs.fields_for(:text) do |tx_inputs|
-          #   tx_inputs.hidden_field :text
-          # end
+          # cb_inputs.hidden_field(:text)
+          cb_inputs.fields_for(:text) do |tx_inputs|
+            tx_inputs.hidden_field(:locale) <<
+            tx_inputs.hidden_field(:text)
+          end
         end
       end
     end

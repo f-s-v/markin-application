@@ -6,7 +6,7 @@
   = require fullpicture/contentblocks/manage
 -->
 
-<polymer-element name="fp-contentblock" attributes="model order text" extends="lib-layout-cell">
+<polymer-element name="fp-contentblock" attributes="model text" extends="lib-layout-cell">
   <template>
     <style>
       :host {
@@ -57,7 +57,8 @@
           imagestyle: {reflect: true},
           fontstyle: {reflect: true},
           borderstyle: {reflect: true},
-          backgroundstyle: {reflect: true}
+          backgroundstyle: {reflect: true},
+          order: {reflect: true}
         },
 
         observe: {

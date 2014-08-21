@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819100354) do
+ActiveRecord::Schema.define(version: 20140821122814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140819100354) do
     t.json     "content"
     t.integer  "width"
     t.string   "block_style"
-    t.boolean  "padding"
+    t.boolean  "padding",          default: false
     t.string   "font_style"
     t.string   "border_style"
     t.string   "background_style"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20140819100354) do
     t.datetime "updated_at"
     t.integer  "order_number"
     t.integer  "height"
-    t.boolean  "stretch_height"
+    t.boolean  "stretch_height",   default: false
     t.text     "text"
     t.string   "image"
     t.text     "embed_code"

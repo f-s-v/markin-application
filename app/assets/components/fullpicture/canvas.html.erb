@@ -58,14 +58,14 @@
         var source = data.source
         var position = data.position
         
-        source.model.order_number = destination.model.order_number + ((position == 'before') ? 0 : 1)
+        source.model.order_number = parseInt(destination.model.order_number) + ((position == 'before') ? 0 : 1)
 
         this.$.contentBlocks.data.filter(function(b){
-          return b.order_number >= source.model.order_number && b !== source.model
+          return parseInt(b.order_number) >= parseInt(source.model.order_number) && b !== source.model
         }).sort(function(a, b) {
-          return a.order_number < b.order_number ? -1 : 1
+          return parseInt(a.order_number) < parseInt(b.order_number) ? -1 : 1
         }).forEach(function(b, i){
-          b.order_number = source.model.order_number + i + 1
+          parseInt(b.order_number) = parseInt(source.model.order_number) + i + 1
         })
       },
       onBlockDelete: function(event){
