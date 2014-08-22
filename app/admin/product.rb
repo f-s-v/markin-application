@@ -10,10 +10,6 @@ ActiveAdmin.register Product do
   filter :created_at
   filter :has_sizes
 
-  before_filter only: [:create, :update] do
-    params[:product][:content_blocks_attributes] = JSON.parse(params[:product][:content_blocks_attributes])
-  end
-
   controller do
     defaults finder: :find_by_public_id!
 
@@ -65,6 +61,11 @@ ActiveAdmin.register Product do
   form do |f|
     within @head do
       link href: asset_path('fullpicture-manage.html'), rel: 'import'
+      script raw("
+        I18n.defaultLocale = #{I18n.locale.to_json};
+        I18n.locale = I18n.defaultLocale;
+        I18n.enabledLocales = #{Rails.application.config.i18n_enabled_locales.to_json};
+      ")
     end
 
 
@@ -88,6 +89,29 @@ ActiveAdmin.register Product do
     Product::Characteristic.all.each do |c|
       f.inputs c.name do
         f.input :option_ids, as: :check_boxes, collection: c.options
+      end
+    end
+
+    f.inputs do
+      f.fields_for :content_blocks do |cb_inputs|
+        (Rails.application.config.i18n_enabled_locales.map(&:to_s) - cb_inputs.object.text.pluck(:locale)).each do |locale|
+          cb_inputs.object.text.build(locale: locale)
+        end
+
+        cb_inputs.hidden_field(:width) <<
+        cb_inputs.hidden_field(:block_style) <<
+        cb_inputs.hidden_field(:padding) <<
+        cb_inputs.hidden_field(:stretch_height) <<
+        cb_inputs.hidden_field(:font_style) <<
+        cb_inputs.hidden_field(:border_style) <<
+        cb_inputs.hidden_field(:background_style) <<
+        cb_inputs.hidden_field(:image_style) <<
+        cb_inputs.hidden_field(:order_number) <<
+        cb_inputs.hidden_field(:height) <<
+        cb_inputs.fields_for(:text) do |tx_inputs|
+          tx_inputs.hidden_field(:locale) <<
+          tx_inputs.hidden_field(:text)
+        end
       end
     end
 

@@ -75,12 +75,12 @@
         event.preventDefault()
 
         var block = {
-          content: {},
           block_style: 'text',
           font_style: 'regular',
           order_number: this.$.contentBlocks.data.length + 1,
           height: 1,
-          width: 10
+          width: 10,
+          text_attributes: I18n.enabledLocales.map(function(l){ return {locale: l, text: ''} })
         }
 
         this.$.contentBlocks.data.push(block)

@@ -5,20 +5,8 @@
 
 <lib-layout-cell width="<%= width %>">
   <lib-layout>
-    <template id="pageContentBlocks" is="auto-binding" repeat="{{source}}">
-      <fp-contentblock
-        content="{{content}}"
-        blockstyle="{{block_style}}"
-        order="{{order_number}}"
-        width="{{width}}"
-        height="{{height}}"
-        padding?="{{padding}}"
-        stretchheight?="{{stretch_height}}"
-        imagestyle="{{image_style}}"
-        fontstyle="{{font_style}}"
-        borderstyle="{{border_style}}"
-        backgroundstyle="{{background_style}}">
-      </fp-contentblock>
+    <template id="pageContentBlocks" is="auto-binding" repeat="{{m in source}}">
+      <fp-contentblock model="{{m}}"></fp-contentblock>
     </template>
   </lib-layout>
 </lib-layout-cell>

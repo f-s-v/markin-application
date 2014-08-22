@@ -1,16 +1,15 @@
 <polymer-element name="fp-contentblock-text" attributes="model">
   <template>
-    {{model.text_attributes | localize }}
+    <template repeat="{{textBlock in model.text_attributes}}">
+      <template if="{{textBlock.locale == currentLocale}}">
+        {{textBlock.text}}
+      </template>
+    </template>
   </template>
   <script>
     Polymer('fp-contentblock-text', {
-      localize: function(text){
-        if (this.model) {
-          var forLocale = this.model.text_attributes.filter(function(l){
-            return l.locale == I18n.currentLocale()
-          })[0]
-          return forLocale && forLocale.text
-        }
+      created: function(){
+        this.currentLocale = I18n.currentLocale()
       }
     })
   </script>
