@@ -43,6 +43,19 @@ ActiveAdmin.setup do |config|
   #   config.namespace :admin do |admin|
   #     admin.site_title = "Custom Admin Title"
   #   end
+
+  config.namespace :admin do |admin|
+    admin.build_menu :utility_navigation do |menu|
+      menu.add label: -> { I18n.t('lib.menu.switch_lang') },
+        url: -> { url_for(locale: (Rails.application.config.i18n_enabled_locales - [I18n.locale]).first) },
+        id: 'i18n'
+      menu.add :label => proc{ display_name current_active_admin_user},
+               :url => '#',
+               :id => 'current_user',
+               :if => proc{ current_active_admin_user? }
+      admin.add_logout_button_to_menu menu
+    end
+  end
   #
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
@@ -241,5 +254,25 @@ ActiveAdmin.setup do |config|
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
+end
 
+module ActiveAdmin
+  module Views
+    module Pages
+      class Base < Arbre::HTML::Document
+        def build_active_admin_head_with_fullpicture
+          build_active_admin_head_without_fullpicture
+          within @head do
+            link href: asset_path('fullpicture-manage.html'), rel: 'import'
+            script raw("
+              I18n.defaultLocale = #{I18n.locale.to_json};
+              I18n.locale = I18n.defaultLocale;
+              I18n.enabledLocales = #{Rails.application.config.i18n_enabled_locales.to_json};
+            ")
+          end
+        end
+        alias_method_chain :build_active_admin_head, :fullpicture
+      end
+    end
+  end
 end

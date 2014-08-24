@@ -14,12 +14,13 @@ $settings-color-light: rgb(250, 241, 189);
 //
 //   .status_tag { background: #6090DB; }
 
-form fieldset.inputs {
-  box-shadow: none;
-}
-
-form fieldset.inputs.translated > ol > li fieldset:not(.has_many_fields) ol {
-float: none;
-width: 100%;
-padding: 0;
+.translated-text-input {
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
+  margin-right: 1%!important;
+  
+  li:not([class]), .has_many_remove {
+    display: none!important;
+  }
 }

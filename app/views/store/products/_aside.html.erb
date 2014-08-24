@@ -18,13 +18,13 @@
     
     <dl class="lib-layout-aside-content">
       <dt><%= Product.human_attribute_name :batch %></dt>
-      <dd><%= resource.batch.name %></dd>
+      <dd><%= resource.batch.name.value %></dd>
       <% resource.options.group_by(&:characteristic).each do |characteristic, options| %>
-        <dt><%= characteristic.name %></dt>
+        <dt><%= characteristic.name.value %></dt>
         <dd>
           <% options.each do |option| %>
             <span class="lib-buttons-small lib-buttons-whiteBorder lib-buttons-round">
-              <%= option.name %>
+              <%= option.name.value %>
             </span>
           <% end %>
         </dd>

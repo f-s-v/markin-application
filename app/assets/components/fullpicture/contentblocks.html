@@ -79,12 +79,10 @@
           if (content) {
             content.remove()
           }
-          if (style) {
-            var element = document.createElement('fp-contentblock-' + style)
-            element.model = this.model
-            element.id = 'content'
-            this.appendChild(element)
-          }
+          var element = document.createElement('fp-contentblock-' + style)
+          element.model = this.model
+          element.id = 'content'
+          this.appendChild(element)
         },
 
         fontstyleChanged: function(oldval, newval){

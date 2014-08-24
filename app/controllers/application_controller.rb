@@ -4,11 +4,31 @@ class ApplicationController < ActionController::Base
   include Store::Concerns::CurrentOrder
   before_filter :setup_current_order
 
+  before_filter :set_application_locale
+  before_filter :set_url_locale
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  def default_url_options(options={})
+    { :locale => I18n.locale }
+  end
+
   protected
+
+  def set_application_locale
+    if params[:locale].present?
+      cookies[:locale] = I18n.locale = params[:locale]
+    else
+      redirect_to url_for(locale: cookies[:locale].presence || I18n.default_locale), status: :moved_permanently
+    end
+  end
+
+  def set_url_locale
+    Rails.application.config.action_controller.default_url_options ||= {}
+    Rails.application.config.action_controller.default_url_options[:locale] = I18n.locale
+  end
 
   def raise_not_found
     raise ActionController::RoutingError.new("Not Found")

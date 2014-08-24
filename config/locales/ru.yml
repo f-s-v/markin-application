@@ -4,9 +4,7 @@ ru:
       store: Магазин
       our_story: История
       client_care: Client care
-      switch_lang:
-        ru: English
-        en: По-русски
+      switch_lang: English
       contacts: Адрес
       cart: Корзина
     share_buttons:
@@ -16,6 +14,8 @@ ru:
       batch: "Серия “%{batch}”"
   store:
     orders:
+      edit:
+        title: Корзина
       show:
         checkout: Оплатить
         edit_order: Изменить заказ

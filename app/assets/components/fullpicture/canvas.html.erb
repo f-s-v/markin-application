@@ -4,10 +4,10 @@
   = require fullpicture/contentblocks
 -->
 
-<polymer-element name="fp-canvas" attributes="source open width">
+<polymer-element name="fp-canvas" attributes="source open width owner">
   <template>
     <lib-parent id="containerForm" match="form"></lib-parent>
-    <lib-formdata id="contentBlocks" path="page[content_blocks_attributes]" form="{{$.containerForm.element}}">
+    <lib-formdata id="contentBlocks" path="{{owner}}[content_blocks_attributes]" form="{{$.containerForm.element}}">
     </lib-formdata>
     <lib-delegator methods="open" to="{{$.dialog}}"></lib-delegator>
     <lib-throttle method="onBlockResizeX"></lib-throttle>

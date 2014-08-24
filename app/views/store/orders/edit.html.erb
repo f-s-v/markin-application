@@ -1,6 +1,8 @@
 <lib-layout class="lib-boxStyle" hcenter>
   <lib-layout-cell width="20">
-    <h1 class="lib-contentBlock-padding">Корзина</h1>
+    <h1 class="lib-contentBlock-padding">
+      <%= t('.title') %>
+    </h1>
     <%= simple_form_for current_order, url: store_order_path, html: {class: expand_class('lib', form: 'black large table')} do |form| %>
       <fieldset>
         <table>

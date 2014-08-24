@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821122814) do
+ActiveRecord::Schema.define(version: 20140824152126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20140821122814) do
     t.integer  "order_number"
     t.integer  "height"
     t.boolean  "stretch_height",   default: false
-    t.text     "text"
     t.string   "image"
     t.text     "embed_code"
   end
@@ -70,12 +69,6 @@ ActiveRecord::Schema.define(version: 20140821122814) do
 
   add_index "countries_order_delivery_zones", ["country_id"], name: "index_countries_order_delivery_zones_on_country_id", using: :btree
   add_index "countries_order_delivery_zones", ["delivery_zone_id"], name: "index_countries_order_delivery_zones_on_delivery_zone_id", using: :btree
-
-  create_table "dummies", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "messages", force: true do |t|
     t.integer  "receiver_id"
@@ -154,7 +147,6 @@ ActiveRecord::Schema.define(version: 20140821122814) do
   end
 
   create_table "product_batches", force: true do |t|
-    t.string   "name"
     t.string   "poster"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -162,7 +154,6 @@ ActiveRecord::Schema.define(version: 20140821122814) do
 
   create_table "product_characteristic_options", force: true do |t|
     t.integer  "characteristic_id"
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -175,7 +166,6 @@ ActiveRecord::Schema.define(version: 20140821122814) do
   end
 
   create_table "product_characteristics", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

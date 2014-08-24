@@ -15,4 +15,5 @@
 //= require lodash/dist/lodash
 //= require underscore.string/dist/underscore.string.min
 //= require requestAnimationFrame-polyfill/requestAnimationFrame
+//= require i18n/translations
 //= require platform/platform

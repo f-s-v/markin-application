@@ -1,3 +1,8 @@
 class Product::Batch < ActiveRecord::Base
-  validates :name, presence: true
+  include Concerns::Translated
+  translated :name
+
+  def to_s
+    name.value
+  end
 end
