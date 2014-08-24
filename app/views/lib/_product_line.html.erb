@@ -6,8 +6,8 @@
   
 <h4>
   <%= link_to [:store, product], target: '_blank' do %>
-    <%= product.name %>
+    <%= product.name.value %>
   <% end %>
 </h4>
 
-<%= t('.batch', batch: product.batch.name) %>
+<%= t('.batch', batch: product.batch.name.value) %>

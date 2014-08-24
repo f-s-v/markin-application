@@ -11,6 +11,7 @@
     <style>
       :host {
         order: {{order}};
+        display: flex;
       }
 
       :host([padding]){
@@ -49,6 +50,9 @@
     (function(){
       Polymer('fp-contentblock', {
         order: 0,
+
+        vcenter: true,
+        hcenter: true,
 
         publish: {
           blockstyle: {reflect: true},
@@ -114,7 +118,6 @@
   <template>
     <style>
       :host {
-        display: block;
         position: relative;
         transition: flex-basis 0.1s linear,
           margin 0.1s linear,

@@ -47,7 +47,9 @@ ActiveAdmin.register Order do
     h3 "Items"
     table_for order.items do
       column :product do |item|
-        link_to item.product.name, [:admin, item.product]
+        link_to [:admin, item.product] do
+          item.product.name.value
+        end
       end
       column :amount
       column :size

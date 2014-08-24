@@ -33,8 +33,8 @@ class Order::Payment < ActiveRecord::Base
       },
       items: order.items.map do |i|
         {
-          name: i.product.name,
-          description: i.product.batch.name,
+          name: i.product.name.value,
+          description: i.product.batch.name.value,
           quantity: i.amount,
           amount: i.price * 100
         }
