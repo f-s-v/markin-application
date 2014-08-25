@@ -1,4 +1,8 @@
 ru:
+  locale:
+    en: По-английски
+    ru: По-русски
+
   lib:
     menu:
       store: Магазин
@@ -56,11 +60,12 @@ ru:
       page:
         slug: Идентификатор
         title: Заголовок
-        content_blocks_attributes: Страница
+        content_blocks: Страница
       product:
         price: Стоимость
         batch: Серия
         name: Название
+        content_blocks: Страница
       user:
         email: еmail
         password: пароль
@@ -111,6 +116,11 @@ ru:
     back_to_store: Вернуться в магазин
     save: Сохранить
     close: Закрыть
+    edit: Редактировать
+    resize: Изменить размер
+    move: Передвинуть
+    add: Добавить
+    delete: Удалить
   helpers:
     submit:
       order:

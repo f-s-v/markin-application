@@ -60,10 +60,12 @@ en:
         slug: ID
         title: Title
         content_blocks_attributes: Page blocks
+        content_blocks: Page blocks
       product:
         price: Price
         batch: Series
         name: Name
+        content_blocks: Page blocks
       user:
         email: Email
         password: Pasword
@@ -114,6 +116,11 @@ en:
     back_to_store: Back to store
     save: Save
     close: Close
+    edit: Edit
+    resize: Resize
+    move: Move
+    add: Add
+    delete: Delete
   helpers:
     submit:
       order:

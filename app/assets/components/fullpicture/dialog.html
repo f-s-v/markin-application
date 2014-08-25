@@ -12,7 +12,8 @@
 
 <polymer-element name="fp-dialog-checkaction" attributes="active caption name">
   <template>
-    <label for="checkbox" class="lib-textStyle-websymbol fp-canvas-action" active?="{{active}}">
+    <label for="checkbox" class="lib-textStyle-websymbol fp-canvas-action"
+      active?="{{active}}" title="{{name | t}}">
       <input type="checkbox" class="lib-buttons-reset" checked="{{active}}" id="checkbox">
       <template id="caption">{{caption}}</template>
       <template id="content"><content></content></template>
@@ -31,6 +32,9 @@
             this.parentNode.selected = null
           }
         }.bind(this))
+      },
+      t: function(key) {
+        return I18n.t("actions." + key)
       }
     })
   </script>

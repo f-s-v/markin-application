@@ -65,7 +65,7 @@
         }).sort(function(a, b) {
           return parseInt(a.order_number) < parseInt(b.order_number) ? -1 : 1
         }).forEach(function(b, i){
-          parseInt(b.order_number) = parseInt(source.model.order_number) + i + 1
+          b.order_number = parseInt(source.model.order_number) + i + 1
         })
       },
       onBlockDelete: function(event){
@@ -77,7 +77,7 @@
         var block = {
           block_style: 'text',
           font_style: 'regular',
-          order_number: this.$.contentBlocks.data.length + 1,
+          order_number: this.$.contentBlocks.data.length,
           height: 1,
           width: 10,
           text_attributes: I18n.enabledLocales.map(function(l){ return {locale: l, text: ''} })

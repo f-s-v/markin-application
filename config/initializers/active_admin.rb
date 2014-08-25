@@ -49,10 +49,6 @@ ActiveAdmin.setup do |config|
       menu.add label: -> { I18n.t('lib.menu.switch_lang') },
         url: -> { url_for(locale: (Rails.application.config.i18n_enabled_locales - [I18n.locale]).first) },
         id: 'i18n'
-      menu.add :label => proc{ display_name current_active_admin_user},
-               :url => '#',
-               :id => 'current_user',
-               :if => proc{ current_active_admin_user? }
       admin.add_logout_button_to_menu menu
     end
   end
