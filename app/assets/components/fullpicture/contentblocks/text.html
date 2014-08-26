@@ -1,8 +1,28 @@
+<!-- taken from http://robdodson.me/mark-down -->
+<polymer-element name="mark-down" attributes="text">
+  <template>
+    <div id="markdown" class="lib-textFormatted"></div>
+  </template>
+  <script>
+    Polymer("mark-down", {
+      textChanged: function() {
+        this.$.markdown.innerHTML = marked(this.text);
+      }
+    });
+  </script>
+</polymer-element>
+
 <polymer-element name="fp-contentblock-text" attributes="model">
   <template>
+    <style>
+      :host {
+        display: block;
+        width: 100%;
+      }
+    </style>
     <template repeat="{{textBlock in model.text_attributes}}">
       <template if="{{textBlock.locale == currentLocale}}">
-        {{textBlock.text}}
+        <mark-down text="{{textBlock.text}}"></mark-down>
       </template>
     </template>
   </template>

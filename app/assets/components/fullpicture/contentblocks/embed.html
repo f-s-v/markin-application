@@ -1,5 +1,11 @@
 <polymer-element name="fp-contentblock-embed" attributes="model" noscript>
   <template>
+    <style>
+      :host {
+        display: block;
+        width: 100%;
+      }
+    </style>
     <div class="lib-embed-iframeWrapper">
       <lib-rawhtml html="{{model.embed_code}}"></lib-rawhtml>
     </div>

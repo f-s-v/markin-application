@@ -1,6 +1,6 @@
 .lib-textFormatted, body /deep/ .lib-textFormatted {
   @extend .lib-textStyle-regular;
-  color: black;
+  // color: black;
 
   p {
     margin-bottom: 1.2em;
@@ -17,6 +17,11 @@
   figure.inline {
     float: left;
     margin-right: 0.6em;
+  }
+
+  h1, h2, h3 {
+    margin: 0;
+    font-weight: normal;
   }
 
   h1 {

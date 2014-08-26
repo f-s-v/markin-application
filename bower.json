@@ -32,6 +32,7 @@
     "paper-radio-group": "Polymer/paper-radio-group#~0.3.4",
     "core-ajax": "Polymer/core-ajax#~0.3.5",
     "core-style": "Polymer/core-style#~0.3.5",
-    "requestAnimationFrame-polyfill": "*"
+    "requestAnimationFrame-polyfill": "*",
+    "mark-down": "~0.6.0"
   }
 }

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require lodash/dist/lodash
 //= require underscore.string/dist/underscore.string.min
+//= require marked/lib/marked
 //= require requestAnimationFrame-polyfill/requestAnimationFrame
 //= require i18n/translations
 //= require platform/platform
