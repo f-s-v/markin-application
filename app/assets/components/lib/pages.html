@@ -1,0 +1,31 @@
+<!--
+  = require core-selector/core-selector
+-->
+
+<polymer-element name="lib-pages" selected="0" extends="core-selector">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      
+      polyfill-next-selector { content: ':host > *'; }
+      ::content > * {
+        position: absolute;
+        top: -1000cm;
+      }
+
+      polyfill-next-selector { content: ':host > .core-selected'; }
+      ::content > .core-selected {
+        position: static;
+      }
+    </style>
+    <shadow></shadow>
+  </template>
+  <script>
+    Polymer('lib-pages', {
+      
+    });
+  </script>
+</polymer-element>
+

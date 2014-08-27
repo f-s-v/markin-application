@@ -1,0 +1,19 @@
+<polymer-element name="lib-range" attributes="stop collection">
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('lib-range', {
+      created: function(){
+        this.collection = []
+      },
+      stopChanged: function(){
+        this.collection = _.range(this.stop)
+      }
+    });
+  </script>
+</polymer-element>

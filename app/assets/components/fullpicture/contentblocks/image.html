@@ -1,11 +1,70 @@
-<polymer-element name="fp-contentblock-image" attributes="model" noscript hcenter vcenter extends="lib-layout">
+<polymer-element name="fp-contentblock-image" attributes="model" hcenter vcenter extends="lib-layout">
   <template>
     <style>
+      :host {
+        position: relative;
+      }
+      
+      .selector {
+        position: absolute;
+        top: 50%;
+        padding: 0;
+        margin: 0;
+        background: rgb(245, 226, 123);
+        color: black;
+        border: 0;
+        font: inherit;
+        font-size: 24px;
+        cursor: pointer;
+        height: 36px;
+        width: 36px;
+        line-height: 36px;
+        text-align: center;
+        outline: 0;
+        margin-top: -18px;
+      }
+
+      .selector.next {
+        right: 0;
+      }
+      .selector.previous {
+        left: 0;
+      }
+
       img {
         max-width: 100%;
         overflow: hidden;
+        float: left;
       }
     </style>
-    <img src="http://www.ucarecdn.com/{{model.image}}/-/quality/best/" />
+    <lib-range id="range" stop="{{count}}"></lib-range>
+    <lib-pages id="pages" selected="0">
+      <template repeat="{{index in $.range.collection}}">
+        <img src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/-/quality/best/"/>
+      </template>
+    </lib-pages>
+    <template if="{{count > 1}}">
+      <button class="selector previous" on-click="{{selectPrevious}}">&larr;</button>
+      <button class="selector next" on-click="{{selectNext}}">&rarr;</button>
+    </template>
   </template>
+
+  <script>
+    Polymer('fp-contentblock-image', {
+      observe: {
+        count: 0,
+        'model.image': function(){
+          var params = this.model.image.split('~')
+          this.count = (params.length == 2) ? params[1] : 0
+        }
+      },
+      selectNext: function(){
+        this.$.pages.selected = (this.$.pages.selectedIndex == this.count - 1) ? 0 : (this.$.pages.selectedIndex + 1)
+      },
+      selectPrevious: function(){
+        this.$.pages.selected = (this.$.pages.selectedIndex == 0) ? this.count - 1 : this.$.pages.selectedIndex - 1
+      }
+
+    })
+  </script>
 </polymer-element>
