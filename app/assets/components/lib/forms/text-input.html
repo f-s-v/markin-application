@@ -1,17 +1,23 @@
-<polymer-element name="lib-input-text" extends="lib-input">
+<polymer-element name="lib-input-text" extends="lib-input" attributes="floatingLabel">
   <template>
     <style>
       :host /deep/ #inputContainer {
         position: relative;
         overflow: hidden;
       }
+
+      lib-input-hint {
+        margin-top: -24px;
+      }
     </style>
     <lib-input-wrapper>
-      <paper-input id="input" multiline maxRows="5" label="{{label()}}" value="{{value}}"></paper-input>
+      <paper-input id="input" multiline maxRows="5" label="{{label()}}" value="{{value}}" floatingLabel="{{floatingLabel}}"></paper-input>
+      <lib-input-hint text="{{hint()}}"></lib-input-hint>
     </lib-input-wrapper>
   </template>
   <script>
     Polymer('lib-input-text', {
+      floatingLabel: false,
       attached: function(){
         this.job('rewrite input value', function(){
           this.$.input.value = new String(this.$.input.value)

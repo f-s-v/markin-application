@@ -12,43 +12,57 @@
       :host paper-dialog {
         /*z-index: 1100;*/
       }
+
+      paper-dialog .hint {
+        width: 50%;
+        position: relative;
+        top: -18px;
+        font-style: italic;
+      }
     </style>
 
     <paper-dialog id="dialog" heading="{{'manage.content_blocks.editing' | t}}" autoCloseDisabled layered on-core-overlay-open="{{onPaperDialogOpen}}">
       <form>
         <lib-input-radiogroup name="content_block.block_style" value="{{object.block_style}}"></lib-input-radiogroup>
-        <template bind="{{object}}">
-          <template if="{{block_style == 'text'}}">
-            <template repeat="{{text in text_attributes}}">
-              <p>{{text.locale}}</p>
-              <lib-input-text name="content_block.text" value="{{text.text}}"></lib-input-text>
+
+        <template if="{{object.block_style == 'text'}}">
+          <label>{{'activerecord.attributes.content_block.text' | t}}</label><br>
+          <lib-layout modules="2">
+            <template repeat="{{text in object.text_attributes}}">
+              <lib-layout-cell width="1">
+                <lib-input-text name="{{'content_block.text_attributes.' + text.locale}}"
+                  value="{{text.text}}"
+                  labelText="{{'locale.' + text.locale | t}}"
+                  floatingLabel="true">
+                </lib-input-text>
+              </lib-layout-cell>
             </template>
-            <!-- <lib-input-radiogroup name="content_block.font_style" value="{{font_style}}"></lib-input-radiogroup> -->
-          </template>
-          
-          <template if="{{block_style == 'image'}}">
-            <lib-input-uploadcare name="content_block.image" value="{{image}}"></lib-input-uploadcare>
-          </template>
-
-          <template if="{{block_style == 'embed'}}">
-            <lib-input-text name="content_block.embed_code" value="{{embed_code}}"></lib-input-text>
-          </template>
-
-          <lib-input-boolean name="content_block.padding" value="{{padding}}"></lib-input-boolean>
-
-          <lib-input-boolean name="content_block.stretch_height" value="{{stretch_height}}"></lib-input-boolean>
-          
-          <lib-input-radiogroup name="content_block.border_style" value="{{border_style}}"></lib-input-radiogroup>
-          
-          <lib-input-radiogroup name="content_block.background_style" value="{{background_style}}"></lib-input-radiogroup>
+          </lib-layout>
         </template>
+
+        <template if="{{object.block_style == 'image'}}">
+          <lib-input-uploadcare name="content_block.image" value="{{object.image}}"></lib-input-uploadcare>
+        </template>
+
+        <template if="{{object.block_style == 'embed'}}">
+          <lib-input-text name="content_block.embed_code" value="{{object.embed_code}}" floatingLabel="true"></lib-input-text>
+        </template>
+
+        <lib-input-boolean name="content_block.padding" value="{{object.padding}}"></lib-input-boolean>
+
+        <lib-input-boolean name="content_block.stretch_height" value="{{object.stretch_height}}"></lib-input-boolean>
+        
+        <lib-input-radiogroup name="content_block.border_style" value="{{object.border_style}}"></lib-input-radiogroup>
+        
+        <lib-input-radiogroup name="content_block.background_style" value="{{object.background_style}}"></lib-input-radiogroup>
+
       </form>
       <paper-button label="{{'actions.close' | t }}" affirmative></paper-button>
       
     </paper-dialog>
   </template>
   <script>
-    Polymer('fp-blockform', {
+    Polymer('fp-blockform', _.extend({
       created: function(){
         if (!this.object)
           this.object = {}
@@ -69,14 +83,10 @@
         this.fire('fp-blockform-close')
       },
 
-      t: function(key) {
-        return I18n.t(key)
-      },
-
       onPaperDialogOpen: function(event, opened){
         if (opened != true) // the `!=` is important
           this.close()
       }
-    });
+    }, lib.I18n));
   </script>
 </polymer-element>

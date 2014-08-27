@@ -55,6 +55,14 @@ en:
         sign_up: Sign up
         forgotted_password: Password recovery
   activerecord:
+    hints:
+      content_block:
+        stretch_height: Align height to the highest element in line.
+        text_attributes:
+          en: |-
+            (Formatting rules) Separate paragraphs by an empty line.
+            Insert # symbol for header level 1
+            and two ## symbols for header level 2 at the start of paragraph.
     attributes:
       page:
         slug: ID

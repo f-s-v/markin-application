@@ -2,6 +2,7 @@
   <template>
     <lib-input-wrapper>
       <paper-checkbox on-change="{{fixCheckboxChecked}}" label="{{label()}}" checked?="{{value}}"></paper-checkbox>
+      <lib-input-hint text="{{hint()}}"></lib-input-hint>
     </lib-input-wrapper>
   </template>
   <script>

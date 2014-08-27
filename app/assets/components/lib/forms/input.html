@@ -6,13 +6,30 @@
   </template>
 </polymer-element>
 
-<polymer-element name="lib-input" attributes="name value">
+<polymer-element name="lib-input-hint" attributes="text" noscript>
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 50%;
+      }
+    </style>
+    <p>
+      <small>{{text}}</small>
+    </p>
+  </template>
+</polymer-element>
+
+<polymer-element name="lib-input" attributes="name value labelText hintText">
   <template>
   </template>
   <script>
     Polymer('lib-input', {
       label: function(){
-        return I18n.t('activerecord.attributes.' + this.name)
+        return this.labelText || I18n.t('activerecord.attributes.' + this.name)
+      },
+      hint: function(){
+        return this.hintText || I18n.t('activerecord.hints.' + this.name, {defaultValue: ''})
       }
     });
   </script>
