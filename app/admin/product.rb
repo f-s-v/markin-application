@@ -62,6 +62,7 @@ ActiveAdmin.register Product do
     f.inputs do
       f.input :name, as: :formtastic_translated_text
       f.input :content_blocks, as: :formtastic_content_blocks, width: 20
+      f.input :copy_content_blocks_from
       f.input :batch, member_label: :to_s
       f.input :price
       f.input :poster, as: :formtastic_uploadcare

@@ -75,6 +75,7 @@ ru:
         batch: Серия
         name: Название
         content_blocks: Страница
+        copy_content_blocks_from: Скопировать страницу с адреса
       user:
         email: еmail
         password: пароль

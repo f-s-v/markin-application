@@ -54,6 +54,9 @@
       }
 
       Polymer('lib-formdata', {
+        created: function(){
+          this.data = []
+        },
         pathChanged: function(){
           this.source = getSourceElements(this.form, this.path)
           this.source.array().forEach(function(input){

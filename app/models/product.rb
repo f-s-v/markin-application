@@ -5,13 +5,11 @@ class Product < ActiveRecord::Base
   include Concerns::Translated
   translated :name
 
+  include Concerns::ContentBlocks
+
   belongs_to :batch
   has_and_belongs_to_many :options, class_name: 'Product::Characteristic::Option'
-  has_and_belongs_to_many :sizes, class_name: 'Product::Size'
-
-  has_many :content_blocks, as: :page
-  accepts_nested_attributes_for :content_blocks, allow_destroy: true
-
+  # has_and_belongs_to_many :sizes, class_name: 'Product::Size'
   validates :name, :price, :poster, :batch, presence: true
 
   def to_param

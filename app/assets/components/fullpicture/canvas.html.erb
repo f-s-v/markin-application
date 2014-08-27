@@ -90,7 +90,8 @@
         var blocks = this.$.main.querySelectorAll('fp-contentblock-managed').array().sort(function(x, y){
           return x.model.order_number - y.model.order_number
         })
-        blocks[blocks.length - 1].scrollIntoView()
+        if (blocks.length)
+          blocks[blocks.length - 1].scrollIntoView()
 
         this.$.form.object = block
         this.$.form.open()

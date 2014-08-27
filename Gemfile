@@ -38,6 +38,7 @@ gem "rails-sass-images"
 gem "autoprefixer-rails"
 gem 'emcee', github: 'rastyagaev/emcee'
 # gem 'emcee', path: '/Users/oktoberliner/Temporary/emcee'
+gem 'deep_cloneable', '~> 2.0.0'
 
 group :test do
   gem 'capybara'
