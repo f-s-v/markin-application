@@ -1,6 +1,5 @@
 ActiveAdmin.register Page do
   filter :slug
-  filter :title
 
   controller do
     def scoped_collection
@@ -17,21 +16,25 @@ ActiveAdmin.register Page do
     column :slug do |c|
       link_to c.slug, [:admin, c]
     end
-    column :title
+    column :title do |c|
+      c.title.value
+    end
     actions
   end
 
   show do
     attributes_table_for page do
       row :slug
-      row :title
+      row :title do
+        page.title.value
+      end
     end
   end
 
   form do |f|
     f.inputs do
       f.input :slug
-      f.input :title
+      f.input :title, as: :formtastic_translated_text
       f.input :content_blocks, as: :formtastic_content_blocks, width: 24
     end
 

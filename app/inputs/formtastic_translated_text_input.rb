@@ -1,9 +1,9 @@
 class FormtasticTranslatedTextInput < Formtastic::Inputs::StringInput
   def to_html
     (
-      Rails.application.config.i18n_enabled_locales.map(&:to_s) - object.name.pluck(:locale)
+      Rails.application.config.i18n_enabled_locales.map(&:to_s) - object.send(attributized_method_name).pluck(:locale)
     ).each do |locale|
-      object.name.build(locale: locale)
+      object.send(attributized_method_name).build(locale: locale)
     end
 
     builder.has_many attributized_method_name,
