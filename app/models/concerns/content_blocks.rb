@@ -17,17 +17,14 @@ module Concerns
 
       resource = if self.class == Product && params[:controller] == 'store/products' && params[:action] == 'show'
         Product.where(public_id: params[:id]).first
+      elsif self.class == Page && params[:controller] == 'Pages' && params[:action] == 'show'
+        Page.where(slug: params[:id]).first
       end
+      
       return unless resource.present?
 
       self.content_blocks.destroy_all
       self.content_blocks << resource.content_blocks.map{|b| b.deep_clone include: :text}
-      # resource.content_blocks.each do |block|
-      #   duplicate = block.dup
-      #   duplicate.text << block.text.map(&:dup)
-      #   duplicate.page = self
-      #   duplicate.save
-      # end
     end 
   end
 end

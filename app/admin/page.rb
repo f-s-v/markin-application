@@ -36,6 +36,7 @@ ActiveAdmin.register Page do
       f.input :slug
       f.input :title, as: :formtastic_translated_text
       f.input :content_blocks, as: :formtastic_content_blocks, width: 24
+      f.input :copy_content_blocks_from
     end
 
     f.actions
