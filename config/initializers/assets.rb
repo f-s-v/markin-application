@@ -5,6 +5,7 @@ Rails.application.config.instance_eval do |config|
     'active_admin.css', 'active_admin.js',
     'fullpicture.html',
     'fullpicture-manage.html',
+    'app.html'
   ]
 
   config.assets.paths << "#{Rails.root}/app/assets/fonts"

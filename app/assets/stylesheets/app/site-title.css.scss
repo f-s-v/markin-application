@@ -6,3 +6,38 @@
     height: 55px;
   }
 }
+
+.app-siteTitleTiny {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
+
+.add-header {
+  height: 218px;
+}
+
+.app-stickyHeader {
+  .app-siteTitle {
+    display: none;
+  }
+
+  .app-siteTitleTiny {
+    display: block;
+    position: fixed; 
+    top: 0px;
+    left: 0;
+    z-index: 1;
+  }
+
+  .add-header {
+    height: 58;
+  }
+
+  .app-menu {
+    position: fixed; 
+    top: 58px;
+    left: 0;
+    z-index: 1;
+  }
+}

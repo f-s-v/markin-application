@@ -1,0 +1,18 @@
+<!--
+  = require lib/scrollwatch
+-->
+<polymer-element name="app-stickyHeader" extends="lib-layout">
+  <template>
+    <lib-scrollWatch target="{{parentNode}}" offset="-100" on-scroll-enter="{{stuck}}" on-scroll-leave="{{unstuck}}"></lib-scrollWatch>
+  </template>
+  <script>
+    Polymer('app-stickyHeader', {
+      stuck: function(){
+        this.parentNode.classList.add('app-stickyHeader')
+      },
+      unstuck: function(){
+        this.parentNode.classList.remove('app-stickyHeader')
+      }
+    });
+  </script>
+</polymer-element>

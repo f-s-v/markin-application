@@ -1,0 +1,24 @@
+<polymer-element name="lib-scrollwatch" attributes="offset target">
+  <template>
+  </template>
+  <script>
+    Polymer('lib-scrollwatch',{
+      wasEntered: false,
+      attached: function(){
+        requestAnimationFrame(this.checkPosition.bind(this))
+      },
+      checkPosition: function(){
+        var top = this.target.getBoundingClientRect().top
+        if (top < this.offset) {
+          if (!this.wasEntered) this.fire('scroll-enter');
+          this.wasEntered = true
+        }
+        else {
+          if (this.wasEntered) this.fire('scroll-leave');
+          this.wasEntered = false
+        }
+        requestAnimationFrame(this.checkPosition.bind(this))
+      }
+    });
+  </script>
+</polymer-element>
