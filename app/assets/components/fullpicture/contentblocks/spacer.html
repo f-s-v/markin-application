@@ -1,4 +1,22 @@
-<polymer-element name="fp-contentblock-spacer" noscript>
+<polymer-element name="fp-contentblock-spacer">
   <template>
+    <style>
+      :host(hidden) {
+        display: none;
+      }
+    </style>
+    <core-media-query query="max-width: 640px" queryMatches="{{phoneScreen}}"></core-media-query>
+    <lib-parent match="lib-layout" id="layout"></lib-parent>
+    <lib-parent match="fp-contentblock, fp-contentblock-managed" id="cell"></lib-parent>
   </template>
+  <script>
+    Polymer({
+      publish: {
+        hidden: {default: false, reflect: true}
+      },
+      phoneScreenChanged: function(){
+        this.$.cell.element.hidden = this.phoneScreen && this.$.cell.element.width < (this.$.layout.element.modules || this.$.layout.element.parentModules)
+      }
+    })
+  </script>
 </polymer-element>

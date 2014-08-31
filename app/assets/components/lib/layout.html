@@ -1,4 +1,5 @@
 <!--
+  = require core-media-query/core-media-query
   = require core-style/core-style
 -->
 
@@ -134,22 +135,31 @@
     },
 
     flexBasisStyleChanged: function(){
-      this.style.removeProperty('-ms-flex-basis')
-      this.style.removeProperty('-webkit-flex-basis')
-      this.style.removeProperty('flex-basis')
-      if (
-        this.width &&
-        this.$.layout.element &&
-        (this.$.layout.element.parentModules || this.$.layout.element.modules)
-      ) {
-        var width = this.width
-        var modules = this.$.layout.element.parentModules || this.$.layout.element.modules
+      if (this.isDimensionsCanSet()) this.setWidth(this.width)
+    },
 
-        this.style.setProperty('-ms-flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
-        this.style.setProperty('-webkit-flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
-        this.style.setProperty('flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
+    phoneScreenChanged: function(){
+      if (this.isDimensionsCanSet()) {
+        if (this.phoneScreen) {
+          this.setWidth(this.$.layout.element.parentModules || this.$.layout.element.modules)
+        }
+        else {
+          this.setWidth(this.width)
+        }
       }
+    },
+
+    isDimensionsCanSet: function(){
+      return this.width && this.$.layout.element && (this.$.layout.element.parentModules || this.$.layout.element.modules)
+    },
+
+    setWidth: function(width){
+      var modules = this.$.layout.element.parentModules || this.$.layout.element.modules
+      this.style.setProperty('-ms-flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
+      this.style.setProperty('-webkit-flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
+      this.style.setProperty('flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
     }
+
   }
 </script>
 
@@ -157,6 +167,7 @@
   <template>
     <core-style ref="libLayoutCellStyle"></core-style>
     <lib-parent match="lib-layout" id="layout"></lib-parent>
+    <core-media-query query="max-width: 640px" queryMatches="{{phoneScreen}}"></core-media-query>
     <content></content>
   </template>
   <script>
@@ -168,6 +179,7 @@
   <template>
     <core-style ref="libLayoutCellStyle"></core-style>
     <lib-parent match="lib-layout" id="layout"></lib-parent>
+    <core-media-query query="max-width: 640px" queryMatches="{{phoneScreen}}"></core-media-query>
     <content></content>
   </template>
   <script>
