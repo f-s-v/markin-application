@@ -11,9 +11,6 @@
   </template>
   <script>
     Polymer({
-      publish: {
-        hidden: {default: false, reflect: true}
-      },
       phoneScreenChanged: function(){
         this.$.cell.element.hidden = this.phoneScreen && this.$.cell.element.width < (this.$.layout.element.modules || this.$.layout.element.parentModules)
       }
