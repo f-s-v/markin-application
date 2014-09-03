@@ -40,7 +40,7 @@
     <lib-range id="range" stop="{{count}}"></lib-range>
     <lib-pages id="pages" selected="0">
       <template repeat="{{index in $.range.collection}}">
-        <img src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/-/quality/best/"/>
+        <img src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/"/>
       </template>
     </lib-pages>
     <template if="{{count > 1}}">
