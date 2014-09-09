@@ -24,7 +24,7 @@ class PaymentsFlowTest < ActionDispatch::IntegrationTest
     end
     fill_in 'cvv2_number', with: ENV['MARKIN_PAYPAL_TEST_US_CARD_SECRET']
     click_on 'submitBilling'
-    sleep(5)
+    sleep(10)
     sign_in(users(:customer))
     assert_equal Order::Payment.last.state, 'paid'
   end
@@ -39,7 +39,7 @@ class PaymentsFlowTest < ActionDispatch::IntegrationTest
       fill_in 'H_PhoneNumberUS', with: orders(:us_customer).shipping_info.phone_number
     end
     click_on 'submitBilling'
-    sleep(5)
+    sleep(10)
     sign_in(users(:customer))
     assert_equal Order::Payment.last.state, 'failed'
   end

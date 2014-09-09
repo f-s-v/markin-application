@@ -1,21 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Product 1
   batch: one
   price: 9.99
   poster: none
   public_id: <%= Product.generate_public_id(:public_id) %>
 
 two:
-  name: Product 2
   batch: one
   price: 9.99
   poster: none
   public_id: <%= Product.generate_public_id(:public_id) %>
 
 payment_error:
-  name: Payment Error
   batch: one
   price: 97.56 # 107.55 minus delivery price
   poster: none

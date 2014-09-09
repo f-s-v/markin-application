@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   scope path: "(:locale)",
+    defaults: {locale: I18n.default_locale},
     constraints: {locale: /#{Rails.application.config.i18n_enabled_locales.join('|')}/} do
 
     devise_for :users, path: 'client-care'
