@@ -144,6 +144,7 @@ ru:
       delivered: доставлено
       sent: отправлено
       canceled: отменено
+      refunded: возвращено
   number:
     currency:
       format:
@@ -182,3 +183,18 @@ ru:
   manage:
     content_blocks:
       editing: Редактирование блока
+  active_admin:
+    resource:
+      show:
+        sent: Отправлено
+        delivered: Доставлено
+        refund: Вернуть
+  admin:
+    orders:
+      sent:
+        notice: Заказ отчемен как отправленный
+      delivered:
+        notice: Заказ отчемен как доставленный
+      refund:
+        notice:
+          Деньги возвращены

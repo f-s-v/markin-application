@@ -17,7 +17,7 @@ class Order < ActiveRecord::Base
 
   validates :public_id, presence: true
 
-  scope :completed, -> { joins(:payments).where('order_payments.state' => 'paid') }
+  scope :completed, -> { joins(:payments).where('order_payments.state' => ['paid', 'refunded']) }
   scope :with_user, -> { where('user_id is not null') }
 
   def delivery_price
@@ -43,5 +43,9 @@ class Order < ActiveRecord::Base
 
   def to_param
     public_id.to_s
+  end
+  
+  def sent
+    send_message :sent
   end
 end

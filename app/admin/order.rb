@@ -13,8 +13,7 @@ ActiveAdmin.register Order do
   filter :shipping_state
   filter :shipping_zip
   filter :phone_number
-
-
+  
   controller do
     defaults finder: :find_by_public_id!
 
@@ -25,6 +24,30 @@ ActiveAdmin.register Order do
     def permitted_params
       params.permit!
     end
+  end
+
+  member_action :delivered, method: :post do
+    resource.send_message :delivered
+    redirect_to [:admin, resource], notice: t('.notice')
+  end
+  
+  action_item only: :show do
+    link_to t('.delivered'), delivered_admin_order_path, method: :post
+  end
+  
+  member_action :sent, method: :post do
+    resource.send_message :sent
+    redirect_to [:admin, resource], notice: t('.notice')
+  end
+  
+  action_item only: :show do
+    link_to t('.sent'), sent_admin_order_path, method: :post
+  end
+  
+  member_action :refund, method: :post do
+    payment = resource.payments.find(params[:payment])
+    payment.refund
+    redirect_to [:admin, resource]
   end
 
   index do
@@ -65,6 +88,17 @@ ActiveAdmin.register Order do
       column :payment_token
       column :payer_token
       column :payer_ip
+      column :refund do |payment|
+        if payment.state == 'paid'
+          link_to t('.refund'), refund_admin_order_path(payment: payment.id), method: :post, data: {confirm: 'Confirm.'}
+        end
+      end
+    end
+
+    h3 "Messages"
+    table_for order.messages do
+      column :text
+      column :created_at
     end
   end
 

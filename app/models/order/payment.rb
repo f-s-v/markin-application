@@ -62,6 +62,7 @@ class Order::Payment < ActiveRecord::Base
 
   def process
     self.payer_token = payment_details.payer_id
+
     response = PAYMENT_GATEWAY.purchase(
       order.total * 100,
       ip: payer_ip,
@@ -71,11 +72,21 @@ class Order::Payment < ActiveRecord::Base
 
     if response.success?
       self.state = 'paid'
+      self.payment_transaction_id = response.params["transaction_id"]
       order.send_message :paid
       OrderMailer.created(order).deliver
     else
       self.state = 'failed'
     end
     save
+  end
+  
+  def refund
+    response = PAYMENT_GATEWAY.refund(nil, payment_transaction_id)
+    if response.success?
+      order.send_message :refunded
+      self.state = 'refunded'
+      save
+    end
   end
 end

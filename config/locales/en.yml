@@ -142,6 +142,7 @@ en:
       delivered: Delivered
       sent: Sent
       canceled: Canceled
+      refunded: Refund
   number:
     currency:
       format:
@@ -180,3 +181,18 @@ en:
   manage:
     content_blocks:
       editing: Edit block
+  active_admin:
+    resource:
+      show:
+        sent: Sent
+        delivered: Delivered
+        refund: Refund
+  admin:
+    orders:
+      sent:
+        notice: Order was marked as sent
+      delivered:
+        notice: Order was marked as delivered
+      refund:
+        notice:
+          Money was returned
