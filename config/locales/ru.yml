@@ -85,6 +85,17 @@ ru:
         total: Итого
         delivery_price: Стоимость доставки
         messages: Статус
+        created_at: Создан
+        country: Страна
+        shipping_address_line1: Адрес
+        country: Страна
+        shipping_name: Имя
+        shipping_address_line1: "Улица, номер дома"
+        shipping_address_line2: Номер квартиры
+        shipping_city: Город
+        shipping_state: Область
+        shipping_zip: Почтовый индекс
+        phone_number: Номер телефона
       order/item:
         product: Продукт
         count: Количество
@@ -189,6 +200,7 @@ ru:
         sent: Отправлено
         delivered: Доставлено
         refund: Вернуть
+        payments: Платежи
   admin:
     orders:
       sent:

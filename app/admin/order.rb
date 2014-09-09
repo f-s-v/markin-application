@@ -81,7 +81,7 @@ ActiveAdmin.register Order do
       end
     end
 
-    h3 "Payments"
+    h3 t('.payments')
     table_for order.payments do
       column :created_at
       column :state

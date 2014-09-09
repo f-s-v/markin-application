@@ -187,6 +187,7 @@ en:
         sent: Sent
         delivered: Delivered
         refund: Refund
+        payments: Payments
   admin:
     orders:
       sent:
