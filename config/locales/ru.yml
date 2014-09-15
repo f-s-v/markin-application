@@ -7,12 +7,13 @@ ru:
     ru: По-русски
 
   lib:
+    site_title:
+      switch_lang: English
+      contacts: Контакты
     menu:
       store: Магазин
       our_story: История
       client_care: Client care
-      switch_lang: English
-      contacts: Контакты
       cart: Корзина
       news: Новости
     share_buttons:

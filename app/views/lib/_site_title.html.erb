@@ -1,6 +1,19 @@
-<lib-layout hcenter vcenter class="lib-boxStyle-goldGradient app-siteTitle">
-  <%= link_to image_tag('site-title.svg'), root_url, class: 'lst-logo' %>
-</lib-layout>
+<lib-layout-cell width="24" class="lib-boxStyle-goldGradient">
+  <div class="app-siteTitle">
+    <div class="app-siteTitle-menu">
+      <%= link_to t('.contacts'), page_path('contacts'), class: 'lib-textStyle-captionSmall invisible' %>
+      <br />
+      <%= link_to t('.switch_lang'),
+        url_for(params.update(locale: (Rails.application.config.i18n_enabled_locales - [I18n.locale]).first)),
+        class: 'lib-textStyle-captionSmall invisible' %>
+    </div>
+    
+    <lib-layout hcenter vcenter>
+      <%= link_to image_tag('site-title.svg'), root_url, class: 'lst-logo' %>
+    </lib-layout>
+  
+  </div>
+</lib-layout-cell>
 
 <div class="app-siteTitleTiny lib-boxStyle-goldGradient">
   <%= link_to image_tag('site-title-tiny.svg'), root_url %>

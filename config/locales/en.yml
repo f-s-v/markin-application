@@ -7,12 +7,13 @@ en:
     en: English
     ru: Russian
   lib:
+    site_title:
+      switch_lang: Russian
+      contacts: Contact
     menu:
       store: Store
       our_story: Our Story
       client_care: Client care
-      switch_lang: Russian
-      contacts: Contact
       cart: Cart
       news: News
     share_buttons:

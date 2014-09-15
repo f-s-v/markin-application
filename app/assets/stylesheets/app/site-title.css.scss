@@ -1,9 +1,25 @@
 .app-siteTitle {
-  height: 160px;
+  
+  position: relative;
+  
+  lib-layout {
+    height: 160px;
+  }
 
   .lst-logo img {
     width: 486px;
     height: 55px;
+  }
+  
+  .app-siteTitle-menu {
+    position: absolute;
+    right: 10px;
+    top: 10px ;
+    text-align: right;
+    
+    a {
+      float: right;
+    }
   }
 }
 
