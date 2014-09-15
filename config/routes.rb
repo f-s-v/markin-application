@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
     namespace :store do
       root to: "batches#index"
+      resources :options, only: [:show]
       resources :batches, path: '' do
         resources :products, only: [:show], path: ''
       end

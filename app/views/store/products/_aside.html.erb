@@ -24,7 +24,7 @@
         <dd>
           <% options.each do |option| %>
             <%= link_to option.name.value,
-              store_batch_path(resource.batch, option: option.id),
+              store_option_path(option),
               class: 'lib-buttons-small lib-buttons-whiteBorder lib-buttons-round'
             %>
           <% end %>
