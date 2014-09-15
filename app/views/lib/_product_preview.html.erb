@@ -1,9 +1,9 @@
-<lib-layout-cell width="6">
+<lib-layout-cell width="6" class="lib-media">
   <figure>
-    <%= link_to image_tag(uploadcare_url(product.poster, scale_crop: '650x390/center')), [:store, product] %>
+    <%= link_to image_tag(uploadcare_url(product.poster, scale_crop: '650x390/center')), store_batch_product_path(product.batch, product) %>
   </figure>
   <h3>
-    <%= link_to [:store, product] do %>
+    <%= link_to store_batch_product_path(product.batch, product) do %>
       <%= product.name.value %>
       <br>
       <%= number_to_currency product.price %>

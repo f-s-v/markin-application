@@ -1,11 +1,11 @@
 <figure class="inline">
-  <%= link_to [:store, product], target: '_blank', class: 'pull-left' do %>
+  <%= link_to store_batch_product_path(product.batch, product), target: '_blank', class: 'pull-left' do %>
     <%= image_tag uploadcare_url(product.poster, scale_crop: '50x50/center') %>
   <% end %>
 </figure>
   
 <h4>
-  <%= link_to [:store, product], target: '_blank' do %>
+  <%= link_to store_batch_product_path(product.batch, product), target: '_blank' do %>
     <%= product.name.value %>
   <% end %>
 </h4>

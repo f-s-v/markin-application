@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  include Concerns::Letters
-  
   include Store::Concerns::CurrentOrder
   before_filter :setup_current_order
 

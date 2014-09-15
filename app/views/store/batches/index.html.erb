@@ -3,21 +3,20 @@
 <h2><%= t('.collections') %></h2>
 </lib-layout-cell>
 
-<lib-layout hcenter class="lib-media-list">
+<lib-layout hcenter>
   <lib-layout-cell width="20">
     <lib-layout>
-      <% batches.each do |batch| %>
-        <lib-layout-cell width="6"  class="lib-media">
+      <% collection.each do |batch| %>
+        <lib-layout-cell width="6" class="lib-media">
           <figure>
-            <%= image_tag uploadcare_url(batch.poster, scale_crop: '650x390/center') %>
+            <%= link_to image_tag(uploadcare_url(batch.poster, scale_crop: '650x390/center')), store_batch_path(batch) %>
           </figure>
           <h3>
-            <%= batch.name.value %>
+            <%= link_to batch.name.value, store_batch_path(batch) %>
           </h3>
         </lib-layout-cell>
         
       <% end %>
-      <%# render partial: 'lib/product_preview', collection: collection, as: :product %>
     </lib-layout>
   </lib-layout-cell>
 </lib-layout>

@@ -1,4 +1,8 @@
 en:
+  papers:
+    show:
+      news: News
+  
   locale:
     en: English
     ru: Russian
@@ -10,12 +14,19 @@ en:
       switch_lang: Russian
       contacts: Contact
       cart: Cart
+      news: News
     share_buttons:
       twitter: Twitter
       facebook: Facebook
     product_line:
       batch: "Series “%{batch}”"
   store:
+    batches:
+      show:
+        collection: Colelction
+      index:
+        catalogue: Catalogue
+        collections: Collections
     orders:
       edit:
         title: Shopping cart

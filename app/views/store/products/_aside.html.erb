@@ -18,21 +18,22 @@
     
     <dl class="lib-layout-aside-content">
       <dt><%= Product.human_attribute_name :batch %></dt>
-      <dd><%= resource.batch.name.value %></dd>
+      <dd><%= link_to resource.batch.name.value, store_batch_path(resource.batch), class: 'invisible' %></dd>
       <% resource.options.group_by(&:characteristic).each do |characteristic, options| %>
         <dt><%= characteristic.name.value %></dt>
         <dd>
           <% options.each do |option| %>
-            <span class="lib-buttons-small lib-buttons-whiteBorder lib-buttons-round">
-              <%= option.name.value %>
-            </span>
+            <%= link_to option.name.value,
+              store_batch_path(resource.batch, option: option.id),
+              class: 'lib-buttons-small lib-buttons-whiteBorder lib-buttons-round'
+            %>
           <% end %>
         </dd>
       <% end %>
       <dt><%= t('actions.share') %></dt>
     </dl>
 
-    <%= render 'lib/share_buttons', url: store_product_url(resource) %>
+    <%= render 'lib/share_buttons', url: store_batch_product_url(resource.batch, resource) %>
   </lib-layout>
 
   <lib-scrolledFixed ref="appAsideContent"></lib-scrolledFixed>

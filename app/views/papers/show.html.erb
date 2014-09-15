@@ -1,0 +1,10 @@
+<lib-layout-cell width="20" gap="2">
+  <lib-layout>
+    <lib-layout-cell width="20" class="lib-contentBlock-padding">
+      <h1><%= resource.title.value %></h1>
+      <h2><%= t('.news') %></h2>
+    </lib-layout-cell>
+    
+    <%= render 'lib/page', page: resource, width: 20 %>
+  </lib-layout>
+</lib-layout-cell>

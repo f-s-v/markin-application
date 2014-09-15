@@ -1,5 +1,9 @@
 // = css_module lib-media
 
-this.list {
-  margin: 50px 0;
+this {
+  margin-bottom: 50px;
+  margin-right: 50px;
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
 }

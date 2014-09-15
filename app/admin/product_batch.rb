@@ -4,14 +4,17 @@ ActiveAdmin.register Product::Batch do
   filter :name
 
   controller do
+    defaults finder: :find_by_public_id!
     def permitted_params
       params.permit!
     end
   end
 
-
   index do
     selectable_column
+    column 'ID' do |batch|
+      link_to batch.public_id, [:admin, batch]
+    end
     column :name do |b|
       link_to b.name.value, [:admin, b]
     end
@@ -20,6 +23,9 @@ ActiveAdmin.register Product::Batch do
 
   show do
     attributes_table_for product_batch do
+      row "ID" do
+        product_batch.public_id
+      end
       row :name do
         product_batch.name.value
       end

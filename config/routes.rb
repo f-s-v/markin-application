@@ -3,11 +3,11 @@ Rails.application.routes.draw do
     resources :content_holders
   end
 
-  root to: 'store/products#index'
+  root to: 'store/batches#index'
   ActiveAdmin.routes(self)
 
   scope path: "(:locale)",
-    defaults: {locale: I18n.default_locale},
+    # defaults: {locale: I18n.default_locale},
     constraints: {locale: /#{Rails.application.config.i18n_enabled_locales.join('|')}/} do
 
     devise_for :users, path: 'client-care'
@@ -18,9 +18,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :papers, path: 'news', only: [:show, :index]
+
     namespace :store do
-      root to: "products#index"
-      resources :products, only: [:index, :show]
+      root to: "batches#index"
+      resources :batches, path: '' do
+        resources :products, only: [:show], path: ''
+      end
       resource :order do
         resource :shipping_info, only: [:new, :create, :edit, :update]
         resources :items, controller: 'order/items'

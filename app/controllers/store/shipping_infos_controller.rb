@@ -1,4 +1,5 @@
 class Store::ShippingInfosController < ApplicationController
+  include Concerns::Letters
   respond_to :html
 
   let(:resource, on: ['new', 'create']) { current_order.build_shipping_info }

@@ -13,6 +13,11 @@
     }
 
   }
+  
+  a.invisible {
+    color: inherit;
+    text-decoration: none;
+  }
 
   figure.inline {
     float: left;

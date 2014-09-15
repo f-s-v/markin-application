@@ -1,4 +1,7 @@
 ru:
+  papers:
+    show:
+      news: Новости
   locale:
     en: По-английски
     ru: По-русски
@@ -9,14 +12,21 @@ ru:
       our_story: История
       client_care: Client care
       switch_lang: English
-      contacts: Адрес
+      contacts: Контакты
       cart: Корзина
+      news: Новости
     share_buttons:
       twitter: Twitter
       facebook: Facebook
     product_line:
       batch: "Серия “%{batch}”"
   store:
+    batches:
+      show:
+        collection: Коллекция
+      index:
+        catalogue: Каталог
+        collections: Коллекции
     orders:
       edit:
         title: Корзина

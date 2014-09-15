@@ -7,7 +7,7 @@
   <%= render 'lib/page', page: resource, width: 20 %>
 
   <div class="lib-boxStyle-inFlow">
-    <%= render 'lib/share_buttons', url: store_product_url(resource), style: 'gold' %>  
+    <%= render 'lib/share_buttons', url: store_batch_product_url(resource.batch, resource), style: 'gold' %>  
   </div>
   
   <lib-layout vcenter stack>
@@ -29,7 +29,7 @@
     </h2>
   </div>
 
-  <lib-layout justify>
+  <lib-layout>
     <%= render partial: 'lib/product_preview', collection: see_also_products.limit(3), as: :product %>
   </lib-layout>
   <hr>
