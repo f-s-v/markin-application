@@ -12,6 +12,8 @@
       :host {
         order: {{order}};
         display: flex;
+        position: relative;
+        transition: opacity 0.02s linear;
       }
 
       :host([padding]){
@@ -43,7 +45,23 @@
         border: 9px solid transparent;
         border-color: rgb(245, 226, 123);
       }
+      
+      :host([link]:hover) {
+/*        opacity: 0.7;*/
+      }
+      
+      #blockLink {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+      }
     </style>
+    <template if="{{model.link}}">
+      <a href="{{model.link}}" id="blockLink"></a>
+    </template>
     <shadow></shadow>
   </template>
   <script>
@@ -62,7 +80,8 @@
           fontstyle: {reflect: true},
           borderstyle: {reflect: true},
           backgroundstyle: {reflect: true},
-          order: {reflect: true}
+          order: {reflect: true},
+          link: {reflect: true}
         },
 
         observe: {
@@ -75,7 +94,8 @@
           'model.image_style': function(_, v){ this.imagestyle = v },
           'model.font_style': function(_, v){ this.fontstyle = v },
           'model.border_style': function(_, v){ this.borderstyle = v },
-          'model.background_style': function(_, v){ this.backgroundstyle = v }
+          'model.background_style': function(_, v){ this.backgroundstyle = v },
+          'model.link': function(_, v){ this.link = !!v }
         },
 
         blockstyleChanged: function(_, style) {

@@ -10,6 +10,7 @@ json.array! @content_blocks do |block|
   json.stretch_height block.stretch_height
   json.image block.image
   json.embed_code block.embed_code
+  json.link block.link
   json.text_attributes do
     json.array! block.text do |text|
       json.locale text.locale

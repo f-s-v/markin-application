@@ -121,6 +121,7 @@ en:
         text: Text
         image: Image
         embed_code: Embed code
+        link: Link for block
   simple_form:
     required:
       html: ''

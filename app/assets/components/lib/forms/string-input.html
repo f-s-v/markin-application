@@ -1,0 +1,12 @@
+<polymer-element name="lib-input-string" extends="lib-input">
+  <template>
+    <lib-input-wrapper>
+      <paper-input id="input" label="{{label()}}" value="{{value}}" floatingLabel></paper-input>
+      <lib-input-hint text="{{hint()}}"></lib-input-hint>
+    </lib-input-wrapper>
+  </template>
+  <script>
+    Polymer('lib-input-string', {
+    });
+  </script>
+</polymer-element>

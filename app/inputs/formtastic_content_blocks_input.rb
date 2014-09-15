@@ -27,6 +27,7 @@ class FormtasticContentBlocksInput < Formtastic::Inputs::StringInput
         cb_inputs.hidden_field(:height) <<
         cb_inputs.hidden_field(:image) <<
         cb_inputs.hidden_field(:embed_code) <<
+        cb_inputs.hidden_field(:link) <<
         cb_inputs.fields_for(:text) do |tx_inputs|
           tx_inputs.hidden_field(:locale) <<
           tx_inputs.hidden_field(:text)

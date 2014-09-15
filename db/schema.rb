@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915180707) do
+ActiveRecord::Schema.define(version: 20140915204556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140915180707) do
     t.boolean  "stretch_height",   default: false
     t.string   "image"
     t.text     "embed_code"
+    t.string   "link"
   end
 
   add_index "content_blocks", ["page_id", "page_type"], name: "index_content_blocks_on_page_id_and_page_type", using: :btree

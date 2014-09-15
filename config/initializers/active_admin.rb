@@ -46,7 +46,7 @@ ActiveAdmin.setup do |config|
 
   config.namespace :admin do |admin|
     admin.build_menu :utility_navigation do |menu|
-      menu.add label: -> { I18n.t('lib.menu.switch_lang') },
+      menu.add label: -> { I18n.t('lib.site_title.switch_lang') },
         url: -> { url_for(locale: (Rails.application.config.i18n_enabled_locales - [I18n.locale]).first) },
         id: 'i18n'
       admin.add_logout_button_to_menu menu

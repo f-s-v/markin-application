@@ -133,6 +133,7 @@ ru:
         text: Текст
         image: Картинка
         embed_code: Код для вставки
+        link: Ссылка на блок
   simple_form:
     required:
       html: ''
