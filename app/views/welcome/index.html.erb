@@ -1,0 +1,3 @@
+<% if page = Page.where(slug: 'index').first %>
+  <%= render 'lib/page', page: page, width: 24 %>
+<% end %>

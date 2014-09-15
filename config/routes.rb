@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     resources :content_holders
   end
 
-  root to: 'store/batches#index'
   ActiveAdmin.routes(self)
 
   scope path: "(:locale)",
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
     constraints: {locale: /#{Rails.application.config.i18n_enabled_locales.join('|')}/} do
 
     devise_for :users, path: 'client-care'
+    
+    root to: 'welcome#index'
 
     namespace :users, path: 'client-care' do
       resource :profile, only: %w(show edit update), path: '' do
