@@ -17,11 +17,7 @@
   <%= checked_link_to store_order_path,
     is: 'lib-layout-acell', width: 4, gap: 2,
     class: 'lib-buttons-main lib-buttons-black' do %>
-    <% if current_order.items.empty? %>
-      <%= t('.news') %>
-    <% else %>
-      <%= number_to_currency current_order.total %> &rarr;
-    <% end %>
+    <%= t('.news') %>
   <% end %>
 
   <%= checked_link_to store_order_path,

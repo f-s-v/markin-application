@@ -24,9 +24,6 @@ Rails.application.routes.draw do
     namespace :store do
       root to: "batches#index"
       resources :options, only: [:show]
-      resources :batches, path: '' do
-        resources :products, only: [:show], path: ''
-      end
       resource :order do
         resource :shipping_info, only: [:new, :create, :edit, :update]
         resources :items, controller: 'order/items'
@@ -36,6 +33,9 @@ Rails.application.routes.draw do
             get :cancel
           end
         end
+      end
+      resources :batches, path: '' do
+        resources :products, only: [:show], path: ''
       end
     end
 
