@@ -1,4 +1,4 @@
-<polymer-element name="lib-scrolledFixed" attributes="offset ref">
+<polymer-element name="lib-scrolledFixed" attributes="offset bottom ref">
   <template>
     <style>
       :host {
@@ -28,10 +28,16 @@
       },
 
       checkPosition: function(){
-        var top = this.target.parentNode.getBoundingClientRect().top
-        if (top < this.offset) {
+        
+        var T = this.target.parentNode.getBoundingClientRect().top,
+          t = this.target.getBoundingClientRect().top,
+          w = window.innerHeight,
+          a = this.target.clientHeight,
+          A = this.target.parentNode.clientHeight,
+          OB = Math.max(window.innerHeight - this.target.parentNode.getBoundingClientRect().bottom, 0)
+        if (T < this.offset) {
           this.target.classList.add('lib-scrollFied-fixed')
-          this.target.style.top = (this.target.clientHeight - window.innerHeight) * (top / (this.target.parentNode.clientHeight - window.innerHeight)) + 'px'
+          this.target.style.top =  T * (a - w + OB) / (A - w + OB) + 'px' 
         }
         else {
           this.target.classList.remove('lib-scrollFied-fixed')

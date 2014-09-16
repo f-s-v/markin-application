@@ -29,7 +29,7 @@
   text-align: center;
 }
 
-.add-header {
+.app-header {
   height: 218px;
 }
 
@@ -46,7 +46,7 @@
     z-index: 1;
   }
 
-  .add-header {
+  .app-header {
     height: 58;
   }
 
@@ -55,5 +55,12 @@
     top: 58px;
     left: 0;
     z-index: 1;
+  }
+}
+
+.app-footer {
+  text-align: center;
+  lib-boxStyle-halfpadding {
+    padding: 0 25px 25px 25px;
   }
 }

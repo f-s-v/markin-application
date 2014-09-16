@@ -94,6 +94,14 @@ this.large, body /deep/ this.large {
   text-transform: uppercase;
 }
 
+this.largeCaption, body /deep/ this.largeCaption {
+  font-family: "FoglihtenNo06";
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 0.36em;
+}
+
+
 this.colorGray {
   color: #888;
 }

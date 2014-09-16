@@ -1,0 +1,9 @@
+.lib-page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.lib-page-content {
+  flex: 1;
+}

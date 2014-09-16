@@ -7,6 +7,8 @@ ru:
     ru: По-русски
 
   lib:
+    footer:
+      address: "Москва, Болотная набережная, дом 3/4"
     site_title:
       switch_lang: English
       contacts: Контакты

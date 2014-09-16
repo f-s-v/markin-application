@@ -7,6 +7,8 @@ en:
     en: English
     ru: Russian
   lib:
+    footer:
+      address: "3/4, Bolotnaya Bank, Moscow, Russia"
     site_title:
       switch_lang: Russian
       contacts: Contact
