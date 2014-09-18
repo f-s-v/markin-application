@@ -8,6 +8,8 @@
     <p class="lib-textStyle-caption">
       <%= I18n.l resource.created_at.to_date, format: :long %>
     </p>
-    <%= render 'lib/page', page: resource, width: 20 %>
+    <div class="lib-boxStyle-inFlow">
+      <%= render 'lib/page', page: resource, width: 20 %>
+    </div>
   </lib-layout>
 </lib-layout-cell>
