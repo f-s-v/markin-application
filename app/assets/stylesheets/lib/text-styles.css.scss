@@ -70,6 +70,13 @@ this.caption {
   letter-spacing: 0.16em;
 }
 
+this.captionNumber {
+  font-family: "Circe";
+  text-transform: uppercase;
+  font-size: $lib-textStyle-captionSize;
+  letter-spacing: auto!important;
+}
+
 this.captionSmall {
   font-family: "Circe";
   text-transform: uppercase;

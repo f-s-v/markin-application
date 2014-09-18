@@ -20,13 +20,17 @@
     <%= t('.news') %>
   <% end %>
 
-  <%= checked_link_to store_order_path,
-    is: 'lib-layout-acell', width: 4,
-    class: 'lib-buttons-main lib-buttons-black' do %>
-    <% if current_order.items.empty? %>
+  <% if current_order.items.empty? %>
+    <%= checked_link_to store_order_path,
+      is: 'lib-layout-acell', width: 4,
+      class: 'lib-buttons-main lib-buttons-black' do %>
       <%= t('.cart') %>
-    <% else %>
-      <%= number_to_currency current_order.total %> &rarr;
+    <% end %>
+  <% else %>
+    <%= checked_link_to store_order_path,
+      is: 'lib-layout-acell', width: 4,
+      class: 'lib-buttons-mainNumber lib-buttons-black' do %>
+      <%= number_to_currency current_order.total, precision: 0 %> &rarr;
     <% end %>
   <% end %>
 </lib-layout>

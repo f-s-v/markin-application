@@ -22,6 +22,12 @@ this.main {
   line-height: $app-blockHeight;
 }
 
+this.mainNumber {
+  @extend this.button;
+  @extend .lib-textStyle-captionNumber;
+  line-height: $app-blockHeight;
+}
+
 this.small {
   @extend this.button;
   line-height: $app-blockHeight;
