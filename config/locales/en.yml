@@ -2,6 +2,8 @@ en:
   papers:
     show:
       news: News
+    index:
+      news: News
   
   locale:
     en: English

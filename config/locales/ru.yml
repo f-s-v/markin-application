@@ -2,6 +2,8 @@ ru:
   papers:
     show:
       news: Новости
+    index:
+      news: Новости
   locale:
     en: По-английски
     ru: По-русски
