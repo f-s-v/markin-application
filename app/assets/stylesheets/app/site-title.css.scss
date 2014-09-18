@@ -3,12 +3,12 @@
   position: relative;
   
   lib-layout {
-    height: 160px;
+    height: $app-siteTitleHeight;
   }
 
   .lst-logo img {
-    width: 486px;
-    height: 55px;
+    width: 437px;
+    height: 50px;
   }
   
   .app-siteTitle-menu {
@@ -30,7 +30,7 @@
 }
 
 .app-header {
-  height: 218px;
+  height: $app-siteTitleHeight + $app-blockHeight;
 }
 
 .app-stickyHeader {
@@ -41,7 +41,7 @@
   .app-siteTitleTiny {
     display: block;
     position: fixed; 
-    top: 0px;
+    top: 0;
     left: 0;
     z-index: 1;
   }
@@ -52,7 +52,7 @@
 
   .app-menu {
     position: fixed; 
-    top: 58px;
+    top: $app-blockHeight;
     left: 0;
     z-index: 1;
   }
@@ -60,7 +60,7 @@
 
 .app-footer {
   text-align: center;
-  lib-boxStyle-halfpadding {
-    padding: 0 25px 25px 25px;
+  .lib-boxStyle-halfpadding {
+    padding-top: 0;
   }
 }

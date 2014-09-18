@@ -25,7 +25,7 @@
       // @extend .lib-textStyle-caption;
       font-family: "Circe";
       text-transform: uppercase;
-      font-size: 20px;
+      font-size: $lib-textStyle-captionSize;
       letter-spacing: 0.16em;
       color: inherit;
     }
@@ -75,8 +75,8 @@ this.large {
         @include placeholder {
           color: $settings-color-gold;
         }
-        height: 58px;
-        line-height: 58px;
+        height: $app-blockHeight;
+        line-height: $app-blockHeight;
         text-align: center;
       }
     }

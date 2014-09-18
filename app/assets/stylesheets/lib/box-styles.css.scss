@@ -32,11 +32,11 @@ html /deep/ this.inFlow, this.inFlow {
 }
 
 html /deep/ this.padding, this.padding {
-  padding: 50px;
+  padding: $app-paddingHeight;
 }
 
 html /deep/ this.halfpadding, this.halfpadding {
-  padding: 25px;
+  padding: $app-paddingHeight / 2;
 }
 
 .lib-paragraph-center {

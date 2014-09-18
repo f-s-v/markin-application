@@ -36,6 +36,14 @@
   font-weight: 200;
 }
 
+$lib-textStyle-regularSize: 20px;
+$lib-textStyle-captionSize: 18px;
+$lib-textStyle-captionSmallSize: 11px;
+$lib-textStyle-captionSerifSize: 14px;
+$lib-textStyle-condencedLargeSize: 68px;
+$lib-textStyle-condencedSize: 41px;
+$lib-textStyle-largeSize: 64px;
+
 @font-face {
   font-family: 'Web Symbols Liga Regular';
   src: font-url('websymbolsligaregular.eot');
@@ -51,21 +59,21 @@
 
 this.regular, body /deep/ this.regular {
   font-family: "Circe";
-  font-size: 22px;
+  font-size: $lib-textStyle-regularSize;
   line-height: 1.2;
 }
 
 this.caption {
   font-family: "Circe";
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: $lib-textStyle-captionSize;
   letter-spacing: 0.16em;
 }
 
 this.captionSmall {
   font-family: "Circe";
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: $lib-textStyle-captionSmallSize;
   letter-spacing: 0.1em;
   -webkit-font-smoothing: subpixel-antialiased!important;
 
@@ -73,31 +81,31 @@ this.captionSmall {
 
 this.condencedLarge {
   font-family: "ReformaGroteskLightC";
-  font-size: 75px;
-  line-height: 80px;
+  font-size: $lib-textStyle-condencedLargeSize;
+  line-height: $lib-textStyle-condencedLargeSize * 1.07;
   text-transform: uppercase;
   letter-spacing: 0.003em;
 }
 
 this.condenced, body /deep/ this.condenced {
   font-family: "ReformaGroteskLightC";
-  font-size: 45px;
-  line-height: 46px;
+  font-size: $lib-textStyle-condencedSize;
+  line-height: $lib-textStyle-condencedSize + 1;
   text-transform: uppercase;
   letter-spacing: 0.003em;
 }
 
 this.large, body /deep/ this.large {
   font-family: "FoglihtenNo06";
-  font-size: 71px;
+  font-size: $lib-textStyle-largeSize;
   line-height: 1.2;
   text-transform: uppercase;
 }
 
-this.largeCaption, body /deep/ this.largeCaption {
+this.captionSerif, body /deep/ this.captionSerif {
   font-family: "FoglihtenNo06";
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: $lib-textStyle-captionSerifSize;
   letter-spacing: 0.36em;
 }
 

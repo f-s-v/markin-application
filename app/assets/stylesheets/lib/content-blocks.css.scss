@@ -1,6 +1,8 @@
 // = css_module_global
 // = css_module 'lib-contentBlock'
 
+$lib-contentBlock-borderWidth: 9px;
+
 html /deep/ this.block-image /deep/ img, this.block-image img {
   max-width: 100%;
   overflow: hidden;
@@ -46,7 +48,7 @@ this.background-goldGradient, html /deep/ this.background-goldGradient {
 }
 
 this.padding, html /deep/ this.padding {
-  padding: 50px;
+  padding: $app-paddingHeight;
 }
 
 this.font-regular, html /deep/ this.font-regular {
@@ -63,7 +65,7 @@ this.font-large, html /deep/ this.font-large {
 }
 
 %this.border-base {
-  border: 9px solid transparent;
+  border: $lib-contentBlock-borderWidth solid transparent;
 }
 
 this.border-white, html /deep/ this.border-white {
