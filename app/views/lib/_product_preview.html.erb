@@ -5,8 +5,7 @@
   <h3>
     <%= link_to store_batch_product_path(product.batch, product) do %>
       <%= product.name.value %>
-      <br>
-      <%= number_to_currency product.price %>
     <% end %>
   </h3>
+    <p class="lib-textStyle-caption lib-paragraph-center"> <%= number_to_currency product.price %></p>
 </lib-layout-cell>
