@@ -28,23 +28,23 @@
       },
 
       checkPosition: function(){
-        
         var T = this.target.parentNode.getBoundingClientRect().top,
           t = this.target.getBoundingClientRect().top,
           w = window.innerHeight,
           a = this.target.clientHeight,
           A = this.target.parentNode.clientHeight,
-          OB = Math.max(window.innerHeight - this.target.parentNode.getBoundingClientRect().bottom, 0)
+          OB = Math.max(window.innerHeight - this.target.parentNode.getBoundingClientRect().bottom, 0),
+          OT = this.offset
+
         if (T < this.offset) {
           this.target.classList.add('lib-scrollFied-fixed')
-          this.target.style.top =  T * (a - w + OB) / (A - w + OB) + 'px' 
+          this.target.style.top = T * (a - w + OB + OT) / (A - w + OB) + OT + 'px' 
         }
         else {
           this.target.classList.remove('lib-scrollFied-fixed')
         }
 
         requestAnimationFrame(this.checkPosition.bind(this))
-        
       }
     });
   </script>
