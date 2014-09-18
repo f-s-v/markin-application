@@ -9,6 +9,8 @@ class Paper < ActiveRecord::Base
   
   default_scope -> {order('created_at desc')}
   
+  validates :poster, presence: true
+  
   def to_param
     public_id
   end
