@@ -41,9 +41,16 @@
   .app-siteTitleTiny {
     display: block;
     position: fixed; 
+    height: $app-blockHeight;
+    line-height: $app-blockHeight * 1.5;
     top: 0;
     left: 0;
     z-index: 1;
+    a {
+      width: 90%;
+      display: block;
+      margin-left: 5%;
+    }
   }
 
   .app-header {

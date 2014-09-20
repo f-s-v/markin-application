@@ -34,7 +34,7 @@
     "core-style": "Polymer/core-style#~0.4.0",
     "requestAnimationFrame-polyfill": "*",
     "mark-down": "~0.6.0",
-    "core-media-query": "Polymer/core-media-query#~0.4.0"
+    "core-media-query": "Polymer/core-media-query#~0.4.1",
   },
   "resolutions": {
     "polymer": "~0.4.0"

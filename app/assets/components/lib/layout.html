@@ -92,21 +92,34 @@
 
 <script>
   window.libLayoutCellProto = {
-    sectorHeight: 58,
+    sectorHeight: 52,
 
     publish: {
       width: {reflect: true},
+      mediumWidth: {reflect: true},
+      smallWidth: {reflect: true},
       height: {reflect: true},
-      gap: {reflect: true}
+      gap: {reflect: false},
+      mediumGap: {reflect: false},
+      smallGap: {reflect: false},
     },
 
     observe: {
       'width': 'flexBasisStyleChanged',
+      'smallWidth': 'flexBasisStyleChanged',
+      'mediumWidth': 'flexBasisStyleChanged',
       '$.layout.element.parentModules': 'modulesChanged',
       '$.layout.element.modules': 'modulesChanged',
-      // 'height': 'heightStyleChanged',
-      // 'sectorHeight': 'heightStyleChanged',
       'gap': 'gapStyleChanged',
+      'mediumGap': 'gapStyleChanged',
+      'smallGap': 'gapStyleChanged',
+      '$.media.reference.medium': 'mediaChanged',
+      '$.media.reference.small': 'mediaChanged'
+    },
+    
+    mediaChanged: function(){
+      this.flexBasisStyleChanged()
+      this.gapStyleChanged()
     },
 
     modulesChanged: function(){
@@ -121,32 +134,18 @@
         this.$.layout.element &&
         (this.$.layout.element.parentModules || this.$.layout.element.modules)
       ) {
-        var gap = this.gap
+        var media = this.$.media.reference
+        var gap = media && media.small && this.smallGap || media && media.medium && this.mediumGap || this.gap
         var modules = this.$.layout.element.parentModules || this.$.layout.element.modules
         this.style.setProperty('margin-left', 'calc(' + gap + ' * 100% / ' + modules + ')')
       }
     },
 
-    heightStyleChanged: function(){
-      this.style.removeProperty('min-height')
-      if (this.height && this.sectorHeight) {
-        this.style.setProperty('min-height', 'calc(' + this.sectorHeight + 'px * ' + this.height + ')')
-      }
-    },
-
     flexBasisStyleChanged: function(){
-      if (this.isDimensionsCanSet()) this.setWidth(this.width)
-    },
-
-    phoneScreenChanged: function(){
-      if (this.isDimensionsCanSet()) {
-        if (this.phoneScreen) {
-          this.setWidth(this.$.layout.element.parentModules || this.$.layout.element.modules)
-        }
-        else {
-          this.setWidth(this.width)
-        }
-      }
+      var media = this.$.media.reference
+      var modules = this.$.layout.element.parentModules || this.$.layout.element.modules
+      var width = media && media.small && modules || media && media.medium && this.mediumWidth || this.width
+      if (this.isDimensionsCanSet()) this.setWidth(width)
     },
 
     isDimensionsCanSet: function(){
@@ -167,7 +166,7 @@
   <template>
     <core-style ref="libLayoutCellStyle"></core-style>
     <lib-parent match="lib-layout" id="layout"></lib-parent>
-    <core-media-query query="max-width: 640px" queryMatches="{{phoneScreen}}"></core-media-query>
+    <lib-reference match="#mediaMonitor" id="media"></lib-reference>
     <content></content>
   </template>
   <script>
@@ -179,7 +178,7 @@
   <template>
     <core-style ref="libLayoutCellStyle"></core-style>
     <lib-parent match="lib-layout" id="layout"></lib-parent>
-    <core-media-query query="max-width: 640px" queryMatches="{{phoneScreen}}"></core-media-query>
+    <lib-reference match="#mediaMonitor" id="media"></lib-reference>
     <content></content>
   </template>
   <script>

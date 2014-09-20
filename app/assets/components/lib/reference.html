@@ -1,0 +1,9 @@
+<polymer-element name="lib-reference" attributes="match reference">
+<script>
+  Polymer({
+    matchChanged: function(){
+      this.reference = document.querySelector(this.match)
+    }
+  })
+</script>
+</polymer-element>

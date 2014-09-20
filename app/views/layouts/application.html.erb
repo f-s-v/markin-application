@@ -15,12 +15,17 @@
 </head>
 <body unresolved class="lib-page">
 
+  <lib-monitormedia id="mediaMonitor">
+    <lib-monitormedia-rule name="small" max-width="630px"></lib-monitormedia-rule>
+    <lib-monitormedia-rule name="medium" max-width="910px"></lib-monitormedia-rule>
+  </lib-monitormedia>
+  
   <lib-layout modules="24" class="app-header">
     <app-stickyHeader></app-stickyHeader>
     <%= render 'lib/site_title' %>
     <%= render 'lib/menu' %>
   </lib-layout>
-
+  
   <lib-layout modules="24" class="lib-page-content">
     <% if content_for?(:main_content) %>
       <%= yield :main_content %>

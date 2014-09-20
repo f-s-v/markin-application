@@ -2,14 +2,18 @@
 
 $lib-layout-modules-count: 24;
 
-this.break {
-  display: block;
-}
-
 this.aside, html /deep/ this.aside {
   align-self: stretch;
   this.aside-content {
     padding-top: 0.6rem;
     margin: 0 0.6rem;
   }
+}
+
+html.small [smallHidden] {
+  display: none! important;
+}
+
+html.medium [mediumHidden] {
+  display: none! important;
 }

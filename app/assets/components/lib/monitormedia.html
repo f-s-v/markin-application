@@ -1,0 +1,49 @@
+<!--
+  = require core-media-query/core-media-query
+-->
+
+<polymer-element name="lib-monitormedia" attributes="root">
+  <template>
+    <content></content>
+  </template>
+  <script>
+    Polymer({
+      root: 'html',
+      rootChanged: function(){
+        this.rootElement = document.querySelector(this.root)
+      },
+      ready: function(){
+        this.rootChanged()
+        this.addEventListener('monitormedia-on', function(event){
+          this.rootElement.classList.add(event.target.name)
+          this[event.target.name] = true
+        }.bind(this))
+        this.addEventListener('monitormedia-off', function(event){
+          this.rootElement.classList.remove(event.target.name)
+          this[event.target.name] = false
+        }.bind(this))
+      }
+    })
+  </script>
+</polymer-element>
+
+<polymer-element name="lib-monitormedia-rule" attributes="name ruleMatches max-width">
+  <template>
+    <core-media-query query="{{ rules | styleObject}}" queryMatches="{{ruleMatches}}"></core-media-query>
+  </template>
+  <script>
+    Polymer({
+      ready: function(){
+        this.rules = _.object(_.difference(Object.keys(this.publish), ['name', 'ruleMatches']).map(function(attribute){
+          return [attribute, this[attribute]]
+        }.bind(this)))
+      },
+      ruleMatchesChanged: function(){
+        if (this.ruleMatches)
+          this.fire('monitormedia-on')
+        else
+          this.fire('monitormedia-off')
+      }
+    })
+  </script>
+</polymer-element>

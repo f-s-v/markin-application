@@ -1,13 +1,13 @@
 <lib-layout vcenter row class="app-menu">
   <%= checked_link_to t('.store'), store_root_path,
-    is: 'lib-layout-acell', width: 4,
+    is: 'lib-layout-acell', width: 4, mediumWidth: 5,
     class: 'lib-buttons-main lib-buttons-black app-store-productAside' %>
 
   <%= checked_link_to t('.our_story'), page_path('our-story'),
-    is: 'lib-layout-acell', width: 4,
+    is: 'lib-layout-acell', width: 4, mediumWidth: 5,
     class: 'lib-buttons-main lib-buttons-black' %>
 
-  <lib-layout-cell width="4" gap="2">
+  <lib-layout-cell width="4" gap="2" mediumGap="0">
     <lib-layout hcenter>
       <%= checked_link_to t('.client_care'), users_profile_path,
         class: 'lib-buttons-small lib-buttons-goldBorder' %>
@@ -15,20 +15,20 @@
   </lib-layout-cell>
 
   <%= checked_link_to papers_path,
-    is: 'lib-layout-acell', width: 4, gap: 2,
+    is: 'lib-layout-acell', width: 4, mediumWidth: 5, gap: 2, mediumGap: 0,
     class: 'lib-buttons-main lib-buttons-black' do %>
     <%= t('.news') %>
   <% end %>
 
   <% if current_order.items.empty? %>
     <%= checked_link_to store_order_path,
-      is: 'lib-layout-acell', width: 4,
+      is: 'lib-layout-acell', width: 4, mediumWidth: 5,
       class: 'lib-buttons-main lib-buttons-black' do %>
       <%= t('.cart') %>
     <% end %>
   <% else %>
     <%= checked_link_to store_order_path,
-      is: 'lib-layout-acell', width: 4,
+      is: 'lib-layout-acell', width: 4, mediumWidth: 5,
       class: 'lib-buttons-mainNumber lib-buttons-black' do %>
       <%= number_to_currency current_order.total, precision: 0 %> &rarr;
     <% end %>
