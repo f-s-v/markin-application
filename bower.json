@@ -20,7 +20,7 @@
   "dependencies": {
     "normalize.css": "~3.0.1",
     "HTML5-Reset": "~2.1.2",
-    "polymer": "Polymer/polymer#~0.4.0",
+    "polymer": "Polymer/polymer#0.4.0",
     "underscore.string": "~2.3.3",
     "lodash": "~2.4.1",
     "paper-dialog": "Polymer/paper-dialog#~0.4.0",
@@ -34,9 +34,11 @@
     "core-style": "Polymer/core-style#~0.4.0",
     "requestAnimationFrame-polyfill": "*",
     "mark-down": "~0.6.0",
-    "core-media-query": "Polymer/core-media-query#~0.4.1"
+    "core-media-query": "Polymer/core-media-query#0.4.0",
+    "paper-shadow": "Polymer/paper-shadow#0.4.0",
+    "platform": "Polymer/platform#0.4.0"
   },
   "resolutions": {
-    "polymer": "~0.4.0"
+    "polymer": "0.4.0"
   }
 }
