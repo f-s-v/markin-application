@@ -39,6 +39,10 @@ html /deep/ this.halfpadding, this.halfpadding {
   padding: $app-paddingHeight / 2;
 }
 
+html.small /deep/ this.padding, html.small this.padding {
+  padding: $app-paddingHeight / 2;
+}
+
 .lib-paragraph-center {
   text-align: center;
 }

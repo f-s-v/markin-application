@@ -85,3 +85,13 @@
     }
   }
 }
+
+html.small .lib-textFormatted, html.small.lib-textFormatted, html.small body /deep/ .lib-textFormatted {
+  h1 {
+    font-size: $lib-textStyle-largeSize / 1.3;
+  }
+  
+  h2 {
+    font-size: $lib-textStyle-condencedLargeSize / 1.3;
+  }
+}

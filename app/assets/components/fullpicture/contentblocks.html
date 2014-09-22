@@ -16,10 +16,6 @@
         transition: opacity 0.02s linear;
       }
 
-      :host([padding]){
-        padding: 45px;
-      }
-
       :host([stretchheight]){
         -ms-align-self: stretch;
         -webkit-align-self: stretch;
@@ -74,7 +70,7 @@
 
         publish: {
           blockstyle: {reflect: true},
-          padding: {reflect: true},
+          padding: {reflect: false},
           stretchheight: {reflect: true},
           imagestyle: {reflect: true},
           fontstyle: {reflect: true},
@@ -96,6 +92,13 @@
           'model.border_style': function(_, v){ this.borderstyle = v },
           'model.background_style': function(_, v){ this.backgroundstyle = v },
           'model.link': function(_, v){ this.link = !!v }
+        },
+        
+        paddingChanged: function(){
+          if (this.padding)
+            this.classList.add('lib-contentBlock-padding')
+          else
+            this.classList.remove('lib-contentBlock-padding')
         },
 
         blockstyleChanged: function(_, style) {
