@@ -8,7 +8,7 @@ class Store::OptionsController < ApplicationController
   end
   
   let(:products, on: :member) do
-    resource.products.joins(:name).where('translations.locale' => I18n.locale).order('translations.text')
+    resource.products.joins(:name).where('translations.locale' => I18n.locale).order('translations.text').to_a.uniq
   end
 
   def show
