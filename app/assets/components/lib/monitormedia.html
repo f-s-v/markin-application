@@ -27,16 +27,21 @@
   </script>
 </polymer-element>
 
-<polymer-element name="lib-monitormedia-rule" attributes="name ruleMatches max-width">
+<polymer-element name="lib-monitormedia-rule" attributes="name ruleMatches min-width max-width">
   <template>
     <core-media-query query="{{ rules | styleObject}}" queryMatches="{{ruleMatches}}"></core-media-query>
   </template>
   <script>
     Polymer({
       ready: function(){
-        this.rules = _.object(_.difference(Object.keys(this.publish), ['name', 'ruleMatches']).map(function(attribute){
+        var reserved = ['name', 'ruleMatches']
+        rules = _.difference(Object.keys(this.publish), reserved).filter(function(attribute){
+          return this[attribute] != undefined
+        }.bind(this)).map(function(attribute){
           return [attribute, this[attribute]]
-        }.bind(this)))
+        }.bind(this))
+        
+        this.rules = _.object(rules)
       },
       ruleMatchesChanged: function(){
         if (this.ruleMatches)

@@ -1,5 +1,8 @@
 .app-menu {
-  height: $app-blockHeight;
   background: black;
   border-bottom: 1px solid white;
+  lib-menucollapse {
+    width: 100%;
+  }
+  
 }

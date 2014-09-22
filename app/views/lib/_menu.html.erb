@@ -1,36 +1,93 @@
-<lib-layout vcenter row class="app-menu">
-  <%= checked_link_to t('.store'), store_root_path,
-    is: 'lib-layout-acell', width: 4, mediumWidth: 5,
-    class: 'lib-buttons-main lib-buttons-black app-store-productAside' %>
-
-  <%= checked_link_to t('.our_story'), page_path('our-story'),
-    is: 'lib-layout-acell', width: 4, mediumWidth: 5,
-    class: 'lib-buttons-main lib-buttons-black' %>
-
-  <lib-layout-cell width="4" gap="2" mediumGap="0">
-    <lib-layout hcenter>
-      <%= checked_link_to t('.client_care'), users_profile_path,
-        class: 'lib-buttons-small lib-buttons-goldBorder' %>
-    </lib-layout>
-  </lib-layout-cell>
-
-  <%= checked_link_to papers_path,
-    is: 'lib-layout-acell', width: 4, mediumWidth: 5, gap: 2, mediumGap: 0,
-    class: 'lib-buttons-main lib-buttons-black' do %>
-    <%= t('.news') %>
-  <% end %>
-
-  <% if current_order.items.empty? %>
-    <%= checked_link_to store_order_path,
+<lib-layout class="app-menu">
+  <lib-layout vcenter row smallHidden>
+    <%= checked_link_to t('.store'), store_root_path,
       is: 'lib-layout-acell', width: 4, mediumWidth: 5,
+      class: 'lib-buttons-main lib-buttons-black app-store-productAside' %>
+
+    <%= checked_link_to t('.our_story'), page_path('our-story'),
+      is: 'lib-layout-acell', width: 4, mediumWidth: 5,
+      class: 'lib-buttons-main lib-buttons-black' %>
+
+    <lib-layout-cell width="4" gap="2" mediumGap="0">
+      <lib-layout hcenter>
+        <%= checked_link_to t('.client_care'), users_profile_path,
+          class: 'lib-buttons-small lib-buttons-goldBorder' %>
+      </lib-layout>
+    </lib-layout-cell>
+
+    <%= checked_link_to papers_path,
+      is: 'lib-layout-acell', width: 4, mediumWidth: 5, gap: 2, mediumGap: 0,
       class: 'lib-buttons-main lib-buttons-black' do %>
-      <%= t('.cart') %>
+      <%= t('.news') %>
     <% end %>
-  <% else %>
-    <%= checked_link_to store_order_path,
-      is: 'lib-layout-acell', width: 4, mediumWidth: 5,
-      class: 'lib-buttons-mainNumber lib-buttons-black' do %>
-      <%= number_to_currency current_order.total, precision: 0 %> &rarr;
+
+    <% if current_order.items.empty? %>
+      <%= checked_link_to store_order_path,
+        is: 'lib-layout-acell', width: 4, mediumWidth: 5,
+        class: 'lib-buttons-main lib-buttons-black' do %>
+        <%= t('.cart') %>
+      <% end %>
+    <% else %>
+      <%= checked_link_to store_order_path,
+        is: 'lib-layout-acell', width: 4, mediumWidth: 5,
+        class: 'lib-buttons-mainNumber lib-buttons-black' do %>
+        <%= number_to_currency current_order.total, precision: 0 %> &rarr;
+      <% end %>
     <% end %>
-  <% end %>
+  </lib-layout>
+
+  <lib-menucollapse largeHidden mediumHidden smallVisible>
+    <lib-layout modules="24" caption>
+      <a is="lib-layout-acell" width="24" captionButton class="lib-buttons-main lib-buttons-black lib-textStyle-websymbol" href="#">
+        &#0091;
+      </a>
+    </lib-layout>
+    <lib-layout modules="24" actions vcenter>
+      <%= checked_link_to t('.store'), store_root_path,
+        is: 'lib-layout-acell', width: 24,
+        class: 'lib-buttons-main lib-buttons-black' %>
+
+      <%= checked_link_to t('.our_story'), page_path('our-story'),
+        is: 'lib-layout-acell', width: 24,
+        class: 'lib-buttons-main lib-buttons-black' %>
+
+      <%= checked_link_to users_profile_path,
+        is: 'lib-layout-acell', width: 24,
+        class: 'lib-buttons-main lib-buttons-black' do %>
+        <%= t('.client_care') %>
+      <% end %>
+
+      <%= checked_link_to papers_path,
+        is: 'lib-layout-acell', width: 24,
+        class: 'lib-buttons-main lib-buttons-black' do %>
+        <%= t('.news') %>
+      <% end %>
+
+      <% if current_order.items.empty? %>
+        <%= checked_link_to store_order_path,
+          is: 'lib-layout-acell', width: 24,
+          class: 'lib-buttons-main lib-buttons-black' do %>
+          <%= t('.cart') %>
+        <% end %>
+      <% else %>
+        <%= checked_link_to store_order_path,
+          is: 'lib-layout-acell', width: 24,
+          class: 'lib-buttons-mainNumber lib-buttons-black' do %>
+          <%= number_to_currency current_order.total, precision: 0 %> &rarr;
+        <% end %>
+      <% end %>
+    
+      <%= checked_link_to page_path('contacts'),
+        is: 'lib-layout-acell', width: 24,
+        class: 'lib-buttons-main lib-buttons-black' do %>
+        <%= t('lib.site_title.contacts') %>
+      <% end %>
+
+      <%= checked_link_to url_for(params.update(locale: (Rails.application.config.i18n_enabled_locales - [I18n.locale]).first)),
+        is: 'lib-layout-acell', width: 24,
+        class: 'lib-buttons-main lib-buttons-black' do %>
+        <%= t('lib.site_title.switch_lang') %>
+      <% end %>
+    </div>
+  </lib-menucollapse>
 </lib-layout>

@@ -1,0 +1,33 @@
+<!--
+  = require core-collapse/core-collapse
+-->
+<polymer-element name="lib-menucollapse">
+  <template>
+    <style>
+      core-collapse.core-collapse-closed {
+        display: none!important;
+      }
+    </style>
+    <content select="[caption]">
+    </content>
+    <core-collapse id="actions" duration="0" on-core-resize="{{fixCoreCollapseVisibility}}">
+      <content select="[actions]"></content>
+    </core-collapse>
+  </template>
+  <script>
+    Polymer({
+      fixCoreCollapseVisibility: function(){
+      },
+      ready: function(){
+        if (button = this.querySelector('[captionbutton]'))
+          button.addEventListener('click', this.toggle.bind(this))
+      },
+      toggle: function(event){
+        event.preventDefault()
+        this.$.actions.toggle()
+        if (button = this.querySelector('[captionbutton]'))
+          this.$.actions.opened ? button.setAttribute('checked', 'yes') : button.removeAttribute('checked')
+      }
+    })
+  </script>
+</polymer-element>

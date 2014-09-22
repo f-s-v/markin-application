@@ -10,10 +10,26 @@ this.aside, html /deep/ this.aside {
   }
 }
 
+html.large [largeHidden] {
+  display: none;
+}
+
 html.small [smallHidden] {
-  display: none! important;
+  display: none;
 }
 
 html.medium [mediumHidden] {
-  display: none! important;
+  display: none;
+}
+
+html.large [largeVisible] {
+  display: initial;
+}
+
+html.small [smallVisible] {
+  display: initial;
+}
+
+html.medium [mediumVisible] {
+  display: initial;
 }
