@@ -10,26 +10,18 @@ this.aside, html /deep/ this.aside {
   }
 }
 
-html.large [largeHidden] {
-  display: none;
-}
-
-html.small [smallHidden] {
-  display: none;
-}
-
+html.large [largeHidden],
+html.small [smallHidden],
 html.medium [mediumHidden] {
-  display: none;
+  position: absolute;
+  top: -2000cm;
+  left: 0;
+  visibility: hidden;
 }
 
-html.large [largeVisible] {
-  display: initial;
-}
-
-html.small [smallVisible] {
-  display: initial;
-}
-
+html.large [largeVisible],
+html.small [smallVisible],
 html.medium [mediumVisible] {
-  display: initial;
+  position: static;
+  visibility: visible;
 }

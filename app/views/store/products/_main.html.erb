@@ -3,10 +3,42 @@
     <h1><%= resource.name.value %></h1>
     <h2><%= resource.batch.name.value %></h2>
   </div>
+  
+  <lib-layout vcenter stack largeHidden mediumHidden smallVisible>
+    <span class="lib-textStyle-captionSmall"><%= Product.human_attribute_name :price %></span>
+    <h2>
+      <%= number_to_currency resource.price, precision: 0 %>
+    </h2>
+    <%= link_to t('actions.add_to_cart'),
+      store_order_items_path(product_public_id: resource.public_id),
+      method: 'post',
+      class: expand_class('lib', buttons: 'small black', boxStyle: 'inFlow')
+    %>
+  </lib-layout>
+  
 
   <div class="lib-boxStyle-inFlow">
     <%= render 'lib/page', page: resource, width: 20 %>
   </div>
+  
+  <lib-layout hcenter  largeHidden mediumHidden smallVisible>
+    <dl>
+      <dt class="lib-paragraph-center"><%= Product.human_attribute_name :batch %></dt>
+      <dd class="lib-paragraph-center"><%= link_to resource.batch.name.value, store_batch_path(resource.batch), class: 'invisible' %></dd>
+      <% resource.options.group_by(&:characteristic).each do |characteristic, options| %>
+        <dt class="lib-paragraph-center"><%= characteristic.name.value %></dt>
+        <dd  class="lib-paragraph-center">
+          <% options.each do |option| %>
+            <%= link_to option.name.value,
+              store_option_path(option),
+              class: 'lib-buttons-small lib-buttons-blackBorder lib-buttons-round'
+            %>
+          <% end %>
+        </dd>
+      <% end %>
+    </dl>
+    
+  </lib-layout>
 
   <div class="lib-boxStyle-inFlow">
     <%= render 'lib/share_buttons', url: store_batch_product_url(resource.batch, resource), style: 'gold' %>  
