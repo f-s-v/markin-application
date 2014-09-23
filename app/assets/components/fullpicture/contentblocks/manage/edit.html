@@ -1,7 +1,11 @@
 <polymer-element name="fp-manage-edit" attributes="block">
 
   <template>
-    <!-- <fp-blockform id="form" object="{{block}}"></fp-blockform> -->
+    <style>
+      :host {
+        z-index: 3;
+      }
+    </style>
     <fp-manage-panelaction on-click="{{ openForm }}"></fp-manage-panelaction>
   </template>
 

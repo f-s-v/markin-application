@@ -1,41 +1,30 @@
 <polymer-element name="fp-manage-resize">
   <template>
     <style>
+      :host {
+        z-index: 3;
+      }
       .control {
         position: absolute;
       }
       .control#horizontal {
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 9px;
+        right: 8px;
+        top: 8px;
+        height: calc(100% - 16px);
         cursor: ew-resize;
-      }
-      .control#vertical {
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 9px;
-        cursor: ns-resize;
+        border-right: 14px dotted rgba(255, 0, 0, 0.5);
       }
     </style>
     <fp-manage-panel></fp-manage-panel>
     <div class="control" id="horizontal" on-trackstart="{{onBeforeWidthChanged}}" on-track="{{onWidthChanged}}"></div>
-    <!-- <div class="control" id="vertical" on-trackstart="{{onBeforeHeightChanged}}" on-track="{{onHeightChanged}}"></div> -->
   </template>
   <script>
     Polymer('fp-manage-resize', {
       onBeforeWidthChanged: function(event){
         this.fire('manage-before-resize-x')
       },
-      onBeforeHeightChanged: function(event){
-        this.fire('manage-before-resize-y')
-      },
       onWidthChanged: function(event){
         this.fire('manage-resize-x', {delta: event.dx})
-      },
-      onHeightChanged: function(event){
-        this.fire('manage-resize-y', {delta: event.dy})
       }
     });
   </script>
