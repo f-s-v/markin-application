@@ -14,5 +14,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/vendor/assets/components
+# /vendor/assets/components
 .env
