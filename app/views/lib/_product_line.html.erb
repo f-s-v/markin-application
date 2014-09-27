@@ -1,13 +1,24 @@
-<figure class="inline">
-  <%= link_to store_batch_product_path(product.batch, product), target: '_blank', class: 'pull-left' do %>
-    <%= image_tag uploadcare_url(product.poster, scale_crop: '50x50/center') %>
-  <% end %>
-</figure>
-  
-<h4>
-  <%= link_to store_batch_product_path(product.batch, product), target: '_blank' do %>
-    <%= product.name.value %>
-  <% end %>
-</h4>
+<lib-layout>
+<lib-layout-cell width="4" smallHidden>
+  <figure class="inline">
+    <%= link_to store_batch_product_path(product.batch, product), target: '_blank', class: 'pull-left' do %>
+      <%= image_tag uploadcare_url(product.poster, scale_crop: '300x178/center')%>
+    <% end %>
+  </figure>
+</lib-layout-cell>
 
-<%= t('.batch', batch: product.batch.name.value) %>
+<lib-layout-cell width="6">
+  <% content = capture do %>
+    <%= link_to store_batch_product_path(product.batch, product), target: '_blank' do %>
+      <%= product.name.value %>
+    <% end %>
+    •
+    <%= t('.batch', batch: product.batch.name.value) %>
+  <% end %>
+  <h4 mediumHidden><%= content %></h4>
+  <h5 largeHidden mediumVisible><%= content %></h5>
+  
+</lib-layout-cell>
+
+</lib-layout>
+  

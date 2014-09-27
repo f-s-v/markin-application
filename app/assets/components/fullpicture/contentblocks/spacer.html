@@ -15,7 +15,7 @@
         '$.media.reference.small': 'phoneScreenChanged'
       },
       phoneScreenChanged: function(){
-        this.$.cell.element.hidden = this.$.media.reference.small && this.$.cell.element.width < (this.$.layout.element.modules || this.$.layout.element.parentModules)
+        this.$.cell.element.hidden = this.$.media.reference.small && this.$.cell.element.width < (this.$.layout.element.calculatedModules)
       }
     })
   </script>

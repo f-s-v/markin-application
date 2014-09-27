@@ -3,7 +3,7 @@
   = require core-style/core-style
 -->
 
-<polymer-element name="lib-layout" attributes="modules parentModules vcenter hcenter">
+<polymer-element name="lib-layout" attributes="modules smallModules mediumModules largeModules calculatedModules vcenter hcenter">
   <template>
     <style>
       :host {
@@ -54,20 +54,46 @@
         flex-direction: column;
       }
     </style>
-    <lib-parent
-      id="parent"
-      match="lib-layout, lib-layout-cell, lib-layout-acell"></lib-parent>
+    <lib-reference match="#mediaMonitor" id="media"></lib-reference>
+    <lib-parent id="parentCell" match="lib-layout-cell, lib-layout-acell"></lib-parent>
+    <lib-parent id="parentLayout" match="lib-layout"></lib-parent>
     <content></content>
   </template>
   <script>
     Polymer('lib-layout', {
       observe: {
-        '$.parent.element.modules': 'updateParentModules',
-        '$.parent.element.parentModules': 'updateParentModules',
-        '$.parent.element.width': 'updateParentModules'
+        '$.media.reference.large': 'calculateModules',
+        '$.media.reference.medium': 'calculateModules',
+        '$.media.reference.small': 'calculateModules',
+        'modules': 'calculateModules',
+        'largeModules': 'calculateModules',
+        'mediumModules': 'calculateModules',
+        'smallModules': 'calculateModules',
+        '$.parentCell.element.width': 'calculateModules',
+        '$.parentCell.element.largeWidth': 'calculateModules',
+        '$.parentCell.element.mediumWidth': 'calculateModules',
+        '$.parentCell.element.smallWidth': 'calculateModules',
+        '$.parentLayout.element.calculatedModules': 'calculateModules'
       },
-      updateParentModules: function(__, newVal){
-        this.parentModules = newVal
+      calculateModules: function(){
+        if (!this.$.media.reference)
+          return
+        var media = this.$.media.reference
+        var adaptive = function(object, s){
+
+          var capitalize = function(s){ return s[0].toUpperCase() + s.slice(1) }
+
+          return media.small && object['small' + capitalize(s)] ||
+            media.medium && object['medium' + capitalize(s)] ||
+            media.large && object['large' + capitalize(s)] ||
+            object[s]
+        }
+        this.calculatedModules =  adaptive(this, 'modules') ||
+          this.$.parentCell.element && adaptive(this.$.parentCell.element, 'width') ||
+          this.$.parentLayout.element && this.$.parentLayout.element.calculatedModules
+      },
+      domReady: function(){
+        this.calculateModules()
       }
     });
   </script>
@@ -108,8 +134,7 @@
       'width': 'flexBasisStyleChanged',
       'smallWidth': 'flexBasisStyleChanged',
       'mediumWidth': 'flexBasisStyleChanged',
-      '$.layout.element.parentModules': 'modulesChanged',
-      '$.layout.element.modules': 'modulesChanged',
+      '$.layout.element.calculatedModules': 'modulesChanged',
       'gap': 'gapStyleChanged',
       'mediumGap': 'gapStyleChanged',
       'smallGap': 'gapStyleChanged',
@@ -130,30 +155,30 @@
     gapStyleChanged: function(){
       this.style.removeProperty('margin-left')
       if (
-        this.gap &&
+        (this.gap || this.smallGap || this.mediumGap || this.largeGap) &&
         this.$.layout.element &&
-        (this.$.layout.element.parentModules || this.$.layout.element.modules)
+        this.$.layout.element.calculatedModules
       ) {
         var media = this.$.media.reference
         var gap = media && media.small && this.smallGap || media && media.medium && this.mediumGap || this.gap
-        var modules = this.$.layout.element.parentModules || this.$.layout.element.modules
+        var modules = this.$.layout.element.calculatedModules
         this.style.setProperty('margin-left', 'calc(' + gap + ' * 100% / ' + modules + ')')
       }
     },
 
     flexBasisStyleChanged: function(){
       var media = this.$.media.reference
-      var modules = this.$.layout.element.parentModules || this.$.layout.element.modules
-      var width = media && media.small && modules || media && media.medium && this.mediumWidth || this.width
+      var modules = this.$.layout.element.calculatedModules
+      var width = media && media.small && (this.smallWidth || modules) || media && media.medium && this.mediumWidth || this.width
       if (this.isDimensionsCanSet()) this.setWidth(width)
     },
 
     isDimensionsCanSet: function(){
-      return this.width && this.$.layout.element && (this.$.layout.element.parentModules || this.$.layout.element.modules)
+      return this.width && this.$.layout.element && this.$.layout.element.calculatedModules
     },
 
     setWidth: function(width){
-      var modules = this.$.layout.element.parentModules || this.$.layout.element.modules
+      var modules = this.$.layout.element.calculatedModules
       this.style.setProperty('-ms-flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
       this.style.setProperty('-webkit-flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')
       this.style.setProperty('flex-basis', 'calc(' + width + ' * 100% / ' + modules + ')')

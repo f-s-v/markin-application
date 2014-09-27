@@ -112,7 +112,7 @@ ru:
         shipping_zip: Почтовый индекс
         phone_number: Номер телефона
       order/item:
-        product: Продукт
+        product: Изделие
         count: Количество
         size: Размер
         amount: Стоимость

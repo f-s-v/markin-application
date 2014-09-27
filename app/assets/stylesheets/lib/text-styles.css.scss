@@ -86,6 +86,11 @@ this.captionSmall {
 
 }
 
+this.captionSmallMinor {
+  @extend this.captionSmall;
+  @extend this.colorGray;
+}
+
 this.condencedLarge {
   font-family: "ReformaGroteskLightC";
   font-size: $lib-textStyle-condencedLargeSize;
@@ -124,3 +129,4 @@ this.colorGray {
 this.websymbol, body /deep/ this.websymbol {
   font-family: "Web Symbols Liga Regular"
 }
+

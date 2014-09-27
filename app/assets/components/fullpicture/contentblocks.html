@@ -148,7 +148,7 @@
       }
 
       :host([managed]) {
-        flex-basis: calc({{width}} * 100% / {{$.layout.element.parentModules || $.layout.element.modules}} - 1%)!important;
+        flex-basis: calc({{width}} * 100% / {{$.layout.element.calculatedModules}} - 1%)!important;
         margin: 0.5%;
         background: white;
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);

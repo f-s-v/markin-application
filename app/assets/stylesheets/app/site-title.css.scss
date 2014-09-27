@@ -26,6 +26,10 @@
   }
 }
 
+.app-header {
+  min-height: $app-siteTitleHeight + $app-blockHeight;
+}
+
 .app-siteTitleTiny {
   display: none;
   width: 100%;
