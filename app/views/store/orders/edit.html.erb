@@ -1,46 +1,59 @@
-<lib-layout class="lib-boxStyle" hcenter>
-  <lib-layout-cell width="20">
-    <h1 class="lib-contentBlock-padding">
-      <%= t('.title') %>
-    </h1>
-    <%= simple_form_for current_order, url: store_order_path, html: {class: expand_class('lib', form: 'black large table')} do |form| %>
-      <fieldset>
-        <table>
-          <thead>
-            <tr>
-              <th class="lib-table-cell-10"><%= Order::Item.human_attribute_name "product" %></th>
-              <th><%= Order::Item.human_attribute_name "count" %></th>
-              <th><%= Order::Item.human_attribute_name "size" %></th>
-              <th class="lib-table-cell-4"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= form.simple_fields_for :items do |item_fields| %>
-              <tr>
-                <td>
-                  <%= render 'lib/product_line', product: item_fields.object.product %>
-                </td>
-                <td>
-                  <%= item_fields.input :amount, label: false %>
-                </td>
-                <td>
-                  <%= item_fields.input :size, label: false %>
-                </td>
-                <td>
-                  <%= item_fields.input :_destroy, as: :boolean %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </fieldset>
+<lib-layout-cell width="20" mediumWidth="22" smallWidth="22" gap="2" mediumGap="1">
+  <h1 class="lib-contentBlock-padding">
+    <%= t('.title') %>
+  </h1>
 
-      <div class="form-actions">
-        <%= form.submit class: expand_class('lib', buttons: 'small black') %>
-      </div>
-      <div class="form-actions">
-        <%= link_to t('actions.back_to_store'), store_root_path, class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder' %>
-      </div>
+  <lib-layout class="lib-textStyle-captionSmallMinor">
+    <lib-layout-cell width="10" smallWidth="6">
+      <%= Order::Item.human_attribute_name "product" %>
+    </lib-layout-cell>
+  
+    <lib-layout-cell width="3" smallWidth="4" smallGap="2">
+      <%= Order::Item.human_attribute_name "count" %>
+    </lib-layout-cell>
+  
+    <lib-layout-cell width="3" smallWidth="4" gap="1" smallGap="1">
+      <%= Order::Item.human_attribute_name "size" %>
+    </lib-layout-cell>
+  
+    <lib-layout-cell width="2" smallWidth="4" gap="1" smallGap="1">
+    </lib-layout-cell>
+  </lib-layout>
+
+  <%= simple_form_for current_order, url: store_order_path, html: {class: expand_class('lib', form: 'gold large table')} do |form| %>
+    <%= form.simple_fields_for :items do |item_fields| %>
+      <lib-layout class="lib-boxStyle-inFlow">
+        <lib-layout-cell width="10" smallWidth="6">
+          <%= render 'lib/product_line', product: item_fields.object.product %>
+        </lib-layout-cell>
+  
+        <lib-layout-cell width="3" smallWidth="4" smallGap="2">
+          <%= item_fields.input :amount, label: false %>
+        </lib-layout-cell>
+  
+        <lib-layout-cell width="3" smallWidth="4" gap="1" smallGap="1">
+          <%= item_fields.input :size, label: false %>
+        </lib-layout-cell>
+  
+        <lib-layout-cell width="2" smallWidth="4" gap="1" smallGap="1">
+          <%= item_fields.input :_destroy, as: :boolean %>
+        </lib-layout-cell>
+      </lib-layout>
     <% end %>
-  </lib-layout-cell>
-</lib-layout>
+    
+    <div class="form-actions">
+      <%= form.submit (current_order.ready_to_checkout? ? t('.checkout') : t('.fill_shipping_info')),
+        class: expand_class('lib', buttons: 'small black')
+      %>
+    </div>
+    <hr />
+    <div class="form-actions">
+      <%= link_to t('actions.back_to_store'), store_root_path, class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder' %>
+      <%= link_to t('actions.cancel_order'), store_order_path,
+        class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder',
+        method: 'delete'
+      %>
+      
+    </div>
+  <% end %>
+</lib-layout-cell>

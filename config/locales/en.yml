@@ -34,7 +34,9 @@ en:
         collections: Collections
     orders:
       edit:
-        title: Shopping cart
+        title: Cart
+        checkout: Review order and checkout
+        fill_shipping_info: Save and fill shipping info
       show:
         checkout: Checkout
         edit_order: Edit order
@@ -139,6 +141,7 @@ en:
     share: Share
     see_also: See also
     back_to_store: Back to store
+    cancel_order: Cancel order
     save: Save
     close: Close
     edit: Edit
@@ -149,10 +152,10 @@ en:
   helpers:
     submit:
       order:
-        update: Update
+        update: Checkout
       order_shipping_info:
-        create: Save
-        update: Save
+        create: Review order and checkout
+        update: Review order and checkout
   messages:
     order:
       paid: Paid

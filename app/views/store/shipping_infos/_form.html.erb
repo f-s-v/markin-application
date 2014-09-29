@@ -1,8 +1,8 @@
-<lib-layout class="lib-boxStyle-gold" hcenter>
+<lib-layout hcenter>
   <lib-layout-cell width="14" class="lib-contentBlock-padding">
-    <%= simple_form_for resource, url: store_order_shipping_info_path, html: {class: expand_class('lib', form: 'gold large')} do |f| %>
+    <%= simple_form_for resource, url: store_order_shipping_info_path, html: {class: expand_class('lib', form: 'black large')} do |f| %>
         <fieldset>
-          <legend><%= t('.welcome') %></legend>
+          <h1 class="lib-contentBlock-padding"><%= t('.welcome') %></h1>
           <%= f.input :shipping_name %>
           <%= f.association :country, collection: Country.all %>
           <%= f.input :shipping_address_line1 %>
@@ -14,6 +14,19 @@
           <div class="form-actions">
             <%= f.button :submit, class: expand_class('lib', buttons: 'small black') %>
           </div>
+          <hr />
+          <div class="lib-boxStyle-inFlow lib-layout-hcenter lib-buttons-group">
+            <%= link_to t('.visit_store'), store_root_path, class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder' %>
+            <%= link_to t('.cancel_order'), store_order_path,
+              class: 'lib-buttons-small lib-buttons-round lib-buttons-blackBorder',
+                data: {
+                  confirm: 'Confirm',
+                  label: 'store-order-delete'
+                },
+              method: 'delete'
+            %>
+          </div>
+          
         </fieldset>
     <% end %>
   </lib-layout-cell>

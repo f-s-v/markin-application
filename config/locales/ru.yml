@@ -35,6 +35,8 @@ ru:
     orders:
       edit:
         title: Корзина
+        checkout: Проверить заказ и оплатить
+        fill_shipping_info: Сохранить и заполнить информацию о доставке
       show:
         checkout: Оплатить
         edit_order: Изменить заказ
@@ -151,6 +153,7 @@ ru:
     share: Рекоммендовать
     see_also: Смотрите также
     back_to_store: Вернуться в магазин
+    cancel_order: Отменить заказ
     save: Сохранить
     close: Закрыть
     edit: Редактировать
@@ -161,10 +164,10 @@ ru:
   helpers:
     submit:
       order:
-        update: "Обновить"
+        update: "Оплатить"
       order_shipping_info:
-        create: Сохранить
-        update: Сохранить
+        create: Проверить заказ и отплатить
+        update: Проверить заказ и отплатить
   messages:
     order:
       paid: оплачено

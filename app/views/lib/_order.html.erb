@@ -33,7 +33,7 @@
     </lib-layout-cell>
   
     <lib-layout-cell width="4" smallWidth="5" smallGap="1">
-      <%= number_to_currency item.total %>
+      <span class="lib-textStyle-condenced"><%= number_to_currency item.total, precision: 0 %></span>
     </lib-layout-cell>
   
     <lib-layout-cell width="3" smallWidth="4">
@@ -52,44 +52,44 @@
   <dl>
 
     <lib-layout>
-      <lib-layout-cell width="4" smallWidth="10">
+      <lib-layout-cell width="4" mediumWidth="10" smallWidth="10">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_name') %>:</dt>
         <dd><%= order.shipping_info.shipping_name %></dd>
       </lib-layout-cell>
-      <lib-layout-cell width="4" smallWidth="10" gap="2">
+      <lib-layout-cell width="4" mediumWidth="10" smallWidth="10" gap="2">
         <dt><%= Order::ShippingInfo.human_attribute_name('country') %>:</dt>
         <dd><% if order.shipping_info.country.present? %><%= order.shipping_info.country.name %><% end %></dd>
       </lib-layout-cell>
     </lib-layout>
 
     <lib-layout>
-      <lib-layout-cell width="4" smallWidth="10">
+      <lib-layout-cell width="4" mediumWidth="10" smallWidth="10">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_address_line1') %>:</dt>
         <dd><%= order.shipping_info.shipping_address_line1 %></dd>
       </lib-layout-cell>
-      <lib-layout-cell width="4" gap="2" smallWidth="10">
+      <lib-layout-cell width="4" gap="2" mediumWidth="10" smallWidth="10">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_address_line2') %>:</dt>
         <dd><%= order.shipping_info.shipping_address_line2 %></dd>
       </lib-layout-cell>
     </lib-layout>
 
     <lib-layout>
-      <lib-layout-cell width="4" smallWidth="10">
+      <lib-layout-cell width="4" mediumWidth="10" smallWidth="10">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_city') %>:</dt>
         <dd><%= order.shipping_info.shipping_city %></dd>
       </lib-layout-cell>
-      <lib-layout-cell width="4" gap="2" smallWidth="10">
+      <lib-layout-cell width="4" gap="2" mediumWidth="10" smallWidth="10">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_state') %>:</dt>
         <dd><%= order.shipping_info.shipping_state %></dd>
       </lib-layout-cell>
     </lib-layout>
 
     <lib-layout>
-      <lib-layout-cell width="4" smallWidth="10">
+      <lib-layout-cell width="4" mediumWidth="10" smallWidth="10">
         <dt><%= Order::ShippingInfo.human_attribute_name('shipping_zip') %>:</dt>
         <dd><%= order.shipping_info.shipping_zip %></dd>
       </lib-layout-cell>
-      <lib-layout-cell width="4" gap="2" smallWidth="10">
+      <lib-layout-cell width="4" gap="2" mediumWidth="10" smallWidth="10">
         <dt><%= Order::ShippingInfo.human_attribute_name('phone_number') %>:</dt>
         <dd><%= order.shipping_info.phone_number %></dd>
       </lib-layout-cell>
@@ -102,8 +102,8 @@
 <dl>
   <% if order.shipping_info.present? %>
     <dt><%= Order.human_attribute_name :delivery_price %></dt>
-    <dd><%= number_to_currency order.delivery_price %></dd>
+    <dd><%= number_to_currency order.delivery_price, precision: 0 %></dd>
   <% end %>
   <dt><%= Order.human_attribute_name :total %></dt>
-  <dd><%= number_to_currency order.total %></dd>
+  <dd><%= number_to_currency order.total, precision: 0 %></dd>
 </dl>

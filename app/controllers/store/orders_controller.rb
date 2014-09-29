@@ -3,7 +3,8 @@ class Store::OrdersController < Store::BaseController
 
   def update
     current_order.update_attributes order_params
-    respond_with current_order, location: store_order_path
+    location = current_order.shipping_info.present? ? [:store, :order] : new_store_order_shipping_info_path
+    respond_with current_order, location: location
   end
 
   def destroy

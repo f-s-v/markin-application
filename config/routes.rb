@@ -33,6 +33,7 @@ Rails.application.routes.draw do
             get :cancel
           end
         end
+        put :checkout
       end
       resources :batches, path: '' do
         resources :products, only: [:show], path: ''
