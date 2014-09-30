@@ -4,7 +4,11 @@ class FormtasticContentBlocksInput < Formtastic::Inputs::StringInput
       canvas_source = "#{sanitized_object_name}_#{sanitized_method_name}"
       canvas_id = "fp#{sanitized_object_name.camelize}#{sanitized_method_name.camelize}Canvas"
 
-      label_html <<
+      label_html << template.raw('<lib-monitormedia id="mediaMonitor">
+        <lib-monitormedia-rule name="small" max-width="630px"></lib-monitormedia-rule>
+        <lib-monitormedia-rule name="medium" max-width="910px"></lib-monitormedia-rule>
+        <lib-monitormedia-rule name="large" min-width="911px"></lib-monitormedia-rule>
+      </lib-monitormedia>') <<
       template.content_tag(
         'fp-canvas', nil,
         source: canvas_source, id: canvas_id,

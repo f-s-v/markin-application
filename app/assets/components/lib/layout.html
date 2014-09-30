@@ -88,6 +88,7 @@
             media.large && object['large' + capitalize(s)] ||
             object[s]
         }
+
         this.calculatedModules =  adaptive(this, 'modules') ||
           this.$.parentCell.element && adaptive(this.$.parentCell.element, 'width') ||
           this.$.parentLayout.element && this.$.parentLayout.element.calculatedModules
