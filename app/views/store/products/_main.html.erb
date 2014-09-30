@@ -4,7 +4,7 @@
     <h2><%= resource.batch.name.value %></h2>
   </div>
   
-  <lib-layout vcenter stack largeHidden mediumHidden smallVisible>
+  <lib-layout vcenter stack largeHidden mediumVisible>
     <span class="lib-textStyle-captionSmall"><%= Product.human_attribute_name :price %></span>
     <h2>
       <%= number_to_currency resource.price, precision: 0 %>
@@ -21,7 +21,7 @@
     <%= render 'lib/page', page: resource, width: 20 %>
   </div>
   
-  <lib-layout hcenter  largeHidden mediumHidden smallVisible>
+  <lib-layout hcenter  largeHidden mediumVisible>
     <dl>
       <dt class="lib-paragraph-center"><%= Product.human_attribute_name :batch %></dt>
       <dd class="lib-paragraph-center"><%= link_to resource.batch.name.value, store_batch_path(resource.batch), class: 'invisible' %></dd>
