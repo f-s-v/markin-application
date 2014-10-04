@@ -14,8 +14,9 @@
     <lib-throttle method="onBlockResizeY"></lib-throttle>
     <fp-blockform id="form"></fp-blockform>
 
-    <fp-dialog id="dialog" on-fp-dialog-close="{{close}}">
-      <lib-toggleable-selector toggles selected="{{manageState}}">
+    <fp-dialog id="dialog">
+      <lib-toggleable-selector id="menu" toggles selected="{{manageState}}">
+        <fp-dialog-action core-overlay-toggle on-click="{{close}}">&#204;</fp-dialog-action>
         <fp-dialog-checkaction name="edit" caption="&#094;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="resize" caption="&#0112;"></fp-dialog-checkaction>
         <fp-dialog-checkaction name="move" caption="&#0045;"></fp-dialog-checkaction>
@@ -50,7 +51,10 @@
   <script>
     Polymer('fp-canvas', {
       close: function(){
-        delete this.manageState
+        this.manageState = null
+        this.async(
+          function(){this.$.menu.selected = null
+        }.bind(this))
         this.$.contentBlocks.dataChanged()
       },
       onBlockMove: function(event, data){

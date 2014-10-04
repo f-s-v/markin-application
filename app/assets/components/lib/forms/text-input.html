@@ -9,6 +9,10 @@
       lib-input-hint {
         margin-top: -24px;
       }
+      
+      paper-input {
+        max-height: 150px;
+      }
     </style>
     <lib-input-wrapper>
       <paper-input id="input" multiline maxRows="5" label="{{label()}}" value="{{value}}" floatingLabel="{{floatingLabel}}"></paper-input>
@@ -17,12 +21,7 @@
   </template>
   <script>
     Polymer('lib-input-text', {
-      floatingLabel: false,
-      attached: function(){
-        this.job('rewrite input value', function(){
-          this.$.input.value = new String(this.$.input.value)
-        }, 100)
-      }
+      floatingLabel: false
     });
   </script>
 </polymer-element>

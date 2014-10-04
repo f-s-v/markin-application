@@ -64,9 +64,14 @@
       menu {
         margin: 0;
         position: fixed;
+        z-index: 100;
+      }
+      
+      ::content lib-toggleable-selector {
+        position: fixed;
         top: 24px;
         right: 24px;
-        z-index: 100;
+        
       }
 
       menu {
@@ -79,12 +84,11 @@
       layered
       opened="{{opened}}"
       autoCloseDisabled
-      transition="core-transition-center">
+      transition="core-transition-fade">
     </core-overlay>
 
     <menu>
-      <fp-dialog-action core-overlay-toggle on-click="{{close}}">&#204;</fp-dialog-action>
-      <content class="menu" select="fp-dialog-action, fp-dialog-checkaction, core-selector, lib-toggleable-selector">
+      <content class="menu" select="lib-toggleable-selector">
       </content>
     </menu>
     <content select="main"></content>
@@ -95,10 +99,6 @@
     Polymer('fp-dialog', {
       ready: function() {
         this.$.overlay.target = this;
-      },
-      close: function() {
-        this.$.overlay.close()
-        this.fire('fp-dialog-close')
       }
     });
 

@@ -6,18 +6,14 @@
         z-index: 3;
       }
     </style>
-    <fp-manage-panelaction on-click="{{ openForm }}"></fp-manage-panelaction>
+    <fp-blockform id="form" object="{{block}}"></fp-blockform>
+    <fp-manage-panelaction on-click="{{openForm}}"></fp-manage-panelaction>
   </template>
 
   <script>
-    Polymer('fp-manage-edit', {
+    Polymer({
       openForm: function(){
-        if (!this.form) {
-          this.form = document.createElement('fp-blockform')
-          this.form.object = this.block
-          this.appendChild(this.form)
-        }
-        this.form.open()
+        this.$.form.open()
       }
     })
   </script>

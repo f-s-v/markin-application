@@ -1,27 +1,40 @@
 <!--
   = require paper-dialog/paper-dialog
+  = require paper-dialog/paper-dialog-transition
   = require paper-button/paper-button
   = require paper-radio-button/paper-radio-button
   = require paper-radio-group/paper-radio-group
   = require paper-checkbox/paper-checkbox
   = require paper-input/paper-input
 -->
-<polymer-element name="fp-blockform" attributes="object">
+
+<polymer-element name="fp-blockform-dialog" attributes="object" extends="paper-dialog">
   <template>
     <style>
-      :host paper-dialog {
-        /*z-index: 1100;*/
-      }
-
-      paper-dialog .hint {
-        width: 50%;
-        position: relative;
-        top: -18px;
-        font-style: italic;
+      :host::shadow::content paper-button[affirmative] {
+        background: #4285f4;
+        color: white;
       }
     </style>
+    <shadow></shadow>
+  </template>
+  <script>
+    Polymer({
+      opened: true,
+      autoCloseDisabled: true,
+      layered: true,
+      ready: function(){
+        this.addEventListener('core-overlay-open-completed', function(){
+          this.$.overlay.resizeHandler()
+        }.bind(this))
+      }
+    })
+  </script>
+</polymer-element>
 
-    <paper-dialog id="dialog" heading="{{'manage.content_blocks.editing' | t}}" autoCloseDisabled layered on-core-overlay-open="{{onPaperDialogOpen}}">
+<polymer-element name="fp-blockform-fields" attributes="object">
+  <template>
+    <fp-blockform-dialog id="dialog" heading="{{'manage.content_blocks.editing' | t}}">
       <form>
         <lib-input-radiogroup name="content_block.block_style" value="{{object.block_style}}"></lib-input-radiogroup>
 
@@ -47,48 +60,52 @@
         <template if="{{object.block_style == 'embed'}}">
           <lib-input-text name="content_block.embed_code" value="{{object.embed_code}}" floatingLabel="true"></lib-input-text>
         </template>
-        
+      
         <lib-input-string name="content_block.link" value="{{object.link}}"></lib-input-boolean>
 
         <lib-input-boolean name="content_block.padding" value="{{object.padding}}"></lib-input-boolean>
 
         <lib-input-boolean name="content_block.stretch_height" value="{{object.stretch_height}}"></lib-input-boolean>
-        
+      
         <lib-input-radiogroup name="content_block.border_style" value="{{object.border_style}}"></lib-input-radiogroup>
-        
+      
         <lib-input-radiogroup name="content_block.background_style" value="{{object.background_style}}"></lib-input-radiogroup>
 
       </form>
-      <paper-button label="{{'actions.close' | t }}" affirmative></paper-button>
-      
-    </paper-dialog>
+      <paper-button raised affirmative>
+        {{'actions.close' | t }}
+      </paper-button>
+    </fp-blockform-dialog>
   </template>
   <script>
-    Polymer('fp-blockform', _.extend({
+    Polymer(_.extend({}, lib.I18n))
+  </script>
+</polymer-element>
+
+<polymer-element name="fp-blockform" attributes="object">
+  <script>
+    Polymer('fp-blockform', {
       created: function(){
         if (!this.object)
           this.object = {}
       },
       open: function(){
-        document.querySelectorAll('html /deep/ fp-blockform').array().forEach(function(form){
-          if (form.$.dialog.opened)
-            form.close()
-        })
-        this.$.dialog.opened = true
-        // this.async(function(){
-        //   this.$.dialog.$.overlay.updateTargetDimensions()
-        // }.bind(this))
+        if (this.__proto__.lastOpenedDialog)
+          this.__proto__.lastOpenedDialog.fields.$.dialog.toggle()
+        this.__proto__.lastOpenedDialog = this
+        
+        this.fields = document.createElement('fp-blockform-fields')
+        this.fields.object = this.object
+        this.appendChild(this.fields)
+        this.fields.$.dialog.addEventListener('core-overlay-close-completed', this.close.bind(this))
       },
 
       close: function() {
-        this.$.dialog.opened = false
+        this.fields.$.dialog.remove()
+        this.fields.remove()
         this.fire('fp-blockform-close')
-      },
-
-      onPaperDialogOpen: function(event, opened){
-        if (opened != true) // the `!=` is important
-          this.close()
       }
-    }, lib.I18n));
+    });
   </script>
 </polymer-element>
+
