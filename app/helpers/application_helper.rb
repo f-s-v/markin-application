@@ -41,4 +41,8 @@ module ApplicationHelper
     styles << 'padding' if block.padding
     styles
   end
+  
+  def site_title
+    [@site_title, t('meta.title')].compact.join(' — ')
+  end
 end
