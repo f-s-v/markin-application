@@ -127,6 +127,7 @@ this.colorGray {
 }
 
 this.websymbol, body /deep/ this.websymbol {
-  font-family: "Web Symbols Liga Regular"
+  font-family: "Web Symbols Liga Regular";
+  text-transform: none;
 }
 
