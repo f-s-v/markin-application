@@ -1,6 +1,7 @@
 ru:
   meta:
     title: Markin Fine Jewellery
+    description: "Золото высокой пробы может позволить себе провокацию, а настоящие бриллианты — легкомыслие."
   papers:
     show:
       news: Новости
@@ -85,16 +86,24 @@ ru:
             и ## для заголовка второго уровня.
 
     attributes:
+      paper:
+        description: Описание
+        poster: Картинка
+        title: Заголовок
+        content_blocks: Страница
+        copy_content_blocks_from: Скопировать страницу с адреса
       page:
         slug: Идентификатор
         title: Заголовок
         content_blocks: Страница
+        description: Описание
       product:
         price: Стоимость
         batch: Серия
         name: Название
         content_blocks: Страница
         copy_content_blocks_from: Скопировать страницу с адреса
+        description: Описание
       user:
         email: еmail
         password: пароль

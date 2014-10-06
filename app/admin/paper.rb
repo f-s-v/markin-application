@@ -32,6 +32,9 @@ ActiveAdmin.register Paper do
       row :title do
         paper.title.value
       end
+      row :description do
+        paper.description.value
+      end
       row :poster do
         image_tag uploadcare_url(paper.poster, resize: 'x100')
       end
@@ -41,6 +44,7 @@ ActiveAdmin.register Paper do
   form do |f|
     f.inputs do
       f.input :title, as: :formtastic_translated_text
+      f.input :description, as: :formtastic_translated_text
       f.input :poster, as: :formtastic_uploadcare
       f.input :content_blocks, as: :formtastic_content_blocks, width: 20
       f.input :copy_content_blocks_from

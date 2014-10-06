@@ -48,6 +48,9 @@ ActiveAdmin.register Product do
       row :name do
         product.name.value
       end
+      row :description do
+        product.description.value
+      end
       row :batch
       row :poster do
         image_tag uploadcare_url(product.poster, resize: 'x100')
@@ -61,6 +64,7 @@ ActiveAdmin.register Product do
   form do |f|
     f.inputs do
       f.input :name, as: :formtastic_translated_text
+      f.input :description, as: :formtastic_translated_text
       f.input :content_blocks, as: :formtastic_content_blocks, width: 20
       f.input :copy_content_blocks_from
       f.input :batch, member_label: :to_s

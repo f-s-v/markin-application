@@ -3,7 +3,7 @@ class Paper < ActiveRecord::Base
   generates_public_id :public_id
 
   include Concerns::Translated
-  translated :title
+  translated :title, :description
 
   include Concerns::ContentBlocks
   

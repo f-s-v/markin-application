@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   generates_public_id :public_id
 
   include Concerns::Translated
-  translated :name
+  translated :name, :description
 
   include Concerns::ContentBlocks
 

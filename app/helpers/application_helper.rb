@@ -45,4 +45,13 @@ module ApplicationHelper
   def site_title
     [@site_title, t('meta.title')].compact.join(' — ')
   end
+
+
+  def page_description
+    @page_description.presence || t('meta.description')
+  end
+
+  def page_image
+    @page_image.presence || image_url("logo-circle-black.png")
+  end
 end

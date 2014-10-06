@@ -28,6 +28,9 @@ ActiveAdmin.register Page do
       row :title do
         page.title.value
       end
+      row :description do
+        page.description.value
+      end
     end
   end
 
@@ -35,6 +38,7 @@ ActiveAdmin.register Page do
     f.inputs do
       f.input :slug
       f.input :title, as: :formtastic_translated_text
+      f.input :description, as: :formtastic_translated_text
       f.input :content_blocks, as: :formtastic_content_blocks, width: 24
       f.input :copy_content_blocks_from
     end
