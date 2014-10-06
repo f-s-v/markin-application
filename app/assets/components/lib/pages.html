@@ -9,17 +9,16 @@
         display: block;
       }
       
-      polyfill-next-selector { content: ':host > *'; }
-      ::content > * {
-        position: absolute;
-        top: -1000cm;
+      polyfill-next-selector { content: ':host > *:not(.core-selected)'; }
+      ::content > *:not(.core-selected) {
+        display: none;
       }
 
-      polyfill-next-selector { content: ':host > .core-selected'; }
+/*      polyfill-next-selector { content: ':host > .core-selected'; }
       ::content > .core-selected {
-        position: static;
+        display: flex;
       }
-    </style>
+*/    </style>
     <shadow></shadow>
   </template>
   <script>

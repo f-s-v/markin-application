@@ -1,7 +1,11 @@
-<polymer-element name="fp-contentblock-image" attributes="model" hcenter vcenter extends="lib-layout">
+<!--
+  = require core-image/core-image
+-->
+<polymer-element name="fp-contentblock-image" attributes="model" flex self-stretch layout horizontal>
   <template>
     <style>
       :host {
+        align-items: stretch;
         position: relative;
       }
       
@@ -22,6 +26,7 @@
         text-align: center;
         outline: 0;
         margin-top: -18px;
+        z-index: 2;
       }
 
       .selector.next {
@@ -30,33 +35,51 @@
       .selector.previous {
         left: 0;
       }
-
+      
       img {
-        max-width: 100%;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
         float: left;
       }
+      
+      core-image {
+        display: flex;
+      }
     </style>
     <lib-range id="range" stop="{{count}}"></lib-range>
-    <lib-pages id="pages" selected="0">
+    <lib-parent id="contentBlock" match="fp-contentblock, fp-contentblock-managed"></lib-parent>
+    <lib-pages id="pages" selected="0" horizontal layout flex>
       <template repeat="{{index in $.range.collection}}">
-        <img src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/"/>
+        <template if="{{!stretchHeight}}">
+          <img src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/" />
+        </template>
+        <template if="{{stretchHeight}}">
+          <core-image flex self-stretch src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/" sizing="cover"></core-image>
+        </template>
       </template>
     </lib-pages>
     <template if="{{count > 1}}">
       <button class="selector previous" on-click="{{selectPrevious}}">&larr;</button>
       <button class="selector next" on-click="{{selectNext}}">&rarr;</button>
     </template>
+
   </template>
 
   <script>
     Polymer('fp-contentblock-image', {
       observe: {
         count: 0,
+        '$.contentBlock.element.stretchheight': function(__, stretchHeight){
+          this.stretchHeight = stretchHeight
+        },
         'model.image': function(){
           var params = this.model.image.split('~')
           this.count = (params.length == 2) ? params[1] : 0
         }
+      },
+      publish: {
+        stretchHeight: {reflect: true, value: false}
       },
       selectNext: function(){
         this.$.pages.selected = (this.$.pages.selectedIndex == this.count - 1) ? 0 : (this.$.pages.selectedIndex + 1)

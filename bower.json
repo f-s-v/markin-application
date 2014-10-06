@@ -50,7 +50,8 @@
     "platform": "Polymer/platform#0.4.2",
     "polymer": "Polymer/polymer#0.4.2",
     "requestAnimationFrame-polyfill": "*",
-    "underscore.string": "~2.3.3"
+    "underscore.string": "~2.3.3",
+    "core-image": "Polymer/core-image#~0.4.2"
   },
   "resolutions": {
     "polymer": "0.4.2",

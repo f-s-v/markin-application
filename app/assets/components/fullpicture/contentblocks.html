@@ -6,12 +6,11 @@
   = require fullpicture/contentblocks/manage
 -->
 
-<polymer-element name="fp-contentblock" attributes="model text" extends="lib-layout-cell">
+<polymer-element name="fp-contentblock" attributes="model text" extends="lib-layout-cell" layout horizontal>
   <template>
     <style>
       :host {
         order: {{order}};
-        display: flex;
         position: relative;
         transition: opacity 0.02s linear;
       }
