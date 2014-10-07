@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/f-s-v/uploadcare_helpers.git
-  revision: 9069c79e18c745258f62b912e4b8371588492385
+  revision: 925e4eaec6ab52038fb551c96f576a2a4eda4de7
   specs:
     uploadcare_helpers (0.0.1)
       rails (~> 4.1.0.rc2)
@@ -163,7 +163,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.3)
     mini_portile (0.6.0)
-    minitest (5.4.1)
+    minitest (5.4.2)
     money (6.1.1)
       i18n (~> 0.6.4)
     multi_json (1.10.1)
