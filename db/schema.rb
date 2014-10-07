@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918151822) do
+ActiveRecord::Schema.define(version: 20141007115122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140918151822) do
     t.string   "block_style"
     t.boolean  "padding",          default: false
     t.string   "font_style"
-    t.string   "border_style"
+    t.string   "border_style",     default: "white"
     t.string   "background_style"
     t.string   "image_style"
     t.datetime "created_at"
