@@ -14,6 +14,6 @@
     "commit": "2c5496da4777801cc2a226836c376f6f762a4d29"
   },
   "_source": "git://github.com/Polymer/core-transition.git",
-  "_target": "0.4.2",
+  "_target": "^0.4.0",
   "_originalSource": "Polymer/core-transition"
 }

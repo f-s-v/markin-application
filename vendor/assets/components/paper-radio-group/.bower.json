@@ -15,6 +15,6 @@
     "commit": "a09c538c7601b339522febae54c5362153da55ce"
   },
   "_source": "git://github.com/Polymer/paper-radio-group.git",
-  "_target": "0.4.2",
+  "_target": "^0.4.0",
   "_originalSource": "Polymer/paper-radio-group"
 }

@@ -14,6 +14,6 @@
     "commit": "01b966bf42fdca348c48807c099ee63821fe4b17"
   },
   "_source": "git://github.com/Polymer/core-iconset-svg.git",
-  "_target": "0.4.2",
+  "_target": "^0.4.0",
   "_originalSource": "Polymer/core-iconset-svg"
 }

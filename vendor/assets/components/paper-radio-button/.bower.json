@@ -14,6 +14,6 @@
     "commit": "e583d7ffa43f35fc60cea863f1ee818d64f99af0"
   },
   "_source": "git://github.com/Polymer/paper-radio-button.git",
-  "_target": "0.4.2",
+  "_target": "^0.4.0",
   "_originalSource": "Polymer/paper-radio-button"
 }

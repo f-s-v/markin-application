@@ -16,6 +16,6 @@
     "commit": "5cf45f3f12f9f7ed148499f0a0d51ace2ec5be27"
   },
   "_source": "git://github.com/Polymer/core-collapse.git",
-  "_target": "0.4.2",
+  "_target": "^0.4.0",
   "_originalSource": "Polymer/core-collapse"
 }

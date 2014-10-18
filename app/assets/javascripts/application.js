@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require platform/platform
 //= require jquery
 //= require jquery_ujs
 //= require lodash/dist/lodash
@@ -17,5 +18,5 @@
 //= require marked/lib/marked
 //= require requestAnimationFrame-polyfill/requestAnimationFrame
 //= require i18n/translations
-//= require platform/platform
+
 //= require lib
