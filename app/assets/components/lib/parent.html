@@ -9,13 +9,22 @@
   <script>
     (function(){
       var findParent = function(element, selector){
-        if (!element) return undefined
-        return (element.matches && element.matches(selector)) ? element : findParent(element.parentNode || element.host, selector)
+        if (element.matches && element.matches(selector)) {
+          return element
+        }
+        else {
+          if ((element.parentNode || element.host) && element.parentNode.nodeName != "#document") {
+            return findParent(element.parentNode || element.host, selector)
+          }
+          else {
+            return undefined
+          }
+        }
       }
       Polymer('lib-parent', {
         attached: function(){
           var host = this.parentNode.host
-          this.element = findParent(host.parentNode || host.host, this.match)
+          this.element = findParent(this.parentNode.host.parentNode || this.parentNode.host.host, this.match)
         }
       });
     })()
