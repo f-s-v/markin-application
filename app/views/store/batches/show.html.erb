@@ -7,6 +7,9 @@
   <lib-layout-cell width="20">
     <lib-layout>
       <%= render partial: 'lib/product_preview', collection: products, as: :product %>
+      <div class="lib-boxStyle-inFlow">
+        <%= render 'lib/page', page: resource, width: 20 %>
+      </div>
     </lib-layout>
   </lib-layout-cell>
 </lib-layout>

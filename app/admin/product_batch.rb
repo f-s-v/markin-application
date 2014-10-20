@@ -5,6 +5,11 @@ ActiveAdmin.register Product::Batch do
 
   controller do
     defaults finder: :find_by_public_id!
+
+    def scoped_collection
+      ::Product::Batch.includes(:content_blocks)
+    end
+
     def permitted_params
       params.permit!
     end
@@ -39,6 +44,7 @@ ActiveAdmin.register Product::Batch do
     f.inputs do
       f.input :name, as: :formtastic_translated_text
       f.input :poster, as: :formtastic_uploadcare
+      f.input :content_blocks, as: :formtastic_content_blocks, width: 20
     end
 
     f.actions

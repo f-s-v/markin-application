@@ -12,7 +12,7 @@ class FormtasticContentBlocksInput < Formtastic::Inputs::StringInput
       template.content_tag(
         'fp-canvas', nil,
         source: canvas_source, id: canvas_id,
-        width: input_options[:width], owner: object.class.name.downcase
+        width: input_options[:width], owner: object.class.name.downcase.gsub('::', '_')
       ) <<
       template.content_tag('fp-opener', nil, canvas: canvas_id) <<
       builder.fields_for(:content_blocks) do |cb_inputs|

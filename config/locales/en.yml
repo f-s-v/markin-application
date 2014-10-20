@@ -95,6 +95,8 @@ en:
         batch: Series
         name: Name
         content_blocks: Page blocks
+      product/batch:
+        content_blocks_attributes: Page blocks
       user:
         email: Email
         password: Pasword
