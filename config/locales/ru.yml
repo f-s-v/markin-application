@@ -105,6 +105,7 @@ ru:
         copy_content_blocks_from: Скопировать страницу с адреса
         description: Описание
       product/batch:
+        description: Описание
         content_blocks: Страница
       user:
         email: еmail

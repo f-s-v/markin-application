@@ -96,6 +96,7 @@ en:
         name: Name
         content_blocks: Page blocks
       product/batch:
+        description: Description
         content_blocks_attributes: Page blocks
       user:
         email: Email

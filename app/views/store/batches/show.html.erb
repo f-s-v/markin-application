@@ -1,3 +1,7 @@
+<% @site_title = resource.name.value %>
+<% @page_description = resource.description.value %>
+<% @page_image = resource.poster.presence && uploadcare_url(resource.poster) %>
+
 <lib-layout-cell width="24" class="lib-contentBlock-padding">
 <h1><%= resource.name.value %></h1>
 <h2><%= t('.collection') %></h2>

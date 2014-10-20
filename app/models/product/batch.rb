@@ -1,6 +1,6 @@
 class Product::Batch < ActiveRecord::Base
   include Concerns::Translated
-  translated :name
+  translated :name, :description
   
   include Concerns::ContentBlocks
   
