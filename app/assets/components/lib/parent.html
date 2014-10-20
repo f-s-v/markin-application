@@ -13,7 +13,7 @@
           return element
         }
         else {
-          if ((element.parentNode || element.host) && element.parentNode.nodeName != "#document") {
+          if ((element.parentNode && element.parentNode.nodeName != "#document") || element.host) {
             return findParent(element.parentNode || element.host, selector)
           }
           else {
