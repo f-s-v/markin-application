@@ -1,5 +1,5 @@
 <% content_for :main_content do %>
-  <lib-layout class="lib-boxStyle-gold">
+  <lib-layout class="lib-boxStyle-gold" vcenter>
     <%= link_to current_user.name, users_profile_path,
       is: 'lib-layout-acell', width: 6,
       class: expand_class('lib', buttons: 'small gold') %>

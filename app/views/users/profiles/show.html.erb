@@ -1,10 +1,15 @@
 <lib-layout vcenter stack>
-  <h1>Orders</h1>
+  <h1><%= t('.orders') %></h1>
   <% current_user.orders.completed.recent.each do |order| %>
     <h3>
-      <%= link_to order.to_param, [:users, :profile, order] %>
-      <small><%= I18n.l order.created_at, format: :short %></small>
+      <%= link_to [:users, :profile, order] do %>
+        <%= order.to_param %>,
+        <small><%= I18n.l order.created_at, format: :short %></small>
+      <% end %>
     </h3>
   <% end %>
-
 </lib-layout>
+
+<% if page = Page.where(slug: 'client-care').first %>
+  <%= render 'lib/page', page: page, width: 24 %>
+<% end %>

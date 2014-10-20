@@ -10,6 +10,11 @@ ru:
   locale:
     en: По-английски
     ru: По-русски
+    
+  users:
+    profiles:
+      show:
+        orders: Заказы
 
   lib:
     footer:
