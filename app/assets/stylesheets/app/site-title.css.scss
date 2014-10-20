@@ -28,6 +28,7 @@
 
 .app-header {
   min-height: $app-siteTitleHeight + $app-blockHeight;
+  z-index: 3;
 }
 
 .app-siteTitleTiny {
