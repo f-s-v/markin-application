@@ -8,7 +8,7 @@ class Store::BatchesController < ApplicationController
   end
   
   let(:collection, on: :collection) do
-    Product::Batch.joins(:name).where('translations.locale' => I18n.locale).order('translations.text')
+    Product::Batch.joins(:name).where('translations.locale' => I18n.locale).order('featured desc, translations.text')
   end
   
   let(:products, on: :member) do

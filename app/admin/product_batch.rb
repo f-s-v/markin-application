@@ -23,6 +23,7 @@ ActiveAdmin.register Product::Batch do
     column :name do |b|
       link_to b.name.value, [:admin, b]
     end
+    column :featured
     actions
   end
 
@@ -37,6 +38,7 @@ ActiveAdmin.register Product::Batch do
       row :description do
         product_batch.description.value
       end
+      row :featured
       row :poster do
         image_tag uploadcare_url(product_batch.poster, resize: 'x100')
       end
@@ -49,6 +51,7 @@ ActiveAdmin.register Product::Batch do
       f.input :description, as: :formtastic_translated_text
       f.input :poster, as: :formtastic_uploadcare
       f.input :content_blocks, as: :formtastic_content_blocks, width: 20
+      f.input :featured
     end
 
     f.actions
