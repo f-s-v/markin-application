@@ -39,12 +39,8 @@
       img {
         width: 100%;
         height: 100%;
-        overflow: hidden;
         float: left;
-      }
-      
-      core-image {
-        display: flex;
+        overflow: hidden;
       }
     </style>
     <lib-range id="range" stop="{{count}}"></lib-range>
@@ -55,7 +51,10 @@
           <img src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/" />
         </template>
         <template if="{{stretchHeight}}">
-          <core-image flex self-stretch src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/" sizing="cover"></core-image>
+          <section horizontal layout flex self-stretch>
+            <img src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/" largeHidden mediumHidden smallVisible />
+            <core-image flex src="http://www.ucarecdn.com/{{model.image}}/nth/{{index}}/" sizing="cover" smallHidden></core-image>
+          </section>
         </template>
       </template>
     </lib-pages>

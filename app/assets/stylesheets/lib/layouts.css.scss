@@ -10,18 +10,18 @@ this.aside, html /deep/ this.aside {
   }
 }
 
-html.large [largeHidden],
-html.small [smallHidden],
-html.medium [mediumHidden] {
+html.large [largeHidden], html.large /deep/ [largeHidden],
+html.small [smallHidden], html.small /deep/ [smallHidden],
+html.medium [mediumHidden], html.medium /deep/ [mediumHidden] {
   position: absolute;
   top: -2000cm;
   left: 0;
   visibility: hidden;
 }
 
-html.large [largeVisible],
-html.small [smallVisible],
-html.medium [mediumVisible] {
+html.large [largeVisible], html.large /deep/ [largeVisible],
+html.small [smallVisible], html.small /deep/ [smallVisible],
+html.medium [mediumVisible], html.medium /deep/ [mediumVisible] {
   position: static;
   visibility: visible;
 }
