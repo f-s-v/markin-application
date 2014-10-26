@@ -1,5 +1,5 @@
 ActiveAdmin.register Product::Batch do
-  menu parent: 'Store', label: 'Batches'
+  menu parent: 'Store'
 
   filter :name
 

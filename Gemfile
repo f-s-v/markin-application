@@ -33,13 +33,14 @@ gem 'inherited_resources'
 gem "default_value_for", "~> 3.0.0"
 gem 'glean'
 gem 'simple_form', '~> 3.1.0.rc2'
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'activeadmin'
 gem "rails-sass-images"
 gem "autoprefixer-rails"
 gem 'emcee', github: 'rastyagaev/emcee'
 # gem 'emcee', path: '/Users/oktoberliner/Temporary/emcee'
 # gem 'emcee'
 gem 'deep_cloneable', '~> 2.0.0'
+gem 'party_foul'  
 
 group :test do
   gem 'capybara'

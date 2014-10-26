@@ -1,5 +1,5 @@
 ActiveAdmin.register Paper do
-  filter :created_at
+  config.filters = false
   
   controller do
     defaults finder: :find_by_public_id!
@@ -47,7 +47,7 @@ ActiveAdmin.register Paper do
       f.input :description, as: :formtastic_translated_text
       f.input :poster, as: :formtastic_uploadcare
       f.input :content_blocks, as: :formtastic_content_blocks, width: 20
-      f.input :copy_content_blocks_from
+      # f.input :copy_content_blocks_from
     end
 
     f.actions

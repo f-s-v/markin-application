@@ -3,16 +3,7 @@ ActiveAdmin.register Order do
   menu parent: "Store"
 
   actions :all, :except => [:destroy, :new]
-  filter :public_id, label: 'ID'
-  # filter :user
-  # filter :country
-  filter :created_at
-  filter :shipping_address_line1
-  filter :shipping_address_line2
-  filter :shipping_city
-  filter :shipping_state
-  filter :shipping_zip
-  filter :phone_number
+  config.filters = false
   
   controller do
     defaults finder: :find_by_public_id!
@@ -67,38 +58,38 @@ ActiveAdmin.register Order do
 
   show title: :public_id do
 
-    h3 "Items"
+    h3 Order.human_attribute_name :items
     table_for order.items do
-      column :product do |item|
+      column Order::Item.human_attribute_name(:product) do |item|
         link_to [:admin, item.product] do
           item.product.name.value
         end
       end
-      column :amount
-      column :size
-      column :price do |item|
-        number_to_currency item.price
+      column Order::Item.human_attribute_name(:amount), :amount
+      column Order::Item.human_attribute_name(:size), :size
+      column Order::Item.human_attribute_name(:total) do |item|
+        number_to_currency item.total
       end
     end
 
-    h3 t('.payments')
+    h3 Order.human_attribute_name :payments
     table_for order.payments do
-      column :created_at
-      column :state
-      column :payment_token
-      column :payer_token
-      column :payer_ip
-      column :refund do |payment|
+      column Order::Payment.human_attribute_name(:created_at), :created_at
+      column Order::Payment.human_attribute_name(:state), :state
+      column Order::Payment.human_attribute_name(:payment_token), :payment_token
+      column Order::Payment.human_attribute_name(:payer_token), :payer_token
+      column Order::Payment.human_attribute_name(:payer_ip), :payer_ip
+      column Order::Payment.human_attribute_name(:refund) do |payment|
         if payment.state == 'paid'
           link_to t('.refund'), refund_admin_order_path(payment: payment.id), method: :post, data: {confirm: 'Confirm.'}
         end
       end
     end
 
-    h3 "Messages"
+    h3 Order.human_attribute_name :messages
     table_for order.messages do
-      column :text
-      column :created_at
+      column Message.human_attribute_name(:text), :text
+      column Message.human_attribute_name(:created_at), :created_at
     end
   end
 
@@ -138,20 +129,16 @@ ActiveAdmin.register Order do
 
   form do |f|
     f.inputs for: :shipping_info do |sif|
-      sif.input :country
-      sif.input :shipping_address_line1
-      sif.input :shipping_address_line2
-      sif.input :shipping_city
-      sif.input :shipping_state
-      sif.input :shipping_zip
-      sif.input :phone_number
+      sif.input(:country) +
+      sif.input(:shipping_address_line1) +
+      sif.input(:shipping_address_line2) +
+      sif.input(:shipping_city) +
+      sif.input(:shipping_state) +
+      sif.input(:shipping_zip) + 
+      sif.input(:phone_number)
     end
-    f.actions :country_id, :shipping_address_line1,
-      :shipping_address_line2, :shipping_city,
-      :shipping_state, :shipping_zip, :phone_number
+    f.actions
   end
-
-  # permit_params 
 end
 
 

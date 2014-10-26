@@ -3,4 +3,6 @@ class Page < ActiveRecord::Base
   translated :title, :description
 
   include Concerns::ContentBlocks
+  
+  include Concerns::Recent
 end

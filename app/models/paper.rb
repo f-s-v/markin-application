@@ -6,6 +6,7 @@ class Paper < ActiveRecord::Base
   translated :title, :description
 
   include Concerns::ContentBlocks
+  include Concerns::Recent
   
   default_scope -> {order('created_at desc')}
   

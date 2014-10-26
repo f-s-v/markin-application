@@ -81,6 +81,52 @@ ru:
         sign_up: Регистрация
         forgotted_password: Восстановить пароль
   activerecord:
+    models:
+      user:
+        one: Пользователь
+        few: Пользователя
+        many: Пользователей
+        other: Пользователи
+      page:
+        one: Страница
+        few: Страницы
+        many: Страниц
+        other: Страницы
+      paper:
+        one: Новость
+        few: Новости
+        many: Новостей
+        other: Новости
+      product:
+        one: Изделие
+        few: Изделия
+        many: Изделий
+        other: Изделия
+      product/batch:
+        one: Коллекция
+        few: Коллекции
+        many: Коллекций
+        other: Коллекции
+      product/characteristic:
+        one: Характеристика
+        few: Характеристики
+        many: Характеристик
+        other: Характеристики
+      product/characteristic/option:
+        one: Опция
+        few: Опции
+        many: Опций
+        other: Опции
+      order:
+        one: Заказ
+        few: Заказа
+        many: Заказов
+        other: Заказы
+      order/delivery_zone:
+        one: Зона доставки
+        few: Зоны доставки
+        many: Зон доставки
+        other: Зоны доставки
     hints:
       content_block:
         stretch_height: Выровнять высоту к самому высокому элементу в строке.
@@ -97,6 +143,8 @@ ru:
         title: Заголовок
         content_blocks: Страница
         copy_content_blocks_from: Скопировать страницу с адреса
+        created_at: Дата создания
+        published_at: Дата публикации
       page:
         slug: Идентификатор
         title: Заголовок
@@ -104,19 +152,35 @@ ru:
         description: Описание
       product:
         price: Стоимость
-        batch: Серия
+        batch: Коллекция
         name: Название
         content_blocks: Страница
         copy_content_blocks_from: Скопировать страницу с адреса
         description: Описание
+        created_at: Дата создания
+        has_sizes: Имеет размеры
+        poster: Картинка
       product/batch:
         description: Описание
         content_blocks: Страница
+        name: Название
+        featured: Вверху страницы
+        poster: Картинка
+      product/characteristic:
+        name: Название
+      product/characteristic/option:
+        name: Название
       user:
-        email: еmail
-        password: пароль
-        password_confirmation: подтверждение пароля
-        name: имя
+        email: Еmail
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        name: Имя
+        created_at: Дата регистрации
+        sign_in_count: Количество входов
+        current_sign_in_at: Последний вход
+        last_sign_in_at: Предпоследний вход
+        current_sign_in_ip: IP последнего входа
+        last_sign_in_ip: IP предпоследнего входа
       order:
         total: Итого
         delivery_price: Стоимость доставки
@@ -132,12 +196,23 @@ ru:
         shipping_state: Область
         shipping_zip: Почтовый индекс
         phone_number: Номер телефона
+        user: Пользователь
+        items: Позиции
+        payments: Платежи
+        messages: Сообщения о статусе заказа
       order/item:
         product: Изделие
         count: Количество
         size: Размер
-        amount: Стоимость
+        amount: Количество
+        price: Стоимость
+        total: Итоговая стоимость
         _destroy: Удалить
+      order/payment:
+        created_at: Создан
+        state: Статус
+        payer_ip: IP-адрес плательщика
+        refund: Вернуть
       order/shipping_info:
         country: Страна
         shipping_name: Имя
@@ -147,6 +222,11 @@ ru:
         shipping_state: Область
         shipping_zip: Почтовый индекс
         phone_number: Номер телефона
+      order/delivery_zone:
+        name: Название
+        delivery_price: Стоимость доставки
+        countries: Страны
+        country_ids: Страны
       content_block:
         font_style: Шрифт
         border_style: Стиль рамки
@@ -159,6 +239,9 @@ ru:
         image: Картинка
         embed_code: Код для вставки
         link: Ссылка на блок
+      message:
+        text: Текст
+        created_at: Дата отправки
   simple_form:
     required:
       html: ''
@@ -233,6 +316,18 @@ ru:
     content_blocks:
       editing: Редактирование блока
   active_admin:
+    page:
+      index:
+        create: Добавить
+        view_site: Перейти на сайт
+        news: Новости
+        latest_news: Последние новости
+        pages: Страницы
+        recent_pages: Страницы
+        products: Изделия
+        recent_products: Новые изделия
+        orders: Заказы
+        recent_orders: Последние заказы
     resource:
       show:
         sent: Отправлено
@@ -248,3 +343,5 @@ ru:
       refund:
         notice:
           Деньги возвращены
+  irregular:
+    option_ids: Опции

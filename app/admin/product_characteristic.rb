@@ -1,5 +1,5 @@
 ActiveAdmin.register Product::Characteristic do
-  menu parent: 'Store', label: 'Characteristics'
+  menu parent: 'Store'
 
   config.filters = false
   

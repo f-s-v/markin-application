@@ -1,7 +1,7 @@
 ActiveAdmin.register Order::DeliveryZone do
-  menu parent: 'Store', label: 'Delivery Zones'
+  menu parent: 'Store'
 
-  filter :name
+  config.filters = false
 
   permit_params :name, :delivery_price, country_ids: []
 
@@ -16,7 +16,12 @@ ActiveAdmin.register Order::DeliveryZone do
   show do
     attributes_table_for order_delivery_zone do
       row :name
-      row :delivery_price
+      row :delivery_price do |zone|
+        number_to_currency zone.delivery_price
+      end
+      row :countries do |zone|
+        zone.countries.map(&:name).join(', ')
+      end
     end
   end
 

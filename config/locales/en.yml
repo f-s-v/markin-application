@@ -96,8 +96,9 @@ en:
         content_blocks_attributes: Page blocks
         content_blocks: Page blocks
       product:
+        public_id: ID
         price: Price
-        batch: Series
+        batch: Collection
         name: Name
         content_blocks: Page blocks
       product/batch:
@@ -213,6 +214,18 @@ en:
     content_blocks:
       editing: Edit block
   active_admin:
+    page:
+      index:
+        create: Create
+        view_site: View Site
+        news: News
+        latest_news: Latest news
+        pages: Pages
+        recent_pages: Recent pages
+        products: Products
+        recent_products: Recent Products
+        orders: Orders
+        recent_orders: Recent orders
     resource:
       show:
         sent: Sent
@@ -228,3 +241,5 @@ en:
       refund:
         notice:
           Money was returned
+  irregular:
+    option_ids: Options

@@ -4,11 +4,9 @@ ActiveAdmin.register Product do
 
   # filter :name
   filter :public_id, label: 'ID'
-  filter :batch
+  filter :batch, member_label: :to_s
   filter :price
-  filter :poster
   filter :created_at
-  filter :has_sizes
 
   controller do
     defaults finder: :find_by_public_id!
@@ -21,7 +19,9 @@ ActiveAdmin.register Product do
   index do
     selectable_column
     column 'ID' do |product|
-      link_to product.public_id, [:admin, product]
+      link_to [:admin, product] do
+        content_tag 'nobr', product.public_id
+      end
     end
 
     column :name do |product|
@@ -29,10 +29,9 @@ ActiveAdmin.register Product do
     end
     column :batch
     column :price do |product|
-      number_to_currency product.price
+      number_to_currency product.price, precision: 0
     end
     column :created_at
-    column :has_sizes
     actions
   end
 
@@ -66,7 +65,7 @@ ActiveAdmin.register Product do
       f.input :name, as: :formtastic_translated_text
       f.input :description, as: :formtastic_translated_text
       f.input :content_blocks, as: :formtastic_content_blocks, width: 20
-      f.input :copy_content_blocks_from
+      # f.input :copy_content_blocks_from
       f.input :batch, member_label: :to_s
       f.input :price
       f.input :poster, as: :formtastic_uploadcare
@@ -75,7 +74,9 @@ ActiveAdmin.register Product do
 
     Product::Characteristic.all.each do |c|
       f.inputs c.name.value do
-        f.input :option_ids, as: :check_boxes, collection: c.options, member_label: :to_s
+        f.input :option_ids,
+          as: :check_boxes, collection: c.options,
+          member_label: :to_s, label: I18n.t('irregular.option_ids')
       end
     end
 

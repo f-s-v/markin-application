@@ -3,11 +3,6 @@ ActiveAdmin.register User do
 
   filter :email
   filter :name
-  filter :sign_in_count
-  filter :current_sign_in_at
-  filter :last_sign_in_at
-  filter :current_sign_in_ip
-  filter :last_sign_in_ip
   filter :created_at
 
   permit_params :email, :name
