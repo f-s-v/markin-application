@@ -4,11 +4,11 @@ class PapersController < ApplicationController
   respond_to :html
   
   let(:resource, on: :member) do
-    Paper.includes(:title).where(public_id: params[:id]).first!
+    Paper.published.includes(:title).where(public_id: params[:id]).first!
   end
   
   let(:collection, on: :collection) do
-    Paper.order('created_at desc')
+    Paper.recent.published
   end
   
   def index

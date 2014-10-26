@@ -6,11 +6,13 @@ class Paper < ActiveRecord::Base
   translated :title, :description
 
   include Concerns::ContentBlocks
-  include Concerns::Recent
   
-  default_scope -> {order('created_at desc')}
+  default_value_for :published_at, -> { Time.zone.now }
   
-  validates :poster, presence: true
+  validates :poster, :published_at, presence: true
+  
+  scope :recent, -> { order('published_at desc') }
+  scope :published, -> { where('published_at < ?', Time.zone.now) }
   
   def to_param
     public_id

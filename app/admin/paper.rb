@@ -21,6 +21,7 @@ ActiveAdmin.register Paper do
     column :title do |c|
       c.title.value
     end
+    column :published_at
     actions
   end
 
@@ -38,6 +39,7 @@ ActiveAdmin.register Paper do
       row :poster do
         image_tag uploadcare_url(paper.poster, resize: 'x100')
       end
+      row :published_at
     end
   end
 
@@ -47,6 +49,7 @@ ActiveAdmin.register Paper do
       f.input :description, as: :formtastic_translated_text
       f.input :poster, as: :formtastic_uploadcare
       f.input :content_blocks, as: :formtastic_content_blocks, width: 20
+      f.input :published_at
       # f.input :copy_content_blocks_from
     end
 

@@ -10,7 +10,7 @@
     </lib-layout-cell>
     
     <p class="lib-textStyle-caption">
-      <%= I18n.l resource.created_at.to_date, format: :long %>
+      <%= I18n.l resource.published_at.to_date, format: :long %>
     </p>
     <div class="lib-boxStyle-inFlow">
       <%= render 'lib/page', page: resource, width: 20 %>
