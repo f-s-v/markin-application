@@ -11,8 +11,8 @@ class FormtasticTranslatedTextInput < Formtastic::Inputs::StringInput
       allow_destroy: false,
       heading: humanized_method_name,
       class: 'translated-text-input' do |inputs|
-      inputs.input :locale, as: :hidden
-      inputs.input :text, as: :string, label: I18n.t("locale.#{inputs.object.locale}")
+      inputs.input(:locale, as: :hidden) +
+      inputs.input(:text, as: :string, label: I18n.t("locale.#{inputs.object.locale}"))
     end
   end
 end

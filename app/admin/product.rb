@@ -61,6 +61,7 @@ ActiveAdmin.register Product do
 
 
   form do |f|
+    # binding.pry
     f.inputs do
       f.input :name, as: :formtastic_translated_text
       f.input :description, as: :formtastic_translated_text
