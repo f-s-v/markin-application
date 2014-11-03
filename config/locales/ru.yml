@@ -239,6 +239,7 @@ ru:
         image: Картинка
         embed_code: Код для вставки
         link: Ссылка на блок
+        open_link_in_new_tab: Открывать ссылку в новом окне.
       message:
         text: Текст
         created_at: Дата отправки

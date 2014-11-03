@@ -55,7 +55,12 @@
       }
     </style>
     <template if="{{model.link}}">
-      <a href="{{model.link}}" id="blockLink"></a>
+      <template if="{{model.open_link_in_new_tab}}">
+        <a href="{{model.link}}" id="blockLink" target="_blank"></a>
+      </template>
+      <template if="{{!model.open_link_in_new_tab}}">
+        <a href="{{model.link}}" id="blockLink"></a>
+      </template>
     </template>
     <shadow></shadow>
   </template>

@@ -11,6 +11,7 @@ json.array! @content_blocks do |block|
   json.image block.image
   json.embed_code block.embed_code
   json.link block.link
+  json.open_link_in_new_tab block.open_link_in_new_tab
   json.text_attributes do
     json.array! block.text do |text|
       json.locale text.locale

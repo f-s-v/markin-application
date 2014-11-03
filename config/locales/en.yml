@@ -140,6 +140,7 @@ en:
         image: Image
         embed_code: Embed code
         link: Link for block
+        open_link_in_new_tab: Open link in new tab
   simple_form:
     required:
       html: ''
