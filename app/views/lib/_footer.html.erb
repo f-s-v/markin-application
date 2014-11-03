@@ -3,17 +3,25 @@
   <%= link_to image_tag('site-title-tiny-inverse.svg'), root_url %>
   <br />
   <small class="lib-textStyle-captionSerif">
-    <%= link_to 'info@vladimirmarkin.com', 'mailto:info@vladimirmarkin.com', class: 'invisible' %>
+    <%= link_to t('lib.site_title.contacts'), page_path('contacts'), class: 'invisible' %>
   </small>
   <br />
   <small class="lib-textStyle-captionSerif">
-    <%= link_to t('.address'), 'https://www.google.com/maps/place/OOO+%22Yuvelirnaya+laboratoriya+%22Markin%22/@55.740104,37.609613,19z/data=!4m2!3m1!1s0x46b54baa72e7fe73:0xb72c8ec572ec44d8?hl=en', class: 'invisible', target: '_blank' %>
+    <%= link_to 'info@vladimirmarkin.com', 'mailto:info@vladimirmarkin.com', class: 'invisible' %>
   </small>
   <br />
   <small class="lib-textStyle-captionSerif">
     <%= link_to 'https://www.facebook.com/markinjewellery', class: 'invisible', target: '_blank' do %>
       <span class="lib-textStyle-websymbol">&#228;</span>
       Facebook
+    <% end %>
+    <%= link_to 'http://instagram.com/markinjewellery', class: 'invisible', target: '_blank' do %>
+      <span class="lib-textStyle-websymbol">&#235;</span>
+      Instagram
+    <% end %>
+    <%= link_to 'http://ru.pinterest.com/markinjewellery/', class: 'invisible', target: '_blank' do %>
+      <span class="lib-textStyle-websymbol">&#237;</span>
+      Pinterest
     <% end %>
   </small>
 </lib-layout-cell>
