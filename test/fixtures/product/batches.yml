@@ -2,3 +2,4 @@
 
 one:
   poster: none
+  public_id: <%= Product::Batch.generate_public_id(:public_id) %>

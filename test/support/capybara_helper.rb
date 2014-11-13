@@ -24,17 +24,17 @@ module CapybaraHelper
   end
 
   def add_to_cart(product)
-    visit store_product_path(product)
-    click_on('storeItemAddToCart')
+    post store_order_items_path product_public_id: product.public_id
   end
 
   def checkout(user, order, *products)
     products.each do |product|
       add_to_cart(product)
-      visit new_store_order_shipping_info_path
-      fill_order_shipping_info(order.shipping_info)
-      find('[name=commit]').click
     end
+    visit new_store_order_shipping_info_path
+    fill_order_shipping_info(order.shipping_info)
+    page.save_screenshot('tmp/screenshot.png')
+    find('[name=commit]').click
     visit new_store_order_payment_path
     sign_in(user)
   end

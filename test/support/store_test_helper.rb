@@ -8,7 +8,7 @@ module StoreTestHelper
   end
 
   def register_current_order
-    get store_product_url(products(:one))
+    get store_batch_product_url(products(:one).batch, products(:one))
     assert session["order_id"].present?
   end
 

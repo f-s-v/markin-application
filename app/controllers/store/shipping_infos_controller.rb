@@ -11,18 +11,18 @@ class Store::ShippingInfosController < ApplicationController
   end
 
   def create
-    raise ActionController::RoutingError.new("Not Found") if current_order.shipping_info.present?
+    raise_not_found if current_order.shipping_info.present?
     resource.update_attributes(permitted_params)
     respond_with resource, location: [:store, :order]
   end
 
   def edit
-    raise ActiveRecord::RecordNotFound if current_order.shipping_info.blank?
+    raise_not_found if current_order.shipping_info.blank?
     respond_with resource
   end
 
   def update
-    raise ActiveRecord::RecordNotFound if current_order.shipping_info.blank?
+    raise_not_found if current_order.shipping_info.blank?
     resource.update_attributes(permitted_params)
     respond_with resource, location: [:store, :order]
   end
