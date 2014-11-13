@@ -185,7 +185,7 @@ en:
         separator: .
         significant: false
         strip_insignificant_zeros: false
-        unit: $
+        unit: US$
   options:
     content_block:
       font_style:
