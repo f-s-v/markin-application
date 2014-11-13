@@ -36,7 +36,7 @@ en:
   store:
     batches:
       show:
-        collection: Colelction
+        collection: Collection
       index:
         catalogue: Catalogue
         collections: Collections
@@ -121,7 +121,7 @@ en:
         _destroy: Delete
       order/shipping_info:
         country: Country
-        shipping_name: Shipping name
+        shipping_name: Name
         shipping_address_line1: Shipping address line 1
         shipping_address_line2: Shipping address line 2
         shipping_city: Shipping city
