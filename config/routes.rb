@@ -34,6 +34,7 @@ Rails.application.routes.draw do
           end
         end
         put :checkout
+        get :checkout_info
       end
       resources :batches, path: '' do
         resources :products, only: [:show], path: ''
@@ -42,4 +43,7 @@ Rails.application.routes.draw do
 
     resources :pages, path: '/', only: 'show'
   end
+  
+  get '/en/order', to: redirect('/')
+  get '/ru/order', to: redirect('/')
 end
