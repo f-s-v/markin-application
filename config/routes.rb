@@ -41,9 +41,9 @@ Rails.application.routes.draw do
       end
     end
 
+    get '/order', to: redirect('/')
+    get '/order', to: redirect('/')
+
     resources :pages, path: '/', only: 'show'
   end
-  
-  get '/en/order', to: redirect('/')
-  get '/ru/order', to: redirect('/')
 end
