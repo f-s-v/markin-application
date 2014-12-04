@@ -15,7 +15,7 @@
       class: expand_class('lib', buttons: 'small black', boxStyle: 'inFlow'),
       id: 'storeItemAddToCart'
     %>
-    
+
     <dl class="lib-layout-aside-content">
       <dt><%= Product.human_attribute_name :batch %></dt>
       <dd><%= link_to resource.batch.name.value, store_batch_path(resource.batch), class: 'invisible' %></dd>

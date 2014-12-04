@@ -12,9 +12,14 @@
       refChanged: function(){
         this.target = this.ownerDocument.getElementById(this.ref)
       },
+
       attached: function(){
-        requestAnimationFrame(this.checkPosition.bind(this))
         requestAnimationFrame(this.checkParentWidth.bind(this))
+        requestAnimationFrame(this.checkPosition.bind(this))
+
+        window.addEventListener('scroll', function(){
+          requestAnimationFrame(this.checkPosition.bind(this))
+        }.bind(this))
       },
 
       checkParentWidth: function(){
@@ -28,6 +33,9 @@
       },
 
       checkPosition: function(){
+        if (!this.checkingPositionStartTime)
+          this.checkingPositionStartTime = Date.now()
+
         var T = this.target.parentNode.getBoundingClientRect().top,
           t = this.target.getBoundingClientRect().top,
           w = window.innerHeight,
@@ -38,13 +46,16 @@
 
         if (T < this.offset) {
           this.target.classList.add('lib-scrollFied-fixed')
-          this.target.style.top = T * (a - w + OB + OT) / (A - w + OB) + OT + 'px' 
+          this.target.style.top = T * (a - w + OB + OT) / (A - w + OB) + OT + 'px'
         }
         else {
           this.target.classList.remove('lib-scrollFied-fixed')
         }
 
-        requestAnimationFrame(this.checkPosition.bind(this))
+        // if (!this.checkingPositionStartTime + 1000 > Date.now())
+        //   requestAnimationFrame(this.checkPosition.bind(this))
+        // else
+        //   delete this.checkingPositionStartTime
       }
     });
   </script>

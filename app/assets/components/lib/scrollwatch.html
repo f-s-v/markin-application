@@ -6,6 +6,10 @@
       wasEntered: false,
       attached: function(){
         requestAnimationFrame(this.checkPosition.bind(this))
+        window.addEventListener(function(){
+          requestAnimationFrame(this.checkPosition.bind(this))
+        }.bind(this))
+
       },
       checkPosition: function(){
         var top = this.target.getBoundingClientRect().top
@@ -17,7 +21,7 @@
           if (this.wasEntered) this.fire('scroll-leave');
           this.wasEntered = false
         }
-        requestAnimationFrame(this.checkPosition.bind(this))
+        // requestAnimationFrame(this.checkPosition.bind(this))
       }
     });
   </script>
