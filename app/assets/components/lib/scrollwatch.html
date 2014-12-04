@@ -6,7 +6,7 @@
       wasEntered: false,
       attached: function(){
         requestAnimationFrame(this.checkPosition.bind(this))
-        window.addEventListener(function(){
+        window.addEventListener('scroll', function(){
           requestAnimationFrame(this.checkPosition.bind(this))
         }.bind(this))
 
