@@ -2,6 +2,15 @@
 <% @page_description = resource.description.value %>
 <% @page_image = resource.poster.presence && uploadcare_url(resource.poster) %>
 
+<% content_for :extra_head do %>
+  <meta property="og:type" content="product" />
+  <meta property="og:url" content="<%= request.url %>" />
+  <meta property="og:site_name" content="<%= site_title %>" />
+  <meta property="og:price:amount" content="<%= resource.price %>" />
+  <meta property="og:price:currency" content="USD" />
+  <meta property="og:availability" content="instock" />
+<% end %>
+
 <lib-layout row modules="24">
   <%= render 'aside' %>
   <%= render 'main' %>

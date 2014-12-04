@@ -11,9 +11,11 @@
   </script>
   <%= html_import_tag 'app' %>
   <link rel="icon" type="image/png" href="<%= image_path "favicon.png" %>">
+  <meta property="og:title" content="<%= site_title %>">
   <meta property="og:image" content="<%= page_image %>">
   <meta property="og:description" content="<%= page_description %>">
   <%= csrf_meta_tags %>
+  <%= yield :extra_head %>
 </head>
 <body unresolved class="lib-page">
 
@@ -22,13 +24,13 @@
     <lib-monitormedia-rule name="medium" max-width="910px"></lib-monitormedia-rule>
     <lib-monitormedia-rule name="large" min-width="911px"></lib-monitormedia-rule>
   </lib-monitormedia>
-  
+
   <lib-layout modules="24" class="app-header">
     <app-stickyHeader></app-stickyHeader>
     <%= render 'lib/site_title' %>
     <%= render 'lib/menu' %>
   </lib-layout>
-  
+
   <lib-layout modules="24" class="lib-page-content">
     <% if content_for?(:main_content) %>
       <%= yield :main_content %>
