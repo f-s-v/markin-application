@@ -54,4 +54,8 @@ module ApplicationHelper
   def page_image
     @page_image.presence || image_url("logo-circle-black.png")
   end
+
+  def uploadcare_url(uuid, modifiers = {})
+    [["http://c7.ucarecdn.com/#{uuid}"] + modifiers.map{|k, v| [k, v].join('/')}].join('/-/') + '/'
+  end
 end
