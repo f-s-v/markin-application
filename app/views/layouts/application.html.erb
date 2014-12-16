@@ -3,6 +3,7 @@
 <head>
   <title><%= site_title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <%= stylesheet_link_tag 'application', media: 'all', 'shim-shadowdom' => 'yes' %>
   <%= javascript_include_tag 'application' %>
   <script>
@@ -20,7 +21,7 @@
 <body unresolved class="lib-page">
 
   <lib-monitormedia id="mediaMonitor">
-    <lib-monitormedia-rule name="small" max-width="630px"></lib-monitormedia-rule>
+    <lib-monitormedia-rule name="small" max-width="560px"></lib-monitormedia-rule>
     <lib-monitormedia-rule name="medium" max-width="910px"></lib-monitormedia-rule>
     <lib-monitormedia-rule name="large" min-width="911px"></lib-monitormedia-rule>
   </lib-monitormedia>
