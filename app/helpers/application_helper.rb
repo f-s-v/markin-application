@@ -58,4 +58,11 @@ module ApplicationHelper
   def uploadcare_url(uuid, modifiers = {})
     [["http://c7.ucarecdn.com/#{uuid}"] + modifiers.map{|k, v| [k, v].join('/')}].join('/-/') + '/'
   end
+  
+  def uploadcare_collection_urls(uuid, modifiers)
+    cuuid, count = uuid.split('~')
+    count.to_i.times.map do |index|
+      uploadcare_url("#{uuid}/nth/#{index}", modifiers)
+    end
+  end
 end

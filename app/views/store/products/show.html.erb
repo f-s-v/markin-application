@@ -9,6 +9,11 @@
   <meta property="og:price:amount" content="<%= resource.price %>" />
   <meta property="og:price:currency" content="USD" />
   <meta property="og:availability" content="instock" />
+  <% images.each do |image| %>
+    <% uploadcare_collection_urls(image.image, preview: '1000x1000').each do |url| %>
+      <meta property="og:image" content="<%= url %>">
+    <% end %>
+  <% end %>
 <% end %>
 
 <lib-layout row modules="24">
