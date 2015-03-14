@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module ApplicationHelper
   def expand_class(prefix = nil, value)
     if value.is_a? Hash
@@ -41,7 +42,7 @@ module ApplicationHelper
     styles << 'padding' if block.padding
     styles
   end
-  
+
   def site_title
     [@site_title, t('meta.title')].compact.join(' — ')
   end
@@ -58,11 +59,24 @@ module ApplicationHelper
   def uploadcare_url(uuid, modifiers = {})
     [["http://c7.ucarecdn.com/#{uuid}"] + modifiers.map{|k, v| [k, v].join('/')}].join('/-/') + '/'
   end
-  
+
   def uploadcare_collection_urls(uuid, modifiers)
     cuuid, count = uuid.split('~')
     count.to_i.times.map do |index|
       uploadcare_url("#{uuid}/nth/#{index}", modifiers)
     end
+  end
+
+  def currency_to_locale(currency)
+    if currency
+      (currency.to_s == 'RUB') ? :ru : :en
+    else
+      I18n.locale
+    end
+  end
+
+  def product_price(product)
+    price, _, locale = product.price_with_currency(currency_to_locale)
+    number_to_currency price, precision: 0,  locale: locale
   end
 end

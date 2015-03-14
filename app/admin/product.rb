@@ -6,6 +6,7 @@ ActiveAdmin.register Product do
   filter :public_id, label: 'ID'
   filter :batch, member_label: :to_s
   filter :price
+  filter :price_by_request
   filter :created_at
 
   controller do
@@ -29,8 +30,12 @@ ActiveAdmin.register Product do
     end
     column :batch
     column :price do |product|
-      number_to_currency product.price, precision: 0
+      number_to_currency product.price, precision: 0, locale: :en
     end
+    column :price_rub do |product|
+      number_to_currency (product.price_rub || product.converted_price), precision: 0, locale: :ru
+    end
+    column :price_by_request
     column :created_at
     actions
   end
@@ -42,8 +47,12 @@ ActiveAdmin.register Product do
         product.public_id
       end
       row :price do
-        number_to_currency product.price
+        number_to_currency product.price, locale: :en
       end
+      row :price_rub do
+        number_to_currency (product.price_rub || product.converted_price), locale: :ru
+      end
+      row :price_by_request
       row :name do
         product.name.value
       end
@@ -67,7 +76,9 @@ ActiveAdmin.register Product do
       f.input :content_blocks, as: :formtastic_content_blocks, width: 20
       # f.input :copy_content_blocks_from
       f.input :batch, member_label: :to_s
+      # f.input :price_by_request      
       f.input :price
+      f.input :price_rub
       f.input :poster, as: :formtastic_uploadcare
       f.input :has_sizes
     end

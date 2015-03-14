@@ -5,7 +5,7 @@ class Order::Item < ActiveRecord::Base
   belongs_to :order
   belongs_to :product
 
-  validates :product, :amount, presence: true
+  validates :product, :amount, :price, :currency, presence: true
   validates :amount, numericality: { greater_than: 0 }
   # validates :size, presence: true, if: :product_has_sizes
   before_validation :set_price, on: :create
@@ -25,7 +25,12 @@ class Order::Item < ActiveRecord::Base
   end
 
   protected def set_price
-    self.price = product.price
+    locale = if order.currency
+      (order.currency == 'USD') ? :en : :ru
+    else
+      I18n.locale
+    end
+    self.price, self.currency = product.price_with_currency(locale)
   end
 
   protected def product_has_sizes

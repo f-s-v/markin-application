@@ -3,7 +3,7 @@
     <dl class="lib-layout-aside-content">
       <dt><%= Product.human_attribute_name :price %></dt>
       <dd>
-        <h2><%= number_to_currency resource.price, precision: 0 %></h3>
+        <h2><%= product_price resource %></h3>
       </dd>
     </dl>
 

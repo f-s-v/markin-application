@@ -7,7 +7,7 @@
   <lib-layout vcenter stack largeHidden mediumVisible>
     <span class="lib-textStyle-captionSmall"><%= Product.human_attribute_name :price %></span>
     <h2>
-      <%= number_to_currency resource.price, precision: 0 %>
+      <%= product_price resource %>
     </h2>
     <%= link_to t('actions.add_to_cart'),
       store_order_items_path(product_public_id: resource.public_id),
@@ -46,7 +46,7 @@
   
   <lib-layout vcenter stack>
     <h2>
-      <%= number_to_currency resource.price, precision: 0 %>
+      <%= product_price resource %>
     </h2>
     <%= link_to t('actions.add_to_cart'),
       store_order_items_path(product_public_id: resource.public_id),

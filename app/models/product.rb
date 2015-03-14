@@ -16,4 +16,22 @@ class Product < ActiveRecord::Base
   def to_param
     public_id
   end
+
+  def price_with_currency(locale)
+    if (locale == :ru) && converted_price
+      [price_rub.present? ? price_rub : converted_price, :RUB, :ru]
+    else
+      [price, :USD, :en]
+    end
+  end
+
+  def converted_price
+    if mult = ::Setting.usd_rub
+      price * mult
+    end
+  end
+
+  def price_by_locale(locale = I18n.locale)
+    price_with_currency(locale).first
+  end
 end

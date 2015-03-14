@@ -17,7 +17,7 @@ ActiveAdmin.register Order::DeliveryZone do
     attributes_table_for order_delivery_zone do
       row :name
       row :delivery_price do |zone|
-        number_to_currency zone.delivery_price
+        number_to_currency zone.delivery_price, locale: :en
       end
       row :countries do |zone|
         zone.countries.map(&:name).join(', ')

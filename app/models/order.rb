@@ -23,7 +23,11 @@ class Order < ActiveRecord::Base
   def delivery_price
     zone = shipping_info && Order::DeliveryZone.joins(:countries).where('countries.id' => shipping_info.country_id).first
     if zone
-      zone.delivery_price
+      if currency == 'RUB'
+        zone.delivery_price * ::Setting.usd_rub
+      else
+        zone.delivery_price
+      end
     else
       0.0
     end
@@ -31,6 +35,10 @@ class Order < ActiveRecord::Base
 
   def subtotal
     items.sum("order_items.price * order_items.amount")
+  end
+
+  def currency
+    items.first.try(:currency)
   end
 
   def total
@@ -44,8 +52,9 @@ class Order < ActiveRecord::Base
   def to_param
     public_id.to_s
   end
-  
+
   def sent
     send_message :sent
   end
+
 end

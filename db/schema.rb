@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103134919) do
+ActiveRecord::Schema.define(version: 20150314192526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20141103134919) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "size"
+    t.string   "currency",   default: "USD"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
@@ -192,9 +193,15 @@ ActiveRecord::Schema.define(version: 20141103134919) do
     t.datetime "updated_at"
     t.string   "public_id"
     t.boolean  "has_sizes"
+    t.boolean  "price_by_request", default: false
+    t.decimal  "price_rub"
   end
 
   add_index "products", ["batch_id"], name: "index_products_on_batch_id", using: :btree
+
+  create_table "settings", force: true do |t|
+    t.float "usd_rub"
+  end
 
   create_table "translations", force: true do |t|
     t.string   "locale"

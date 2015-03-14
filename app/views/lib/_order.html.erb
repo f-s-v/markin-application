@@ -33,7 +33,7 @@
     </lib-layout-cell>
   
     <lib-layout-cell width="4" smallWidth="5" smallGap="1">
-      <span class="lib-textStyle-condenced"><%= number_to_currency item.total, precision: 0 %></span>
+      <span class="lib-textStyle-condenced"><%= number_to_currency item.total, precision: 0, locale: currency_to_locale(item.currency) %></span>
     </lib-layout-cell>
   
     <lib-layout-cell width="3" smallWidth="4">
@@ -102,8 +102,8 @@
 <dl>
   <% if order.shipping_info.present? %>
     <dt><%= Order.human_attribute_name :delivery_price %></dt>
-    <dd><%= number_to_currency order.delivery_price, precision: 0 %></dd>
+    <dd><%= number_to_currency order.delivery_price, precision: 0, locale: currency_to_locale(order.currency) %></dd>
   <% end %>
   <dt><%= Order.human_attribute_name :total %></dt>
-  <dd><%= number_to_currency order.total, precision: 0 %></dd>
+  <dd><%= number_to_currency order.total, precision: 0, locale: currency_to_locale(order.currency) %></dd>
 </dl>

@@ -7,5 +7,5 @@
       <%= product.name.value %>
     <% end %>
   </h3>
-  <p class="lib-textStyle-captionNumber lib-paragraph-center"> <%= number_to_currency product.price, precision: 0 %></p>
+  <p class="lib-textStyle-captionNumber lib-paragraph-center"> <%= product_price product %></p>
 </lib-layout-cell>

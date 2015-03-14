@@ -17,6 +17,7 @@ class Store::OrdersController < Store::BaseController
       items_attributes: [
         :id,
         :amount,
+        :currency,
         :size,
         :_destroy
       ]
