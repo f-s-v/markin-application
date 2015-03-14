@@ -76,7 +76,7 @@ module ApplicationHelper
   end
 
   def product_price(product)
-    price, _, locale = product.price_with_currency(currency_to_locale)
+    price, _, locale = product.price_with_currency(currency_to_locale(current_order.currency))
     number_to_currency price, precision: 0,  locale: locale
   end
 end
