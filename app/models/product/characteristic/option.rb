@@ -1,5 +1,7 @@
 class Product::Characteristic::Option < ActiveRecord::Base
   include Concerns::Translated
+  include Concerns::ContentBlocks
+
   translated :name
 
   belongs_to :characteristic
