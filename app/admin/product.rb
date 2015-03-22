@@ -76,10 +76,10 @@ ActiveAdmin.register Product do
       f.input :content_blocks, as: :formtastic_content_blocks, width: 20
       # f.input :copy_content_blocks_from
       f.input :batch, member_label: :to_s
-      # f.input :price_by_request      
       f.input :price
       f.input :price_rub
       f.input :poster, as: :formtastic_uploadcare
+      f.input :price_by_request
       f.input :has_sizes
     end
 

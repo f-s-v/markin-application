@@ -98,6 +98,7 @@ en:
       product:
         public_id: ID
         price: Price
+        price_by_request: Price on request
         batch: Collection
         name: Name
         content_blocks: Page blocks

@@ -158,6 +158,7 @@ ru:
         copy_content_blocks_from: Скопировать страницу с адреса
         description: Описание
         created_at: Дата создания
+        price_by_request: Цена по запросу
         has_sizes: Имеет размеры
         poster: Картинка
       product/batch:
