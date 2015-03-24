@@ -41,6 +41,7 @@ gem 'emcee', github: 'rastyagaev/emcee'
 # gem 'emcee'
 gem 'deep_cloneable', '~> 2.0.0'
 gem 'party_foul'  
+gem 'geocoder'
 
 group :test do
   gem 'capybara'
