@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314192526) do
+ActiveRecord::Schema.define(version: 20150403095041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,7 +163,8 @@ ActiveRecord::Schema.define(version: 20150314192526) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "public_id"
-    t.boolean  "featured",   default: false
+    t.boolean  "featured",           default: false
+    t.boolean  "direct_access_only", default: false
   end
 
   create_table "product_characteristic_options", force: true do |t|

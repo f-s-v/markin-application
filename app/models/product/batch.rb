@@ -1,9 +1,10 @@
 class Product::Batch < ActiveRecord::Base
   include Concerns::Translated
   translated :name, :description
-  
+
   include Concerns::ContentBlocks
-  
+  include Concerns::DirectAccess
+
   include Concerns::PublicId
   generates_public_id :public_id
   
