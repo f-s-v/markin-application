@@ -166,6 +166,7 @@ ru:
         content_blocks: Страница
         name: Название
         featured: Вверху страницы
+        direct_access_only: Только по прямой ссылке
         poster: Картинка
       product/characteristic:
         name: Название
