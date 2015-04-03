@@ -8,7 +8,10 @@ class Store::OptionsController < ApplicationController
   end
   
   let(:products, on: :member) do
-    resource.products.joins(:name).where('translations.locale' => I18n.locale).order('translations.text').to_a.uniq
+    resource.products.joins(:batch, :name).
+      where('translations.locale' => I18n.locale).
+      order('translations.text').
+      merge(Product::Batch.searchable).uniq.to_a
   end
 
   def show
