@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
     if params[:locale].present?
       cookies[:locale] = I18n.locale = params[:locale]
     else
-      default_locale = request.location.data["country_code"].downcase == 'ru' ? :ru : I18n.default_locale
+      # default_locale = request.location.data["country_code"].downcase == 'ru' ? :ru : I18n.default_locale
+      default_locale = I18n.default_locale
       redirect_to url_for(locale: cookies[:locale].presence || default_locale), status: :moved_permanently
     end
   end
