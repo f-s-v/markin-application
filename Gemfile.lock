@@ -17,13 +17,6 @@ GIT
       sass-rails
 
 GIT
-  remote: git://github.com/f-s-v/uploadcare_helpers.git
-  revision: 925e4eaec6ab52038fb551c96f576a2a4eda4de7
-  specs:
-    uploadcare_helpers (0.0.1)
-      rails (~> 4.1.0.rc2)
-
-GIT
   remote: git://github.com/rastyagaev/emcee.git
   revision: 5b91823060ec9e7c0b6f1a8da9357ecf5310852d
   specs:
@@ -309,4 +302,6 @@ DEPENDENCIES
   simple_form (~> 3.1.0.rc2)
   uglifier (>= 1.3.0)
   unicorn
-  uploadcare_helpers!
+
+BUNDLED WITH
+   1.10.1

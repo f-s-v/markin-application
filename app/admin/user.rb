@@ -5,7 +5,7 @@ ActiveAdmin.register User do
   filter :name
   filter :created_at
 
-  permit_params :email, :name
+  permit_params :email, :name, :password, :password_confirmation
 
   index do
     selectable_column
@@ -33,6 +33,8 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :email
       f.input :name
+      f.input :password
+      f.input :password_confirmation
     end
     f.actions
   end
